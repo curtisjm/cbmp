@@ -6,15 +6,19 @@ This context describes the domain language for a ballroom competition organizer 
 
 **User**:
 An authenticated login account that can be granted permission to manage competition, organization, or competitor-facing workflows. A user does not have to be linked to a competitor.
-_Avoid_: Account, login, profile
+_Avoid_: Account, login
 
-**Competitor**:
-A durable person identity used for competition entries, partnerships, numbers, results history, and correction requests. A competitor can exist before the person has a user account, and a user can choose to become a competitor before entering a competition.
-_Avoid_: User, account, dancer
+**User Profile**:
+A user's own profile information, independent of whether the user is linked to a competitor. A user profile can be augmented with competitor-specific information when the user becomes or is linked to a competitor.
+_Avoid_: Account profile, login profile
 
 **Organization**:
 A ballroom team or other group that competitors can represent at a competition. An organization can manage eligible competitors before those competitors have user accounts.
 _Avoid_: Team, school, club
+
+**Competitor**:
+A durable person identity used for competition entries, partnerships, numbers, results history, and correction requests. A competitor can exist before the person has a user account, and a user can choose to become a competitor before entering a competition.
+_Avoid_: User, account, dancer
 
 **Organization Membership**:
 A user's relationship to an organization. Organization membership can exist even when the user is not linked to a competitor.
@@ -29,7 +33,7 @@ A user trusted by an organization to manage its membership, entries, and organiz
 _Avoid_: Team captain, senior member, manager
 
 **Platform Admin**:
-A user trusted to manage platform-wide exceptions and profile-level eligibility overrides that should not belong to a single organization or competition host.
+A user trusted to manage platform-wide exceptions and competitor-level eligibility overrides that should not belong to a single organization or competition host.
 _Avoid_: Org admin, host admin, superuser
 
 **Entry**:
@@ -105,7 +109,7 @@ An event where a newcomer competes with a vet, scoped separately for rookie lead
 _Avoid_: Mixed-level event, newcomer-vet event
 
 **Competition Eligibility Override**:
-A competition host's decision to allow an entry in a specific competition even when platform eligibility rules would otherwise block it. A competition eligibility override does not change the competitor's profile-level eligibility.
+A competition host's decision to allow an entry in a specific competition even when platform eligibility rules would otherwise block it. A competition eligibility override does not change the competitor-level eligibility.
 _Avoid_: Platform override, profile override
 
 **Payment Status**:
