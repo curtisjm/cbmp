@@ -1,12 +1,16 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { ReactNode } from "react";
 
+import { isClerkPublishableKeyConfigured } from "../lib/clerk";
+
 type AppProvidersProps = {
   children: ReactNode;
 };
 
 export function isClerkEnabled() {
-  return Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+  return isClerkPublishableKeyConfigured(
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+  );
 }
 
 export function AppProviders({ children }: AppProvidersProps) {

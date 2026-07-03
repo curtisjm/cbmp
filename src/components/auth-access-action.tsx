@@ -8,38 +8,44 @@ import {
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 
-type AuthEntryActionProps = {
+type AuthAccessActionProps = {
   clerkEnabled: boolean;
+  variant?: "primary" | "secondary";
 };
 
-export function AuthEntryAction({ clerkEnabled }: AuthEntryActionProps) {
+export function AuthAccessAction({
+  clerkEnabled,
+  variant = "primary",
+}: AuthAccessActionProps) {
+  const className = `button button--${variant}`;
+
   if (!clerkEnabled) {
     return (
-      <Link className="button button--secondary" href="/sign-in">
+      <Link className={className} href="/sign-in">
         <LogIn aria-hidden="true" className="button__icon" />
         <span>Sign in</span>
       </Link>
     );
   }
 
-  return <ClerkAuthEntryAction />;
+  return <ClerkAuthAccessAction className={className} />;
 }
 
-function ClerkAuthEntryAction() {
+function ClerkAuthAccessAction({ className }: { className: string }) {
   const { isLoaded, isSignedIn } = useUser();
 
   if (isLoaded && isSignedIn) {
     return (
-      <div className="auth-entry__user" aria-label="User menu">
+      <div className="user-control" aria-label="User menu">
         <UserButton />
       </div>
     );
   }
 
   return (
-    <div className="auth-entry">
+    <div className="auth-access">
       <SignInButton mode="modal">
-        <button className="button button--secondary" type="button">
+        <button className={className} type="button">
           <LogIn aria-hidden="true" className="button__icon" />
           <span>Sign in</span>
         </button>

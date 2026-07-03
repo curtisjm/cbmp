@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ClipboardList } from "lucide-react";
+
+import { PublicCompetitionsEmpty } from "../../components/public-competitions-empty";
 
 export const metadata: Metadata = {
   title: "Public Competitions",
@@ -23,26 +24,10 @@ export default function CompetitionsPage() {
           </div>
         </div>
 
-        <div className="empty-table" aria-label="Public Competitions">
-          <div className="empty-table__head" role="presentation">
-            <span>Competition</span>
-            <span>Competition Lifecycle</span>
-            <span>Host Organization</span>
-            <span>Route</span>
-          </div>
-          <div className="empty-state">
-            <div>
-              <span className="empty-state__icon">
-                <ClipboardList aria-hidden="true" />
-              </span>
-              <h2>No public Competitions yet</h2>
-              <p>
-                Published Competitions will appear here with their Competition
-                Lifecycle label and public route.
-              </p>
-            </div>
-          </div>
-        </div>
+        <PublicCompetitionsEmpty
+          ariaLabel="Public Competitions"
+          description="Published Competitions will appear here with their Competition Lifecycle label and public route."
+        />
       </section>
     </main>
   );

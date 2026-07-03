@@ -2,19 +2,14 @@
 
 import {
   Globe2,
-  LogIn,
-  Route,
+  House,
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import {
-  SignInButton,
-  useUser,
-  UserButton,
-} from "@clerk/nextjs";
 
+import { AuthAccessAction } from "./auth-access-action";
 import { productName, publicNavItems } from "../lib/cbmp";
 
 type AppShellProps = {
@@ -40,42 +35,6 @@ function IconLink({ href, label, icon: Icon, current = false }: IconLinkProps) {
       <Icon aria-hidden="true" className="nav-link__icon" />
       <span>{label}</span>
     </Link>
-  );
-}
-
-function AuthControls({ clerkEnabled }: { clerkEnabled: boolean }) {
-  if (!clerkEnabled) {
-    return (
-      <Link className="button button--primary" href="/sign-in">
-        <LogIn aria-hidden="true" className="button__icon" />
-        <span>Sign in</span>
-      </Link>
-    );
-  }
-
-  return <ClerkAuthControls />;
-}
-
-function ClerkAuthControls() {
-  const { isLoaded, isSignedIn } = useUser();
-
-  if (isLoaded && isSignedIn) {
-    return (
-      <div className="user-control" aria-label="User menu">
-        <UserButton />
-      </div>
-    );
-  }
-
-  return (
-    <div className="auth-controls">
-      <SignInButton mode="modal">
-        <button className="button button--primary" type="button">
-          <LogIn aria-hidden="true" className="button__icon" />
-          <span>Sign in</span>
-        </button>
-      </SignInButton>
-    </div>
   );
 }
 
@@ -110,8 +69,8 @@ export function AppShell({ children, clerkEnabled }: AppShellProps) {
           <IconLink
             current={pathname === "/"}
             href="/"
-            icon={Route}
-            label="Public entry"
+            icon={House}
+            label="Public home"
           />
         </nav>
 
@@ -120,7 +79,7 @@ export function AppShell({ children, clerkEnabled }: AppShellProps) {
             <Globe2 aria-hidden="true" className="button__icon" />
             <span>Public</span>
           </Link>
-          <AuthControls clerkEnabled={clerkEnabled} />
+          <AuthAccessAction clerkEnabled={clerkEnabled} />
         </div>
       </header>
 

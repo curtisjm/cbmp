@@ -12,7 +12,14 @@ pnpm install
 cp .env.example .env.local
 ```
 
-Fill `.env.local` with local Clerk keys and the Convex deployment values when those services are available. The example file contains placeholders only.
+The copied `.env.local` starts with non-secret placeholders only. Those
+placeholder Clerk values are rejected by the app, so Clerk stays unavailable
+until you replace them with real local Clerk keys.
+
+When Clerk is available, set `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` to a real
+`pk_test_...` or `pk_live_...` value and set the matching `CLERK_SECRET_KEY`.
+The public `/sign-in` route renders Clerk's prebuilt sign-in UI only in that
+configured mode. Without real keys, `/sign-in` shows a safe unavailable state.
 
 ## Development Commands
 

@@ -1,7 +1,6 @@
 import {
-  Archive,
-  CircleDot,
   ClipboardList,
+  LogIn,
   type LucideIcon,
 } from "lucide-react";
 
@@ -50,7 +49,7 @@ export const lifecycleCues: LifecycleCue[] = [
   {
     key: "entries open",
     label: "entries open",
-    routeLabel: "entry",
+    routeLabel: "open",
     description: "primary public activity",
     tone: "open",
   },
@@ -77,23 +76,17 @@ export const lifecycleCues: LifecycleCue[] = [
   },
 ];
 
-export const entryActions = [
+export const publicAccessLinks = [
   {
     href: "/competitions",
-    label: "Open Competitions",
-    description: "Public Competition list",
+    label: "Public Competitions",
+    description: "Published Competition list",
     icon: ClipboardList,
   },
   {
-    href: "/competitions",
-    label: "Competition Lifecycle",
-    description: "Text-first lifecycle cues",
-    icon: CircleDot,
-  },
-  {
-    href: "/competitions",
-    label: "Public archive",
-    description: "Finished Competition reference",
-    icon: Archive,
+    href: "/sign-in",
+    label: "Sign in",
+    description: "Identity access when Clerk is available",
+    icon: LogIn,
   },
 ];
