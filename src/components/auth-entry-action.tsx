@@ -1,9 +1,8 @@
 "use client";
 
 import {
-  SignedIn,
-  SignedOut,
   SignInButton,
+  useUser,
   UserButton,
 } from "@clerk/nextjs";
 import { LogIn } from "lucide-react";
@@ -23,21 +22,28 @@ export function AuthEntryAction({ clerkEnabled }: AuthEntryActionProps) {
     );
   }
 
+  return <ClerkAuthEntryAction />;
+}
+
+function ClerkAuthEntryAction() {
+  const { isLoaded, isSignedIn } = useUser();
+
+  if (isLoaded && isSignedIn) {
+    return (
+      <div className="auth-entry__user" aria-label="User menu">
+        <UserButton />
+      </div>
+    );
+  }
+
   return (
     <div className="auth-entry">
-      <SignedOut>
-        <SignInButton mode="modal">
-          <button className="button button--secondary" type="button">
-            <LogIn aria-hidden="true" className="button__icon" />
-            <span>Sign in</span>
-          </button>
-        </SignInButton>
-      </SignedOut>
-      <SignedIn>
-        <div className="auth-entry__user" aria-label="User menu">
-          <UserButton />
-        </div>
-      </SignedIn>
+      <SignInButton mode="modal">
+        <button className="button button--secondary" type="button">
+          <LogIn aria-hidden="true" className="button__icon" />
+          <span>Sign in</span>
+        </button>
+      </SignInButton>
     </div>
   );
 }

@@ -10,9 +10,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import {
-  SignedIn,
-  SignedOut,
   SignInButton,
+  useUser,
   UserButton,
 } from "@clerk/nextjs";
 
@@ -54,21 +53,28 @@ function AuthControls({ clerkEnabled }: { clerkEnabled: boolean }) {
     );
   }
 
+  return <ClerkAuthControls />;
+}
+
+function ClerkAuthControls() {
+  const { isLoaded, isSignedIn } = useUser();
+
+  if (isLoaded && isSignedIn) {
+    return (
+      <div className="user-control" aria-label="User menu">
+        <UserButton />
+      </div>
+    );
+  }
+
   return (
     <div className="auth-controls">
-      <SignedOut>
-        <SignInButton mode="modal">
-          <button className="button button--primary" type="button">
-            <LogIn aria-hidden="true" className="button__icon" />
-            <span>Sign in</span>
-          </button>
-        </SignInButton>
-      </SignedOut>
-      <SignedIn>
-        <div className="user-control" aria-label="User menu">
-          <UserButton />
-        </div>
-      </SignedIn>
+      <SignInButton mode="modal">
+        <button className="button button--primary" type="button">
+          <LogIn aria-hidden="true" className="button__icon" />
+          <span>Sign in</span>
+        </button>
+      </SignInButton>
     </div>
   );
 }
