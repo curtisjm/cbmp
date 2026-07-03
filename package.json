@@ -1,0 +1,36 @@
+{
+  "name": "cbmp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently --names web,backend --prefix-colors blue,magenta --kill-others-on-fail \"pnpm dev:web\" \"pnpm dev:backend\"",
+    "dev:web": "next dev --hostname 127.0.0.1 --port 3000",
+    "dev:backend": "node scripts/dev-backend-placeholder.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "next build",
+    "test": "pnpm test:smoke",
+    "test:smoke": "playwright test"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^7.5.12",
+    "convex": "^1.42.1",
+    "lucide-react": "^1.23.0",
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^10.0.3",
+    "typescript": "^6.0.3"
+  }
+}
