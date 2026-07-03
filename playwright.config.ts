@@ -14,6 +14,9 @@ export default defineConfig({
   },
   webServer: {
     command: 'pnpm dev:web',
+    env: {
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: 'pk_test_placeholder_for_smoke_tests',
+    },
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

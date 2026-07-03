@@ -16,8 +16,7 @@ export default function SignInPage() {
         <section className="safe-surface">
           <SignIn
             fallbackRedirectUrl="/"
-            path="/sign-in"
-            routing="path"
+            routing="hash"
             transferable={false}
             withSignUp={false}
           />
