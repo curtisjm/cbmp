@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-03T21:06:10Z",
+  "title": "Design System: CBMP",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Frost Accent",
+        "canonical": "#88c0d0",
+        "tonalRamp": ["#1c3036", "#2e4b54", "#456974", "#5f8a96", "#79acba", "#88c0d0", "#b5dbe3", "#e3f3f6"]
+      },
+      "primary-deep": {
+        "role": "primary",
+        "displayName": "Fjord Accent",
+        "canonical": "#5e81ac",
+        "tonalRamp": ["#172233", "#263750", "#385171", "#4d6d92", "#5e81ac", "#87a6c7", "#b8cce0", "#e6eef6"]
+      },
+      "polar-night-0": {
+        "role": "neutral",
+        "displayName": "Polar Night Base",
+        "canonical": "#2e3440",
+        "tonalRamp": ["#12151a", "#1d222a", "#2e3440", "#3f4654", "#596170", "#87909d", "#c4cad3", "#eceff4"]
+      },
+      "polar-night-2": {
+        "role": "neutral",
+        "displayName": "Polar Night Cap",
+        "canonical": "#434c5e",
+        "tonalRamp": ["#171b22", "#262c36", "#343c4a", "#434c5e", "#5d687a", "#8993a2", "#c5cad3", "#eceff4"]
+      },
+      "snow-base": {
+        "role": "neutral",
+        "displayName": "Snow Base",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#2e3440", "#4c566a", "#6f7888", "#9aa3af", "#cbd1da", "#e5e9f0", "#fbfbfc", "#ffffff"]
+      },
+      "lifecycle-running": {
+        "role": "secondary",
+        "displayName": "Running Red",
+        "canonical": "#bf616a",
+        "tonalRamp": ["#321416", "#552229", "#7a343c", "#9d4a54", "#bf616a", "#d98b91", "#efc3c6", "#faecee"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Rare product-level headings for operational surfaces; marketing pages can define a separate hero scale when designed."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default Inter UI copy for operational surfaces."
+      },
+      "mono": {
+        "displayName": "Utility Mono",
+        "purpose": "JetBrains Mono for route paths, IDs, slugs, and audit references only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "nord-panel",
+        "value": "0 12px 26px rgb(46 52 64 / 0.1)",
+        "purpose": "Raised light panels and table containers on Snow Surface backgrounds."
+      },
+      {
+        "name": "frosted-nav",
+        "value": "inset 0 1px 0 rgb(236 239 244 / 0.1), 0 10px 22px rgb(46 52 64 / 0.12)",
+        "purpose": "Sticky Polar Night app chrome."
+      },
+      {
+        "name": "dark-inset",
+        "value": "inset 0 1px 0 rgb(236 239 244 / 0.08)",
+        "purpose": "Subtle top-edge cue on dark operational panels."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-transition",
+        "value": "150ms ease-out",
+        "purpose": "Default hover, focus, and selected-state transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action button for light product surfaces.",
+      "html": "<button class=\"ds-btn-primary\">Sign in</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 10px 16px; border: 0; border-radius: 999px; background: #88c0d0; color: #2e3440; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 650; letter-spacing: 0; transition: background 150ms ease-out, box-shadow 150ms ease-out; } .ds-btn-primary:hover { background: #7bb4c4; } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #88c0d0, 0 0 0 4px #ffffff; }"
+    },
+    {
+      "name": "Dark Button",
+      "kind": "button",
+      "refersTo": "button-dark",
+      "description": "Secondary button for Polar Night app chrome and dark panels.",
+      "html": "<button class=\"ds-btn-dark\">View</button>",
+      "css": ".ds-btn-dark { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 10px 16px; border: 1px solid rgba(236, 239, 244, 0.14); border-radius: 999px; background: rgba(255, 255, 255, 0.1); color: #eceff4; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 650; transition: background 150ms ease-out, border-color 150ms ease-out; } .ds-btn-dark:hover { background: rgba(255, 255, 255, 0.15); } .ds-btn-dark:focus-visible { outline: none; box-shadow: 0 0 0 2px #88c0d0; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Rounded search/filter input for Competition discovery and table filtering.",
+      "html": "<label class=\"ds-search\"><span>Search competitions</span><input placeholder=\"Search competitions\" /></label>",
+      "css": ".ds-search { display: grid; gap: 6px; color: #3b4252; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 650; } .ds-search input { height: 40px; border: 1px solid #d8dee9; border-radius: 999px; background: #ffffff; color: #2e3440; padding: 10px 16px; font: inherit; font-size: 14px; font-weight: 400; } .ds-search input::placeholder { color: #657083; } .ds-search input:focus-visible { outline: none; border-color: #88c0d0; box-shadow: 0 0 0 2px rgba(136, 192, 208, 0.35); }"
+    },
+    {
+      "name": "Light Operational Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Light container for tables, filters, prototype state, and repeated work.",
+      "html": "<section class=\"ds-card\"><h3>Public competitions</h3><p>Draft competitions are excluded from public list.</p></section>",
+      "css": ".ds-card { border: 1px solid #d8dee9; border-radius: 24px; background: #ffffff; color: #2e3440; padding: 20px; box-shadow: 0 12px 26px rgba(46, 52, 64, 0.1); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-card h3 { margin: 0 0 4px; font-size: 16px; line-height: 1.25; font-weight: 650; } .ds-card p { margin: 0; color: #4c566a; font-size: 14px; line-height: 1.45; }"
+    },
+    {
+      "name": "Dark Operational Panel",
+      "kind": "card",
+      "refersTo": "panel-dark",
+      "description": "Polar Night panel for lifecycle, authority, role, and high-attention state context.",
+      "html": "<section class=\"ds-panel-dark\"><h3>Competition Lifecycle</h3><p>Status labels are text plus color.</p></section>",
+      "css": ".ds-panel-dark { border: 1px solid rgba(216, 222, 233, 0.14); border-radius: 24px; background: linear-gradient(180deg, rgba(67, 76, 94, 0.98), rgba(46, 52, 64, 0.98)); color: #eceff4; padding: 20px; box-shadow: inset 0 1px 0 rgba(236, 239, 244, 0.08); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-panel-dark h3 { margin: 0 0 4px; font-size: 16px; line-height: 1.25; font-weight: 650; } .ds-panel-dark p { margin: 0; color: #e5e9f0; font-size: 14px; line-height: 1.45; }"
+    },
+    {
+      "name": "Lifecycle Chip",
+      "kind": "chip",
+      "refersTo": "status-chip",
+      "description": "Text plus color lifecycle marker. Color alone is never sufficient.",
+      "html": "<span class=\"ds-chip\"><i></i> entries open</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 8px; height: 24px; padding: 0 10px; border: 1px solid #88c0d0; border-radius: 999px; background: #ffffff; color: #2e3440; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 650; line-height: 1; } .ds-chip i { width: 8px; height: 8px; border-radius: 999px; background: #88c0d0; }"
+    },
+    {
+      "name": "Frosted App Navigation",
+      "kind": "nav",
+      "refersTo": "top-nav",
+      "description": "Compact Polar Night app chrome with active Snow tab.",
+      "html": "<nav class=\"ds-nav\"><strong>CBMP</strong><a class=\"is-active\">Competitions</a><a>Lifecycle</a><a>User Profile</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(216, 222, 233, 0.24); border-radius: 18px; background: linear-gradient(180deg, rgba(76, 86, 106, 0.78), rgba(46, 52, 64, 0.72)); color: #eceff4; padding: 10px 12px; box-shadow: inset 0 1px 0 rgba(236, 239, 244, 0.1), 0 10px 22px rgba(46, 52, 64, 0.12); backdrop-filter: blur(34px) saturate(1.35); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-nav strong { margin-right: 8px; font-size: 16px; } .ds-nav a { border-radius: 8px; color: #e5e9f0; padding: 7px 10px; font-size: 14px; font-weight: 650; text-decoration: none; } .ds-nav a:hover { background: rgba(255, 255, 255, 0.1); } .ds-nav a.is-active { background: #ffffff; color: #2e3440; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Operations Ledger",
+    "overview": "CBMP should read like a reliable operations ledger for collegiate ballroom Competition work: light where users scan repeated data, dark where state or authority needs emphasis, and quiet enough to survive long administrative sessions. The system is composed, precise, and operational; it should help Competition Hosts, Scrutineers, Judges, Deck Captains, Competitors, and Platform Admins understand state without mistaking decoration for authority.\n\nThe visual language uses a restrained Nord palette. Snow Storm surfaces carry tables, forms, and repeated work. Polar Night surfaces carry app chrome, lifecycle modules, table header bands, and authority panels. Aurora colors are reserved for sparse lifecycle markers and status borders, always paired with text labels. Future marketing pages, clean decorative moments, and real analytics pages should extend this composed language instead of fighting it.",
+    "keyCharacteristics": [
+      "Dense but calm operational surfaces.",
+      "Familiar shadcn-compatible controls.",
+      "Nord color used for state and structure, not ornament.",
+      "Light table bodies with dark state bands.",
+      "Inter as the primary UI voice, with JetBrains Mono only for fixed-width utility data."
+    ],
+    "rules": [
+      {
+        "name": "The Dark Surfaces Earn Their Keep Rule",
+        "body": "Polar Night is for app chrome, lifecycle, table headers, and authority context. It is not a decorative full-dashboard default.",
+        "section": "colors"
+      },
+      {
+        "name": "The Aurora Is State Rule",
+        "body": "Aurora colors identify lifecycle and operational state only. Do not use them as decorative confetti or section theming.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light Table Body Rule",
+        "body": "Public Competition lists and repeated admin tables stay light and dense. Dark headers are allowed; dark data bodies are not the default.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sans-First Rule",
+        "body": "Inter carries the product. Do not introduce display fonts, decorative fonts, or serif pairings for operational screens.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Is Evidence Rule",
+        "body": "JetBrains Mono marks inspectable data, not style. Never use it for headings, buttons, navigation, role labels, or prose.",
+        "section": "typography"
+      },
+      {
+        "name": "The Numbers Align Rule",
+        "body": "Numeric columns use tabular numerals in Inter before reaching for mono. Entries, counts, and totals should align without making the table feel like a developer console.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tonal Layering Rule",
+        "body": "Prefer background, border, and header-band contrast before adding a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Ghost Card Rule",
+        "body": "Do not combine a visible border with a broad soft shadow as decoration. If both exist, the shadow must be shallow and structural.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Inter as the primary UI font for navigation, labels, controls, tables, and body copy.",
+      "Do use JetBrains Mono only for route paths, IDs, slugs, audit references, and other fixed-width utility data.",
+      "Do keep core controls familiar and shadcn-compatible.",
+      "Do use Polar Night for top chrome, lifecycle modules, table headers, and authority panels.",
+      "Do keep public Competition tables light, dense, and readable.",
+      "Do pair every status color with a text label.",
+      "Do preserve domain language from the glossary: User Profile, Competition, Entry, Competition Lifecycle, Scrutineer, Judge, Deck Captain, and Organization.",
+      "Do target WCAG 2.2 AA contrast and keep text readable in imperfect competition-day environments."
+    ],
+    "donts": [
+      "Don't let operational app surfaces feel like marketing landing pages; marketing pages are allowed later, but they must use CBMP's clean composed language.",
+      "Don't use decorative ballroom cliches or ornament on operational pages; clean modern decorative elements are allowed where they do not obscure workflow.",
+      "Don't ship analytics theater, placeholder metrics, or fake dashboards; real analytics pages must be grounded in real domain questions and data.",
+      "Don't make CBMP feel like a generic SaaS admin template.",
+      "Don't use oversized hero sections, ornamental card grids, or ballroom cliches on operational routes.",
+      "Don't imply product behavior, role authority, or dashboards that have not been defined by PRDs or domain decisions.",
+      "Don't use unfamiliar controls for standard actions.",
+      "Don't bring in full dark mode by default; dark surfaces need an operational reason.",
+      "Don't use JetBrains Mono for headings, buttons, role labels, or general table text.",
+      "Don't rely on color alone for lifecycle or action state."
+    ]
+  }
+}
