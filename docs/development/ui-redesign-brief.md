@@ -32,10 +32,13 @@ The redesign should cover all currently implemented issue 3 surfaces:
 
 Additional template-derived reference pages are allowed when they help establish reusable design language for future work. These routes should be clearly framed as prototype/reference surfaces and must not imply final authorization rules, role workflows, scoring behavior, or other unsettled product decisions.
 
+Fake examples should be domain-plausible and clearly prototype-safe. Centralize reusable prototype fixtures in a shared module such as `src/lib/cbmp.ts` rather than scattering sample data across pages.
+
 ## Public Home
 
 - Keep the home page product-facing rather than competition-browsing.
 - Leave room for future marketing content, using template-style scaffolding such as feature sections, workflow highlights, bento-like sections, and trust or FAQ-style areas.
+- Preserve the template's marketing motion language on the home page, including animated section reveals and other landing-page animations where practical.
 - Keep current copy conservative and CBMP-specific so it does not overpromise unfinished behavior.
 - Do not put recent competitions on the home page. Competition discovery belongs on `/competitions`.
 
@@ -55,10 +58,17 @@ Additional template-derived reference pages are allowed when they help establish
 
 ## Component Strategy
 
+- Add Tailwind CSS during the foundation pass so CBMP can closely follow the template's shadcn/Tailwind conventions.
+- Add a standard `components.json` shadcn config and use conventional `src/components/ui/*` and `src/lib/utils.ts` locations.
+- Replace the current global stylesheet direction wholesale during the foundation pass. Preserve behavior and accessibility affordances, but do not keep old prototype styling when it conflicts with Tailwind/shadcn conventions.
 - Add a small real shadcn-style local UI layer rather than copying the template's entire UI library.
 - Bring in only the dependencies and components used by the redesign.
 - Likely primitives include Button, Card, Badge, Input, and possibly Tabs or Separator.
 - Use the template as the visual source, but avoid unused Radix packages and broad component-system churn.
+- Include Framer Motion during this pass while the template's motion language is in context.
+- Use motion for app shell, active-state, list, surface, and marketing-page transitions.
+- Adapt animated home-page effects to CBMP's Nord palette and product language while preserving the template's animated feel.
+- Respect reduced-motion preferences for every animated interaction.
 
 ## Documentation Requirement
 
@@ -69,9 +79,17 @@ Each inventory entry should include:
 - Component or pattern
 - CBMP use case
 - Template example source
+- Status such as use now, future/reference, requires dependency, or avoid
 - Notes or constraints
 
 The inventory may include patterns that are not implemented in the current pass as long as they are plausible future CBMP surfaces and clearly labeled as future/reference.
+
+## Implementation Operating Model
+
+- Use subagents for implementation work to keep the lead agent's context focused on orchestration and integration.
+- The lead agent should define clear, disjoint ownership slices for workers, then review, integrate, verify, commit, and push their work.
+- Implementation phases should include template exploration, foundation work, page/surface implementation, documentation, and code review.
+- Workers must assume they are not alone in the codebase, avoid reverting unrelated changes, and adapt to already-integrated edits.
 
 ## Verification
 
