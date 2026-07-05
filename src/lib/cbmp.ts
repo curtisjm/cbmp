@@ -1,6 +1,5 @@
 import {
   ClipboardList,
-  LogIn,
   type LucideIcon,
 } from "lucide-react";
 
@@ -14,7 +13,6 @@ export type LifecycleKey =
 export type LifecycleCue = {
   key: LifecycleKey;
   label: string;
-  routeLabel: string;
   description: string;
   tone: "published" | "open" | "closed" | "running" | "finished";
 };
@@ -41,52 +39,32 @@ export const publicNavItems: NavItem[] = [
 export const lifecycleCues: LifecycleCue[] = [
   {
     key: "published",
-    label: "published",
-    routeLabel: "public",
-    description: "visible before entries open",
+    label: "Published",
+    description: "Listed publicly; entries not yet open.",
     tone: "published",
   },
   {
     key: "entries open",
-    label: "entries open",
-    routeLabel: "open",
-    description: "primary public activity",
+    label: "Entries open",
+    description: "Accepting Competitor entries.",
     tone: "open",
   },
   {
     key: "entries closed",
-    label: "entries closed",
-    routeLabel: "review",
-    description: "attention and final checks",
+    label: "Entries closed",
+    description: "Entry window closed; awaiting the run.",
     tone: "closed",
   },
   {
     key: "running",
-    label: "running",
-    routeLabel: "floor",
-    description: "scrutineer controls changes",
+    label: "Running",
+    description: "Live on the floor.",
     tone: "running",
   },
   {
     key: "finished",
-    label: "finished",
-    routeLabel: "archive",
-    description: "stable public reference",
+    label: "Finished",
+    description: "Completed; results final.",
     tone: "finished",
-  },
-];
-
-export const publicAccessLinks = [
-  {
-    href: "/competitions",
-    label: "Public Competitions",
-    description: "Published Competition list",
-    icon: ClipboardList,
-  },
-  {
-    href: "/sign-in",
-    label: "Sign in",
-    description: "Identity access when Clerk is available",
-    icon: LogIn,
   },
 ];

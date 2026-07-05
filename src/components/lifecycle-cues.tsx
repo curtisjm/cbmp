@@ -8,19 +8,17 @@ export function LifecycleCues() {
       <div className="surface-heading">
         <div>
           <h2 id="lifecycle-heading">Competition Lifecycle</h2>
-          <p>Public state names remain visible with each cue.</p>
+          <p>Public state names stay text-first and readable at a glance.</p>
         </div>
-        <span className="route-chip">public route</span>
       </div>
 
-      <div className="lifecycle-grid">
+      <div className="lifecycle-list">
         {lifecycleCues.map((cue) => (
           <article className="lifecycle-item" data-tone={cue.tone} key={cue.key}>
             <div className="lifecycle-item__meta">
-              <span className="route-chip route-chip--muted">{cue.routeLabel}</span>
               <span className="status-dot" aria-hidden="true" />
+              <h3>{cue.label}</h3>
             </div>
-            <h3>{cue.label}</h3>
             <p>{cue.description}</p>
           </article>
         ))}

@@ -18,19 +18,29 @@ test.describe('public home', () => {
       .first();
     await expect(signIn).toBeVisible();
 
-    const accessLinks = page
-      .getByRole('list', { name: /CBMP public access links/i })
-      .getByRole('link');
-    await expect(accessLinks).toHaveCount(2);
-    await expect(accessLinks.nth(0)).toHaveAttribute(
-      'href',
-      /\/competitions(?:\/)?(?:$|[?#])/,
-    );
-    await expect(accessLinks.nth(1)).toHaveAttribute(
-      'href',
-      /\/sign-in(?:\/)?(?:$|[?#])/,
-    );
-    await expect(page.getByRole('link', { name: /public home/i })).toBeVisible();
+    await expect(
+      page
+        .getByRole('navigation', { name: /global navigation/i })
+        .getByRole('link', { name: /public home/i }),
+    ).toHaveCount(0);
+  });
+
+  test('keeps competition discovery off the home page', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(
+      page.getByRole('heading', { name: /competition lifecycle/i }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('heading', {
+        exact: true,
+        name: 'Public Competitions',
+      }),
+    ).toHaveCount(0);
+    await expect(page.getByText(/No public Competitions yet/i)).toHaveCount(0);
+    await expect(
+      page.getByLabel(/public competitions preview/i),
+    ).toHaveCount(0);
   });
 
   test('renders a public sign-in fallback when Clerk is unavailable', async ({
@@ -51,5 +61,22 @@ test.describe('public home', () => {
       'href',
       /\/competitions(?:\/)?(?:$|[?#])/,
     );
+  });
+});
+
+test.describe('public competitions', () => {
+  test('owns the public Competition discovery empty state', async ({ page }) => {
+    await page.goto('/competitions');
+
+    await expect(
+      page.getByRole('heading', {
+        exact: true,
+        name: 'Public Competitions',
+      }),
+    ).toBeVisible();
+    await expect(page.getByText(/No public Competitions yet/i)).toBeVisible();
+    await expect(
+      page.getByText('Competition Lifecycle', { exact: true }),
+    ).toBeVisible();
   });
 });

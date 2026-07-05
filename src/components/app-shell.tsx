@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Globe2,
-  House,
-  type LucideIcon,
-} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -46,7 +42,7 @@ export function AppShell({ children, clerkEnabled }: AppShellProps) {
       <header className="app-header">
         <div className="brand-cluster">
           <Link className="brand-mark" href="/" aria-label={`${productName} home`}>
-            C
+            CB
           </Link>
           <div className="brand-copy">
             <Link className="brand-name" href="/">
@@ -66,19 +62,9 @@ export function AppShell({ children, clerkEnabled }: AppShellProps) {
               label={item.label}
             />
           ))}
-          <IconLink
-            current={pathname === "/"}
-            href="/"
-            icon={House}
-            label="Public home"
-          />
         </nav>
 
         <div className="header-actions">
-          <Link className="button button--dark" href="/competitions">
-            <Globe2 aria-hidden="true" className="button__icon" />
-            <span>Public</span>
-          </Link>
           <AuthAccessAction clerkEnabled={clerkEnabled} />
         </div>
       </header>
