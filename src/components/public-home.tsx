@@ -1,5 +1,6 @@
 "use client";
 
+import type { LucideIcon } from "lucide-react";
 import {
   motion,
   useReducedMotion,
@@ -25,7 +26,6 @@ import {
   homeHeroMockupRows,
   homeHeroMockupStats,
   lifecycleCues,
-  productName,
   workflowPanels,
   type LifecycleCue,
 } from "@/lib/cbmp";
@@ -46,60 +46,97 @@ const heroPreviewTransition = {
   ease: "easeOut",
 } satisfies Transition;
 
-function revealMotion(reduceMotion: boolean, y = 18): MotionProps {
-  if (reduceMotion) {
-    return {};
-  }
+const reducedRevealTransition = {
+  duration: 0.26,
+  ease: "easeOut",
+} satisfies Transition;
 
+function revealMotion(reduceMotion: boolean, y = 18): MotionProps {
   return {
-    initial: { opacity: 0, y },
+    initial: { opacity: 0, y: reduceMotion ? Math.min(6, y) : y },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-80px" },
-    transition: revealTransition,
+    transition: reduceMotion ? reducedRevealTransition : revealTransition,
   };
 }
 
 function heroIntroMotion(reduceMotion: boolean): MotionProps {
-  if (reduceMotion) {
-    return {};
-  }
-
   return {
-    initial: { opacity: 0, y: 18 },
+    initial: { opacity: 0, y: reduceMotion ? 5 : 18 },
     animate: { opacity: 1, y: 0 },
-    transition: revealTransition,
+    transition: reduceMotion ? reducedRevealTransition : revealTransition,
   };
 }
 
 function heroPreviewMotion(reduceMotion: boolean): MotionProps {
-  if (reduceMotion) {
-    return {};
-  }
-
   return {
-    initial: { opacity: 0, scale: 0.98, y: 18 },
+    initial: {
+      opacity: 0,
+      scale: reduceMotion ? 0.995 : 0.98,
+      y: reduceMotion ? 5 : 18,
+    },
     animate: { opacity: 1, scale: 1, y: 0 },
-    transition: heroPreviewTransition,
+    transition: reduceMotion ? reducedRevealTransition : heroPreviewTransition,
   };
 }
 
+type CardLinkContent = {
+  ariaLabel: string;
+  body: string;
+  cta: string;
+  href: string;
+  icon: LucideIcon;
+  title: string;
+};
+
+type CardLinkMeta = Pick<CardLinkContent, "ariaLabel" | "cta" | "href">;
+
 const roleCards = [
   {
+    ariaLabel:
+      "Open the Competition Hosts workspace for the MIT Open Ballroom Championships",
+    cta: "Open host workspace",
+    href: "/app/competitions/mit-open-2026",
     icon: ClipboardCheck,
     title: "Competition Hosts",
     body: "Prepare public listings, Entry windows, officials, and day-of context without mixing in platform-wide authority.",
   },
   {
+    ariaLabel: "Preview the Scrutineers surface",
+    cta: "Preview scrutineering",
+    href: "/coming-soon?surface=scrutineers",
     icon: Gavel,
     title: "Scrutineers",
     body: "See the Competition Lifecycle clearly before running-state decisions become available in later slices.",
   },
   {
+    ariaLabel: "Preview the Organizations surface",
+    cta: "Preview organizations",
+    href: "/coming-soon?surface=organizations",
     icon: Users,
     title: "Organizations",
     body: "Keep Entry work connected to durable Competitor and Organization language as the product grows.",
   },
-];
+] satisfies readonly CardLinkContent[];
+
+const workflowCardLinks: Record<string, CardLinkMeta> = {
+  "Entry Review": {
+    ariaLabel: "Preview the Entry Review surface",
+    cta: "Preview entry review",
+    href: "/coming-soon?surface=entry-review",
+  },
+  "Floor Coordination": {
+    ariaLabel:
+      "Open floor coordination context for the MIT Open Ballroom Championships",
+    cta: "Open floor context",
+    href: "/app/competitions/mit-open-2026",
+  },
+  "Public Boundary": {
+    ariaLabel: "Browse public Competitions",
+    cta: "Browse public view",
+    href: "/competitions",
+  },
+};
 
 export function PublicHome({ clerkEnabled }: PublicHomeProps) {
   const reduceMotion = useReducedMotion();
@@ -116,9 +153,7 @@ export function PublicHome({ clerkEnabled }: PublicHomeProps) {
             {...heroIntroMotion(shouldReduceMotion)}
             className="mx-auto max-w-3xl"
           >
-            <Badge variant="outline" className="mb-5 bg-card">
-              {productName} public preview
-            </Badge>
+            <HeroDemoPill reduceMotion={shouldReduceMotion} />
             <h1
               id="home-heading"
               className="text-balance text-4xl font-semibold leading-[1.05] tracking-normal text-foreground md:text-5xl lg:text-6xl"
@@ -162,18 +197,7 @@ export function PublicHome({ clerkEnabled }: PublicHomeProps) {
           </h2>
         </div>
         {roleCards.map((card) => (
-          <article
-            className="rounded-lg border bg-card p-5 shadow-card"
-            key={card.title}
-          >
-            <div className="grid size-10 place-items-center rounded-lg bg-muted text-foreground">
-              <card.icon className="size-5" aria-hidden="true" />
-            </div>
-            <h3 className="mt-5 text-base font-semibold">{card.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              {card.body}
-            </p>
-          </article>
+          <InteractiveCardLink {...card} key={card.title} />
         ))}
       </motion.section>
 
@@ -222,21 +246,97 @@ export function PublicHome({ clerkEnabled }: PublicHomeProps) {
         </motion.div>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {workflowPanels.map((panel) => (
-            <article
-              className="rounded-lg border bg-card p-5 shadow-card"
-              key={panel.title}
-            >
-              <panel.icon className="size-5 text-muted-foreground" aria-hidden="true" />
-              <h3 className="mt-5 text-base font-semibold">{panel.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {panel.body}
-              </p>
-            </article>
-          ))}
+          {workflowPanels.map((panel) => {
+            const linkMeta = workflowCardLinks[panel.title];
+
+            return (
+              <InteractiveCardLink
+                ariaLabel={linkMeta.ariaLabel}
+                body={panel.body}
+                cta={linkMeta.cta}
+                href={linkMeta.href}
+                icon={panel.icon}
+                key={panel.title}
+                title={panel.title}
+              />
+            );
+          })}
         </div>
       </section>
     </div>
+  );
+}
+
+function HeroDemoPill({ reduceMotion }: { reduceMotion: boolean }) {
+  return (
+    <Link
+      aria-label="Open the Live Demo Webinar competition workspace"
+      className="group mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/70 hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      href="/app/competitions/mit-open-2026"
+    >
+      <span className="relative flex size-3 items-center justify-center">
+        <motion.span
+          animate={{
+            opacity: reduceMotion ? [0.55, 0.25, 0.55] : [0.55, 0, 0.55],
+            scale: reduceMotion ? [1, 1.25, 1] : [1, 1.75, 1],
+          }}
+          aria-hidden="true"
+          className="absolute size-3 rounded-full bg-emerald-400"
+          transition={{
+            duration: reduceMotion ? 1.6 : 1.2,
+            ease: "easeOut",
+            repeat: Infinity,
+          }}
+        />
+        <span
+          aria-hidden="true"
+          className="relative size-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.14)]"
+        />
+      </span>
+      <span>Live Demo Webinar</span>
+      <ArrowRight
+        aria-hidden="true"
+        className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5"
+      />
+    </Link>
+  );
+}
+
+function InteractiveCardLink({
+  ariaLabel,
+  body,
+  cta,
+  href,
+  icon: Icon,
+  title,
+}: CardLinkContent) {
+  return (
+    <article className="h-full">
+      <Link
+        aria-label={ariaLabel}
+        className="group relative flex h-full min-h-[14rem] flex-col overflow-hidden rounded-lg border bg-card p-5 text-left shadow-card transition-all duration-200 hover:-translate-y-1 hover:border-primary/70 hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        href={href}
+      >
+        <Icon
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-7 -top-7 size-28 text-primary/[0.07] transition-all duration-300 group-hover:rotate-3 group-hover:scale-110 group-hover:text-primary/[0.12] group-focus-visible:rotate-3 group-focus-visible:scale-110 group-focus-visible:text-primary/[0.12]"
+        />
+        <span className="relative z-10 grid size-11 place-items-center rounded-lg border border-border/80 bg-muted text-foreground transition-colors duration-200 group-hover:border-primary/40 group-hover:bg-primary/15 group-focus-visible:border-primary/40 group-focus-visible:bg-primary/15">
+          <Icon className="size-5" aria-hidden="true" />
+        </span>
+        <h3 className="relative z-10 mt-5 text-base font-semibold">{title}</h3>
+        <p className="relative z-10 mt-2 text-sm leading-6 text-muted-foreground">
+          {body}
+        </p>
+        <span className="relative z-10 mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-foreground">
+          <span>{cta}</span>
+          <ArrowRight
+            aria-hidden="true"
+            className="size-4 transition-transform duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1"
+          />
+        </span>
+      </Link>
+    </article>
   );
 }
 
@@ -308,14 +408,16 @@ function HeroOperationsMockup({ reduceMotion }: { reduceMotion: boolean }) {
                 <div className="mt-5 overflow-hidden rounded-lg border bg-card">
                   {homeHeroMockupRows.map((row, index) => (
                     <motion.div
-                      {...(!reduceMotion && {
-                        initial: { opacity: 0, x: -8 },
+                      {...{
+                        initial: { opacity: 0, x: reduceMotion ? -2 : -8 },
                         animate: { opacity: 1, x: 0 },
                         transition: {
-                          delay: 0.3 + index * 0.08,
-                          duration: 0.25,
+                          delay: reduceMotion
+                            ? 0.1 + index * 0.03
+                            : 0.3 + index * 0.08,
+                          duration: reduceMotion ? 0.18 : 0.25,
                         },
-                      })}
+                      }}
                       className="border-b p-3 last:border-b-0"
                       key={row.id}
                     >
@@ -374,12 +476,12 @@ function LifecycleTile({
 
   return (
     <motion.article
-      {...(!reduceMotion && {
-        initial: { opacity: 0, y: 10 },
+      {...{
+        initial: { opacity: 0, y: reduceMotion ? 3 : 10 },
         whileInView: { opacity: 1, y: 0 },
         viewport: { once: true, margin: "-40px" },
-        transition,
-      })}
+        transition: reduceMotion ? { ...transition, duration: 0.18 } : transition,
+      }}
       className="rounded-lg border bg-background p-4"
     >
       <div className="flex items-start gap-3">
