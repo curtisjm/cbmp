@@ -1,6 +1,5 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -16,11 +15,10 @@ type AppShellProps = {
 type IconLinkProps = {
   href: string;
   label: string;
-  icon: LucideIcon;
   current?: boolean;
 };
 
-function IconLink({ href, label, icon: Icon, current = false }: IconLinkProps) {
+function NavLink({ href, label, current = false }: IconLinkProps) {
   return (
     <Link
       aria-current={current ? "page" : undefined}
@@ -28,7 +26,6 @@ function IconLink({ href, label, icon: Icon, current = false }: IconLinkProps) {
       data-current={current ? "true" : undefined}
       href={href}
     >
-      <Icon aria-hidden="true" className="nav-link__icon" />
       <span>{label}</span>
     </Link>
   );
@@ -48,17 +45,16 @@ export function AppShell({ children, clerkEnabled }: AppShellProps) {
             <Link className="brand-name" href="/">
               {productName}
             </Link>
-            <span className="brand-support">Competition operations</span>
+            <span className="brand-support">COMPETITION MGMT</span>
           </div>
         </div>
 
         <nav aria-label="Global navigation" className="global-nav">
           {publicNavItems.map((item) => (
-            <IconLink
+            <NavLink
               key={item.href}
               current={pathname === item.href}
               href={item.href}
-              icon={item.icon}
               label={item.label}
             />
           ))}

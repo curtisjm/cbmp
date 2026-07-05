@@ -65,18 +65,35 @@ test.describe('public home', () => {
 });
 
 test.describe('public competitions', () => {
-  test('owns the public Competition discovery empty state', async ({ page }) => {
+  test('owns the public Competition discovery table', async ({ page }) => {
     await page.goto('/competitions');
 
     await expect(
       page.getByRole('heading', {
         exact: true,
-        name: 'Public Competitions',
+        name: 'Competitions',
       }),
     ).toBeVisible();
-    await expect(page.getByText(/No public Competitions yet/i)).toBeVisible();
+    await expect(
+      page.getByText(/Public discovery surface for collegiate ballroom/i),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('row', {
+        name: /MIT Open Ballroom Championships/i,
+      }),
+    ).toBeVisible();
     await expect(
       page.getByText('Competition Lifecycle', { exact: true }),
-    ).toBeVisible();
+    ).toHaveCount(0);
+    await expect(page.getByText('Status', { exact: true })).toBeVisible();
+  });
+
+  test('does not render route-path decoration in the public list', async ({
+    page,
+  }) => {
+    await page.goto('/competitions');
+
+    await expect(page.getByText('/competitions')).toHaveCount(0);
+    await expect(page.getByText('Route', { exact: true })).toHaveCount(0);
   });
 });

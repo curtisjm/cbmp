@@ -1,8 +1,3 @@
-import {
-  ClipboardList,
-  type LucideIcon,
-} from "lucide-react";
-
 export type LifecycleKey =
   | "published"
   | "entries open"
@@ -20,7 +15,6 @@ export type LifecycleCue = {
 export type NavItem = {
   href: string;
   label: string;
-  icon: LucideIcon;
 };
 
 export const productName = "CBMP";
@@ -32,7 +26,6 @@ export const publicNavItems: NavItem[] = [
   {
     href: "/competitions",
     label: "Competitions",
-    icon: ClipboardList,
   },
 ];
 

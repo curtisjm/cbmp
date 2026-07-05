@@ -1,4 +1,4 @@
-import { ArrowRight, ClipboardList } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { AuthAccessAction } from "../components/auth-access-action";
@@ -10,19 +10,21 @@ export default function HomePage() {
     <main className="page page--home" aria-labelledby="home-heading">
       <section className="home-hero">
         <div className="home-copy">
-          <p className="home-kicker">Collegiate ballroom operations</p>
+          <p className="home-kicker">
+            <span className="home-kicker__dot" aria-hidden="true" />
+            <span>COLLEGIATE BALLROOM · OPERATIONS</span>
+          </p>
           <h1 id="home-heading">
             Run collegiate ballroom competitions without spreadsheet chaos.
           </h1>
           <p>
-            CBMP gives hosts and officials one shared operational surface for
-            Competition setup, public discovery, lifecycle state, and final
-            results.
+            CBMP is the shared operational surface for hosting, scrutineering,
+            and scoring collegiate ballroom Competitions - from published
+            listing through final results.
           </p>
 
           <div className="home-actions">
             <Link className="button button--primary" href="/competitions">
-              <ClipboardList aria-hidden="true" className="button__icon" />
               <span>Browse Competitions</span>
               <ArrowRight aria-hidden="true" className="button__icon" />
             </Link>
