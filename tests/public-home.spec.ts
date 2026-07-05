@@ -96,4 +96,38 @@ test.describe('public competitions', () => {
     await expect(page.getByText('/competitions')).toHaveCount(0);
     await expect(page.getByText('Route', { exact: true })).toHaveCount(0);
   });
+
+  test('searches and filters public Competition rows', async ({ page }) => {
+    await page.goto('/competitions');
+
+    const search = page.getByRole('searchbox', {
+      name: /search competitions/i,
+    });
+    await expect(search).toBeEnabled();
+
+    await search.fill('Berkeley');
+    await expect(
+      page.getByRole('row', { name: /Berkeley Classic/i }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('row', { name: /MIT Open Ballroom Championships/i }),
+    ).toHaveCount(0);
+    await expect(page.getByText('1 of 6 Competitions')).toBeVisible();
+
+    await search.clear();
+    await page.getByRole('button', { name: 'Running' }).click();
+    await expect(
+      page.getByRole('row', { name: /Midwest Collegiate Championships/i }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('row', { name: /Berkeley Classic/i }),
+    ).toHaveCount(0);
+    await expect(page.getByText('1 of 6 Competitions')).toBeVisible();
+
+    await page.getByRole('button', { name: 'All' }).click();
+    await expect(
+      page.getByRole('row', { name: /MIT Open Ballroom Championships/i }),
+    ).toBeVisible();
+    await expect(page.getByText('6 of 6 Competitions')).toBeVisible();
+  });
 });
