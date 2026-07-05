@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import type { Metadata } from "next";
 
 import { PublicCompetitionsEmpty } from "../../components/public-competitions-empty";
@@ -9,31 +8,28 @@ export const metadata: Metadata = {
 
 export default function CompetitionsPage() {
   return (
-    <main className="page" aria-labelledby="competitions-heading">
+    <main
+      className="page page--competitions"
+      aria-labelledby="competitions-heading"
+    >
+      <div className="page-heading">
+        <span className="route-label">/competitions</span>
+        <h1 id="competitions-heading">Public Competitions</h1>
+        <p>
+          Browse published Competitions when hosts make them public. Drafts stay
+          private.
+        </p>
+      </div>
+
       <section className="work-surface">
         <div className="work-header">
           <div>
-            <h1 id="competitions-heading">Public Competitions</h1>
-            <p>
-              Browse published Competitions when hosts make them public. Drafts
-              stay private.
-            </p>
+            <h2>Published list</h2>
+            <p>Competition Lifecycle labels appear with public routes.</p>
           </div>
-          <div
-            className="empty-table"
-            aria-label="Public Competition list tools"
-          >
-            <div className="empty-table__head">
-              <span>/competitions</span>
-              <span>
-                <button className="button button--dark" disabled type="button">
-                  <Search aria-hidden="true" className="button__icon" />
-                  <span>Search unavailable</span>
-                </button>
-              </span>
-              <span>Published only</span>
-              <span>Public list</span>
-            </div>
+          <div className="state-chip">
+            <span className="state-chip__dot" aria-hidden="true" />
+            <span>published only</span>
           </div>
         </div>
 
