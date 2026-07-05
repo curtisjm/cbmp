@@ -1,55 +1,60 @@
 "use client";
 
-import {
-  SignInButton,
-  useUser,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
 type AuthAccessActionProps = {
+  className?: string;
   clerkEnabled: boolean;
-  variant?: "primary" | "secondary";
+  variant?: "default" | "secondary" | "outline" | "dark" | "ghost";
 };
 
 export function AuthAccessAction({
+  className,
   clerkEnabled,
-  variant = "primary",
+  variant = "default",
 }: AuthAccessActionProps) {
-  const className = `button button--${variant}`;
-
   if (!clerkEnabled) {
     return (
-      <Link className={className} href="/sign-in">
-        <LogIn aria-hidden="true" className="button__icon" />
-        <span>Sign in</span>
-      </Link>
+      <Button asChild className={className} variant={variant}>
+        <Link href="/sign-in">
+          <LogIn aria-hidden="true" data-icon="inline-start" />
+          <span>Sign in</span>
+        </Link>
+      </Button>
     );
   }
 
-  return <ClerkAuthAccessAction className={className} />;
+  return <ClerkAuthAccessAction className={className} variant={variant} />;
 }
 
-function ClerkAuthAccessAction({ className }: { className: string }) {
+function ClerkAuthAccessAction({
+  className,
+  variant,
+}: {
+  className?: string;
+  variant: NonNullable<AuthAccessActionProps["variant"]>;
+}) {
   const { isLoaded, isSignedIn } = useUser();
 
   if (isLoaded && isSignedIn) {
     return (
-      <div className="user-control" aria-label="User menu">
+      <div className="grid size-10 place-items-center" aria-label="User menu">
         <UserButton />
       </div>
     );
   }
 
   return (
-    <div className="auth-access">
-      <SignInButton mode="modal">
-        <button className={className} type="button">
-          <LogIn aria-hidden="true" className="button__icon" />
-          <span>Sign in</span>
-        </button>
-      </SignInButton>
-    </div>
+    <SignInButton mode="modal">
+      <Button className={cn(className)} type="button" variant={variant}>
+        <LogIn aria-hidden="true" data-icon="inline-start" />
+        <span>Sign in</span>
+      </Button>
+    </SignInButton>
   );
 }

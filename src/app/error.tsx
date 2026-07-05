@@ -3,6 +3,9 @@
 import { RotateCcw } from "lucide-react";
 import Link from "next/link";
 
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 type ErrorPageProps = {
   error: Error & { digest?: string };
   reset: () => void;
@@ -10,23 +13,30 @@ type ErrorPageProps = {
 
 export default function ErrorPage({ reset }: ErrorPageProps) {
   return (
-    <main className="safe-page" aria-labelledby="error-heading">
-      <section className="safe-surface">
-        <h1 id="error-heading">Something went wrong</h1>
-        <p>
-          This surface could not be loaded. Try again or return to the public
-          Competition list.
-        </p>
-        <div className="safe-actions">
-          <button className="button button--primary" onClick={reset} type="button">
-            <RotateCcw aria-hidden="true" className="button__icon" />
-            <span>Try again</span>
-          </button>
-          <Link className="button button--secondary" href="/competitions">
-            <span>Competitions</span>
-          </Link>
-        </div>
-      </section>
-    </main>
+    <section
+      className="container flex min-h-[calc(100vh-4rem)] items-center justify-center py-16"
+      aria-labelledby="error-heading"
+    >
+      <Card className="w-full max-w-lg">
+        <CardHeader>
+          <CardTitle id="error-heading">Something went wrong</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm leading-6 text-muted-foreground">
+            This surface could not be loaded. Try again or return to the public
+            Competition list.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Button onClick={reset} type="button">
+              <RotateCcw aria-hidden="true" />
+              <span>Try again</span>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/competitions">Competitions</Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
   );
 }

@@ -2,13 +2,14 @@
 
 Date: 2026-07-05
 
-This brief records the working agreement for the issue 3 app shell redesign. It is a design and implementation guide, not a product authority document. Product scope still comes from the GitHub PRD and implementation issues.
+This brief records the working agreement for the issue 3 app shell redesign and the issue 11 finalization pass. It is a design and implementation guide, not a product authority document. Product scope still comes from the GitHub PRD, implementation issues, and CBMP domain language in `CONTEXT.md`.
 
 ## Source Of Truth
 
 - Work on branch `codex/issue-3-app-shell`.
 - Use `/home/curtis/dev/swift-cloud-space` as the near-authoritative visual template.
-- Preserve CBMP domain language from `CONTEXT.md`, product boundaries from `PRODUCT.md`, and visual constraints from `DESIGN.md`.
+- Preserve CBMP domain language from `CONTEXT.md`.
+- Treat `PRODUCT.md` and `DESIGN.md` as retired historical references for this redesign when they conflict with the implemented Swift Cloud Space direction. Do not reintroduce the old Impeccable-era visual language.
 - Keep CBMP's Next.js app router structure rather than porting the template's Vite routing model.
 
 ## Design Direction
@@ -16,8 +17,9 @@ This brief records the working agreement for the issue 3 app shell redesign. It 
 - Treat the current CBMP prototype as a functional baseline, not a design baseline.
 - Match the template's density, layout idioms, component treatment, spacing, rounded surfaces, restrained elevation, and interaction feel wherever practical.
 - Keep the Nord palette as CBMP's token foundation, while allowing the template's softer surface layering, subtle tints, and shadows to shape token usage.
-- Refine back toward CBMP's operations-ledger constraints when the template becomes too marketing-heavy, decorative, or warm-neutral.
+- Refine back toward CBMP's Competition operations constraints when the template becomes too marketing-heavy, decorative, or warm-neutral.
 - Use familiar shadcn-compatible controls. Do not introduce unusual controls for standard actions.
+- Avoid the retired ledger-heavy, route-label, and old lifecycle component styling from the pre-redesign prototype.
 
 ## Scope
 
@@ -27,7 +29,7 @@ The redesign should cover all currently implemented issue 3 surfaces:
 - `/competitions`
 - `/sign-in`
 - Shared app shell
-- Lifecycle/status cues
+- Lifecycle/status cues via the shared CBMP fixture/domain module
 - Global tokens and styling
 
 Additional template-derived reference pages are allowed when they help establish reusable design language for future work. These routes should be clearly framed as prototype/reference surfaces and must not imply final authorization rules, role workflows, scoring behavior, or other unsettled product decisions.
@@ -47,7 +49,7 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 - Treat `/competitions` as an operational discovery surface with selective gallery-like texture.
 - Preserve search and filter behavior.
 - Favor compact controls, scannable metadata, lifecycle badges, and clear event status.
-- A hybrid list/card treatment is preferred: operational controls and dense comparison first, with enough visual identity that competitions feel like real hosted Competitions rather than plain ledger rows.
+- A hybrid list/card treatment is implemented: operational controls and dense comparison first, with enough visual identity that competitions feel like real hosted Competitions rather than plain ledger rows.
 
 ## Auth And App Reference
 
@@ -63,7 +65,7 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 - Replace the current global stylesheet direction wholesale during the foundation pass. Preserve behavior and accessibility affordances, but do not keep old prototype styling when it conflicts with Tailwind/shadcn conventions.
 - Add a small real shadcn-style local UI layer rather than copying the template's entire UI library.
 - Bring in only the dependencies and components used by the redesign.
-- Likely primitives include Button, Card, Badge, Input, and possibly Tabs or Separator.
+- Current primitives include Button, Card, Badge, Input, Sheet, and Tooltip. Tabs, Separator, and Dropdown Menu should not be installed or kept locally until a current surface needs them.
 - Use the template as the visual source, but avoid unused Radix packages and broad component-system churn.
 - Include Framer Motion during this pass while the template's motion language is in context.
 - Use motion for app shell, active-state, list, surface, and marketing-page transitions.
@@ -97,3 +99,12 @@ The inventory may include patterns that are not implemented in the current pass 
 - Keep Playwright assertions around navigation, competition search/filter, empty states, and sign-in fallback.
 - Use browser screenshots at desktop and mobile widths for visual review.
 - Do not lock the template-inspired visual design into brittle screenshot tests yet.
+
+## Visual Review Evidence
+
+Screenshots were captured for manual review only and are not committed. Desktop and mobile route captures live under `/tmp/cbmp-redesign-visuals/`, with the final home desktop confirmation at `/tmp/cbmp-redesign-lead/home-desktop-final.png`.
+
+- `/`: Reviewed `home-desktop.png`, `home-mobile.png`, top-of-page variants, and `/tmp/cbmp-redesign-lead/home-desktop-final.png`; hero preview, public navigation, responsive stacking, and below-fold section hint were confirmed after the final key fix.
+- `/competitions`: Reviewed `competitions-desktop.png`, `competitions-mobile.png`, and top-of-page variants; search/filter controls, lifecycle badges, and competition card/list density remained readable at both widths.
+- `/sign-in`: Reviewed `sign-in-desktop.png`, `sign-in-mobile.png`, and top-of-page variants; fallback sign-in composition matched the redesigned public shell without exposing secrets or requiring Clerk keys.
+- `/app`: Reviewed `app-desktop.png`, `app-mobile.png`, top-of-page variants, and `/tmp/cbmp-redesign-lead/app-desktop-settled.png`; the App Router `/app` reference surface rendered through `src/app/app/page.tsx`, matching smoke-test coverage.

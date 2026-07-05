@@ -1,5 +1,7 @@
 # Product
 
+> Visual direction note: this generated product/design reference is retained for product context only. For issue 6 UI foundation styling, use `/home/curtis/dev/swift-cloud-space` as the template reference and preserve domain language from `CONTEXT.md`.
+
 ## Register
 
 product
