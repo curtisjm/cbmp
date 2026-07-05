@@ -84,8 +84,8 @@ test.describe('public competitions', () => {
     ).toBeVisible();
     await expect(
       page.getByText('Competition Lifecycle', { exact: true }),
-    ).toHaveCount(0);
-    await expect(page.getByText('Status', { exact: true })).toBeVisible();
+    ).toBeVisible();
+    await expect(page.getByText('Status', { exact: true })).toHaveCount(0);
   });
 
   test('does not render route-path decoration in the public list', async ({
