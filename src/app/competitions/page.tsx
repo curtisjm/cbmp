@@ -1,3 +1,4 @@
+import { Search } from "lucide-react";
 import type { Metadata } from "next";
 
 import { PublicCompetitionsEmpty } from "../../components/public-competitions-empty";
@@ -14,13 +15,25 @@ export default function CompetitionsPage() {
           <div>
             <h1 id="competitions-heading">Public Competitions</h1>
             <p>
-              Published Competitions appear here when available. Draft
-              Competitions are not shown on the public list.
+              Browse published Competitions when hosts make them public. Drafts
+              stay private.
             </p>
           </div>
-          <div className="state-chip">
-            <span className="state-chip__dot" aria-hidden="true" />
-            <span>public list</span>
+          <div
+            className="empty-table"
+            aria-label="Public Competition list tools"
+          >
+            <div className="empty-table__head">
+              <span>/competitions</span>
+              <span>
+                <button className="button button--dark" disabled type="button">
+                  <Search aria-hidden="true" className="button__icon" />
+                  <span>Search unavailable</span>
+                </button>
+              </span>
+              <span>Published only</span>
+              <span>Public list</span>
+            </div>
           </div>
         </div>
 
