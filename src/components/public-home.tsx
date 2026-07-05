@@ -282,10 +282,13 @@ function HeroDemoPill({ reduceMotion }: { reduceMotion: boolean }) {
           }}
           aria-hidden="true"
           className="absolute size-3 rounded-full bg-emerald-400"
+          data-motion-duration-ms={reduceMotion ? "1600" : "1200"}
+          data-motion-repeat-count={reduceMotion ? "1" : "2"}
+          data-testid="live-demo-status-pulse"
           transition={{
             duration: reduceMotion ? 1.6 : 1.2,
             ease: "easeOut",
-            repeat: Infinity,
+            repeat: reduceMotion ? 1 : 2,
           }}
         />
         <span
