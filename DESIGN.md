@@ -50,7 +50,7 @@ typography:
     lineHeight: 1.2
     letterSpacing: "0"
   mono:
-    fontFamily: "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "12px"
     fontWeight: 500
     lineHeight: 1.35
@@ -59,8 +59,8 @@ rounded:
   sm: "4px"
   md: "8px"
   lg: "14px"
-  xl: "18px"
-  panel: "24px"
+  xl: "12px"
+  panel: "8px"
   pill: "999px"
 spacing:
   xs: "4px"
@@ -188,8 +188,8 @@ CBMP uses tonal layering first and restrained shadow second. Most depth comes fr
 
 ### Shadow Vocabulary
 
-- **Nord Panel** (`0 12px 26px rgb(46 52 64 / 0.1)`): Raised white panels and table containers against the Snow Surface background.
-- **Frosted Nav** (`inset 0 1px 0 rgb(236 239 244 / 0.1), 0 10px 22px rgb(46 52 64 / 0.12)`): Sticky Polar Night navigation with blur.
+- **Nord Panel** (`0 4px 8px rgb(46 52 64 / 0.08)`): Raised white panels and table containers against the Snow Surface background.
+- **Frosted Nav** (`inset 0 1px 0 rgb(236 239 244 / 0.1), 0 8px 18px rgb(46 52 64 / 0.14)`): Sticky Polar Night navigation with blur.
 - **Dark Inset** (`inset 0 1px 0 rgb(236 239 244 / 0.08)`): Dark panels that need a subtle top-edge material cue.
 - **Prototype Control** (`0 12px 22px rgb(46 52 64 / 0.18)`): Development-only floating switchers and temporary prototype tools.
 
@@ -217,7 +217,7 @@ CBMP uses tonal layering first and restrained shadow second. Most depth comes fr
 
 ### Cards / Containers
 
-- **Corner Style:** Rounded panels, generally 24px for major cards and 14-18px for smaller inner controls.
+- **Corner Style:** Operational panels use 8px corners by default; compact inner controls use 8-14px, while pills remain fully rounded.
 - **Background:** Snow Base for repeated work, Polar Night Base/Layer for lifecycle and authority context.
 - **Shadow Strategy:** Nord Panel on light raised containers; Dark Inset on dark panels.
 - **Border:** Snow Divider on light surfaces; translucent Snow Divider on dark surfaces.
@@ -246,7 +246,8 @@ CBMP uses tonal layering first and restrained shadow second. Most depth comes fr
 
 ### Lifecycle Modules
 
-- **Style:** Dark operational panels with text labels, route tags, and sparse Aurora state markers.
+- **Style:** Public lifecycle orientation can use Snow Base panels with text labels and sparse Aurora state markers. Dark lifecycle panels are reserved for operational or authority contexts where state needs stronger emphasis.
+- **Route Context:** Route tags belong where the route itself is useful evidence; omit them from overview panels when they duplicate nearby navigation or add clutter.
 - **Authority:** Role and authority panels use Polar Night only when the user needs to distinguish public inspection from privileged actions.
 - **Constraint:** Do not invent role dashboards or authority behavior that has not been defined by PRDs.
 
@@ -257,7 +258,7 @@ CBMP uses tonal layering first and restrained shadow second. Most depth comes fr
 - **Do** use Inter as the primary UI font for navigation, labels, controls, tables, and body copy.
 - **Do** use JetBrains Mono only for route paths, IDs, slugs, audit references, and other fixed-width utility data.
 - **Do** keep core controls familiar and shadcn-compatible.
-- **Do** use Polar Night for top chrome, lifecycle modules, table headers, and authority panels.
+- **Do** use Polar Night for top chrome, table headers, authority panels, and lifecycle modules that need stronger operational emphasis.
 - **Do** keep public Competition tables light, dense, and readable.
 - **Do** pair every status color with a text label.
 - **Do** preserve domain language from the glossary: User Profile, Competition, Entry, Competition Lifecycle, Scrutineer, Judge, Deck Captain, and Organization.
