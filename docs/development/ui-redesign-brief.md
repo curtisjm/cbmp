@@ -41,8 +41,10 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 - Keep the home page product-facing rather than competition-browsing.
 - Leave room for future marketing content, using template-style scaffolding such as feature sections, workflow highlights, bento-like sections, and trust or FAQ-style areas.
 - Preserve the template's marketing motion language on the home page, including animated section reveals and other landing-page animations where practical.
+- Explicit user preference: include these template animations even when the OS reduced-motion preference is enabled. Keep motion short, purposeful, bounded, and non-blocking instead of removing it globally.
 - Keep current copy conservative and CBMP-specific so it does not overpromise unfinished behavior.
 - Do not put recent competitions on the home page. Competition discovery belongs on `/competitions`.
+- Home cards may point to temporary `/coming-soon?surface=...` routes while deeper public or authenticated surfaces are still unsettled. These routes should be clearly framed as placeholders and link back to Home and Competitions.
 
 ## Competitions
 
@@ -70,7 +72,7 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 - Include Framer Motion during this pass while the template's motion language is in context.
 - Use motion for app shell, active-state, list, surface, and marketing-page transitions.
 - Adapt animated home-page effects to CBMP's Nord palette and product language while preserving the template's animated feel.
-- Respect reduced-motion preferences for every animated interaction.
+- Do not use a zero-duration global reduced-motion override. The current accessibility preference is calm motion: brief transitions, no long autoplaying loops, no parallax dependency, and no motion required to complete a task.
 
 ## Documentation Requirement
 
@@ -108,3 +110,4 @@ Screenshots were captured for manual review only and are not committed. Desktop 
 - `/competitions`: Reviewed `competitions-desktop.png`, `competitions-mobile.png`, and top-of-page variants; search/filter controls, lifecycle badges, and competition card/list density remained readable at both widths.
 - `/sign-in`: Reviewed `sign-in-desktop.png`, `sign-in-mobile.png`, and top-of-page variants; fallback sign-in composition matched the redesigned public shell without exposing secrets or requiring Clerk keys.
 - `/app`: Reviewed `app-desktop.png`, `app-mobile.png`, top-of-page variants, and `/tmp/cbmp-redesign-lead/app-desktop-settled.png`; the App Router `/app` reference surface rendered through `src/app/app/page.tsx`, matching smoke-test coverage.
+- `/coming-soon`: Temporary public placeholder route for interactive home-card links. It reads a `surface` query parameter, keeps the public shell, and returns users to Home or Competitions.
