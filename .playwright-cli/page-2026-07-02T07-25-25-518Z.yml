@@ -1,0 +1,164 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - complementary [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]: C
+          - generic [ref=e8]:
+            - heading "CBMP" [level=1] [ref=e9]
+            - paragraph [ref=e10]: Rosé Pine theme check
+        - navigation "Prototype navigation" [ref=e11]:
+          - link "Competitions" [ref=e12] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e13]
+            - text: Competitions
+          - link "Lifecycle" [ref=e15] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e16]
+            - text: Lifecycle
+          - link "User Profile" [ref=e18] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e19]
+            - text: User Profile
+        - region "Prototype state" [ref=e21]:
+          - strong [ref=e22]: Prototype state
+          - generic [ref=e23]:
+            - term [ref=e24]: Theme
+            - definition [ref=e25]: dawn
+            - term [ref=e26]: Palette
+            - definition [ref=e27]: CBMP Dawn from Rosé Pine
+            - term [ref=e28]: Source
+            - definition [ref=e29]: "@rose-pine/palette 4.0.1"
+            - term [ref=e30]: Layer
+            - definition [ref=e31]: CBMP operational tokens
+            - term [ref=e32]: Persistence
+            - definition [ref=e33]: URL query string only
+      - region "Public competitions" [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - heading "Public competitions" [level=2] [ref=e37]
+            - paragraph [ref=e38]: Testing Rosé Pine-derived color roles against CBMP table, status, and empty-state surfaces.
+          - generic [ref=e39]:
+            - textbox "Search competitions" [ref=e40]
+            - generic "Theme toggle" [ref=e41]:
+              - button "Dawn" [ref=e42] [cursor=pointer]
+              - button "Main" [ref=e43] [cursor=pointer]
+            - button "Profile" [ref=e44] [cursor=pointer]
+            - button "Sign in" [ref=e45] [cursor=pointer]
+        - generic [ref=e46]:
+          - region "Competitions table" [ref=e47]:
+            - generic [ref=e48]:
+              - heading "Competitions" [level=3] [ref=e49]
+              - generic [ref=e50]: draft excluded from public list
+            - table [ref=e52]:
+              - rowgroup [ref=e53]:
+                - row "Competition Competition Lifecycle Host Route" [ref=e54]:
+                  - columnheader "Competition" [ref=e55]
+                  - columnheader "Competition Lifecycle" [ref=e56]
+                  - columnheader "Host" [ref=e57]
+                  - columnheader "Route" [ref=e58]
+              - rowgroup [ref=e59]:
+                - row "Sample Competition Representative public row entries open Host Organization /competitions/sample" [ref=e60]:
+                  - cell "Sample Competition Representative public row" [ref=e61]:
+                    - strong [ref=e62]: Sample Competition
+                    - text: Representative public row
+                  - cell "entries open" [ref=e63]:
+                    - generic [ref=e64]: entries open
+                  - cell "Host Organization" [ref=e65]
+                  - cell "/competitions/sample" [ref=e66]
+                - row "Published Competition Sparse listing state published Host Organization /competitions/published" [ref=e67]:
+                  - cell "Published Competition Sparse listing state" [ref=e68]:
+                    - strong [ref=e69]: Published Competition
+                    - text: Sparse listing state
+                  - cell "published" [ref=e70]:
+                    - generic [ref=e71]: published
+                  - cell "Host Organization" [ref=e72]
+                  - cell "/competitions/published" [ref=e73]
+                - row "Closed Entry Window Lifecycle contrast check entries closed Host Organization /competitions/closed" [ref=e74]:
+                  - cell "Closed Entry Window Lifecycle contrast check" [ref=e75]:
+                    - strong [ref=e76]: Closed Entry Window
+                    - text: Lifecycle contrast check
+                  - cell "entries closed" [ref=e77]:
+                    - generic [ref=e78]: entries closed
+                  - cell "Host Organization" [ref=e79]
+                  - cell "/competitions/closed" [ref=e80]
+                - row "Running Competition Higher-attention operational state running Host Organization /competitions/running" [ref=e81]:
+                  - cell "Running Competition Higher-attention operational state" [ref=e82]:
+                    - strong [ref=e83]: Running Competition
+                    - text: Higher-attention operational state
+                  - cell "running" [ref=e84]:
+                    - generic [ref=e85]: running
+                  - cell "Host Organization" [ref=e86]
+                  - cell "/competitions/running" [ref=e87]
+                - row "Finished Competition Stable public archive state finished Host Organization /competitions/finished" [ref=e88]:
+                  - cell "Finished Competition Stable public archive state" [ref=e89]:
+                    - strong [ref=e90]: Finished Competition
+                    - text: Stable public archive state
+                  - cell "finished" [ref=e91]:
+                    - generic [ref=e92]: finished
+                  - cell "Host Organization" [ref=e93]
+                  - cell "/competitions/finished" [ref=e94]
+          - complementary [ref=e95]:
+            - generic [ref=e96]:
+              - heading "Color grammar" [level=3] [ref=e97]
+              - paragraph [ref=e98]: "Competition state is treated like syntax highlighting: semantic colors are meaningful, sparse, and paired with text labels."
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - generic [ref=e101]: iris
+                  - generic [ref=e102]: published, focus, current route
+                - generic [ref=e103]:
+                  - generic [ref=e104]: foam
+                  - generic [ref=e105]: entries open, public-readable info
+                - generic [ref=e106]:
+                  - generic [ref=e107]: gold
+                  - generic [ref=e108]: entries closed, attention needed
+                - generic [ref=e109]:
+                  - generic [ref=e110]: love
+                  - generic [ref=e111]: running, destructive attention
+                - generic [ref=e112]:
+                  - generic [ref=e113]: pine
+                  - generic [ref=e114]: finished, stable success
+                - generic [ref=e115]:
+                  - generic [ref=e116]: rose
+                  - generic [ref=e117]: secondary emphasis only
+            - region "Empty state example" [ref=e118]:
+              - heading "No competitions match this filter" [level=3] [ref=e119]
+              - paragraph [ref=e120]: Clear the search or check whether the Competition is still in draft. Draft competitions are not shown on the public list.
+              - button "Clear search" [ref=e122] [cursor=pointer]
+            - generic [ref=e123]:
+              - heading "Token adjustment" [level=3] [ref=e124]
+              - paragraph [ref=e125]: Source values stay visible; the CBMP layer cools Dawn surfaces, adds ink, and strengthens scan lines.
+              - table "Source Rosé Pine tokens compared with adjusted CBMP tokens" [ref=e126]:
+                - rowgroup [ref=e127]:
+                  - row "Role Source CBMP" [ref=e128]:
+                    - columnheader "Role" [ref=e129]
+                    - columnheader "Source" [ref=e130]
+                    - columnheader "CBMP" [ref=e131]
+                - rowgroup [ref=e132]:
+                  - 'row "base #faf4ed #f5f1f7" [ref=e133]':
+                    - cell "base" [ref=e134]
+                    - cell "#faf4ed" [ref=e135]
+                    - cell "#f5f1f7" [ref=e136]
+                  - 'row "surface #fffaf3 #fbf9fd" [ref=e137]':
+                    - cell "surface" [ref=e138]
+                    - cell "#fffaf3" [ref=e139]
+                    - cell "#fbf9fd" [ref=e140]
+                  - 'row "overlay #f2e9e1 #eee9f4" [ref=e141]':
+                    - cell "overlay" [ref=e142]
+                    - cell "#f2e9e1" [ref=e143]
+                    - cell "#eee9f4" [ref=e144]
+                  - 'row "ink text #575279 #342f55" [ref=e145]':
+                    - cell "ink" [ref=e146]
+                    - 'cell "text #575279" [ref=e147]'
+                    - cell "#342f55" [ref=e148]
+                  - 'row "divider highlight-low #f4ede8 #c8c0d2" [ref=e149]':
+                    - cell "divider" [ref=e150]
+                    - 'cell "highlight-low #f4ede8" [ref=e151]'
+                    - cell "#c8c0d2" [ref=e152]
+                  - 'row "primary pine #286983 #286983" [ref=e153]':
+                    - cell "primary" [ref=e154]
+                    - 'cell "pine #286983" [ref=e155]'
+                    - cell "#286983" [ref=e156]
+  - region "Prototype helper" [ref=e157]:
+    - strong [ref=e158]: PROTOTYPE ONLY
+    - generic [ref=e159]: CBMP-adjusted Dawn tokens from Rosé Pine source. Toggle to Main or press T.

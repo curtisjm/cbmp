@@ -1,0 +1,168 @@
+- main [ref=f9e3]:
+  - generic [ref=f9e4]:
+    - generic [ref=f9e6]:
+      - generic [ref=f9e7]:
+        - generic [ref=f9e8]: C
+        - generic [ref=f9e9]:
+          - generic [ref=f9e10]:
+            - heading "CBMP" [level=1] [ref=f9e11]
+            - generic [ref=f9e12]: PROTOTYPE
+          - paragraph [ref=f9e13]: Nord shadcn component pass · C — Public registry
+      - navigation "Primary prototype navigation" [ref=f9e14]:
+        - link "Competitions" [ref=f9e15] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=f9e16]
+          - text: Competitions
+        - link "Lifecycle" [ref=f9e19] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=f9e20]
+          - text: Lifecycle
+        - link "User Profile" [ref=f9e23] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=f9e24]
+          - text: User Profile
+      - generic [ref=f9e29]:
+        - generic [ref=f9e30]:
+          - img
+          - textbox "Search competitions" [ref=f9e31]
+        - button "View" [ref=f9e32] [cursor=pointer]:
+          - img
+          - text: View
+        - button "Profile" [ref=f9e33] [cursor=pointer]
+        - button "Sign in" [ref=f9e34] [cursor=pointer]:
+          - img
+          - text: Sign in
+    - generic [ref=f9e35]:
+      - complementary [ref=f9e36]:
+        - generic [ref=f9e37]:
+          - generic [ref=f9e38]:
+            - heading "Public registry filters" [level=3] [ref=f9e39]
+            - paragraph [ref=f9e40]: Component-backed filter surface for the public list.
+          - generic [ref=f9e41]:
+            - textbox "Host Organization" [ref=f9e42]
+            - textbox "Competition Lifecycle" [ref=f9e43]
+            - button "Apply filters" [ref=f9e44] [cursor=pointer]
+            - button "Clear filters" [ref=f9e45] [cursor=pointer]
+        - generic [ref=f9e46]:
+          - generic [ref=f9e47]:
+            - heading "Prototype state" [level=3] [ref=f9e48]
+            - paragraph [ref=f9e49]: Full relevant state is rendered for review.
+          - generic [ref=f9e51]:
+            - term [ref=f9e52]: Variant
+            - definition [ref=f9e53]: C — Public registry
+            - term [ref=f9e54]: Components
+            - definition [ref=f9e55]: Button, Card, Input, Badge, Tabs, DropdownMenu, Table
+            - term [ref=f9e56]: Palette
+            - definition [ref=f9e57]: Official Nord colors, light product base
+            - term [ref=f9e58]: Radius
+            - definition [ref=f9e59]: larger rounded panels, pill controls
+      - generic [ref=f9e60]:
+        - generic [ref=f9e61]:
+          - generic [ref=f9e62]:
+            - generic [ref=f9e63]:
+              - heading "Public competitions" [level=3] [ref=f9e64]
+              - paragraph [ref=f9e65]: A lighter registry treatment with dark state modules reserved for high-signal surfaces.
+            - tablist [ref=f9e68]:
+              - tab "All public" [selected] [ref=f9e69] [cursor=pointer]
+              - tab "Entries open" [ref=f9e70] [cursor=pointer]
+              - tab "Archive" [ref=f9e71] [cursor=pointer]
+          - generic [ref=f9e72]:
+            - generic [ref=f9e73]:
+              - img [ref=f9e75]
+              - text: Authority cue
+            - paragraph [ref=f9e78]: Public users can inspect competitions. Competition Host and Scrutineer actions stay outside this public surface.
+        - generic [ref=f9e79]:
+          - generic [ref=f9e80]:
+            - generic [ref=f9e81]:
+              - heading "Registry sheet" [level=3] [ref=f9e82]
+              - paragraph [ref=f9e83]: draft excluded from public list
+            - generic [ref=f9e84]: 5 visible
+          - table [ref=f9e87]:
+            - rowgroup [ref=f9e88]:
+              - row "Competition Competition Lifecycle Host Entries Route" [ref=f9e89]:
+                - columnheader "Competition" [ref=f9e90]
+                - columnheader "Competition Lifecycle" [ref=f9e91]
+                - columnheader "Host" [ref=f9e92]
+                - columnheader "Entries" [ref=f9e93]
+                - columnheader "Route" [ref=f9e94]
+            - rowgroup [ref=f9e95]:
+              - row "Sample Competition Representative public row · Mar 22 entries open Host Organization 218 /competitions/sample" [ref=f9e96]:
+                - cell "Sample Competition Representative public row · Mar 22" [ref=f9e97]:
+                  - generic [ref=f9e98]: Sample Competition
+                  - generic [ref=f9e99]: Representative public row · Mar 22
+                - cell "entries open" [ref=f9e100]:
+                  - generic [ref=f9e101]: entries open
+                - cell "Host Organization" [ref=f9e103]
+                - cell "218" [ref=f9e104]
+                - cell "/competitions/sample" [ref=f9e105]
+              - row "Published Competition Sparse listing state · Apr 05 published Host Organization 0 /competitions/published" [ref=f9e106]:
+                - cell "Published Competition Sparse listing state · Apr 05" [ref=f9e107]:
+                  - generic [ref=f9e108]: Published Competition
+                  - generic [ref=f9e109]: Sparse listing state · Apr 05
+                - cell "published" [ref=f9e110]:
+                  - generic [ref=f9e111]: published
+                - cell "Host Organization" [ref=f9e113]
+                - cell "0" [ref=f9e114]
+                - cell "/competitions/published" [ref=f9e115]
+              - row "Closed Entry Window Lifecycle contrast check · Apr 19 entries closed Host Organization 384 /competitions/closed" [ref=f9e116]:
+                - cell "Closed Entry Window Lifecycle contrast check · Apr 19" [ref=f9e117]:
+                  - generic [ref=f9e118]: Closed Entry Window
+                  - generic [ref=f9e119]: Lifecycle contrast check · Apr 19
+                - cell "entries closed" [ref=f9e120]:
+                  - generic [ref=f9e121]: entries closed
+                - cell "Host Organization" [ref=f9e123]
+                - cell "384" [ref=f9e124]
+                - cell "/competitions/closed" [ref=f9e125]
+              - row "Running Competition Higher-attention operational state · Today running Host Organization 412 /competitions/running" [ref=f9e126]:
+                - cell "Running Competition Higher-attention operational state · Today" [ref=f9e127]:
+                  - generic [ref=f9e128]: Running Competition
+                  - generic [ref=f9e129]: Higher-attention operational state · Today
+                - cell "running" [ref=f9e130]:
+                  - generic [ref=f9e131]: running
+                - cell "Host Organization" [ref=f9e133]
+                - cell "412" [ref=f9e134]
+                - cell "/competitions/running" [ref=f9e135]
+              - row "Finished Competition Stable public archive state · Feb 18 finished Host Organization 297 /competitions/finished" [ref=f9e136]:
+                - cell "Finished Competition Stable public archive state · Feb 18" [ref=f9e137]:
+                  - generic [ref=f9e138]: Finished Competition
+                  - generic [ref=f9e139]: Stable public archive state · Feb 18
+                - cell "finished" [ref=f9e140]:
+                  - generic [ref=f9e141]: finished
+                - cell "Host Organization" [ref=f9e143]
+                - cell "297" [ref=f9e144]
+                - cell "/competitions/finished" [ref=f9e145]
+        - generic [ref=f9e146]:
+          - generic [ref=f9e147]:
+            - generic [ref=f9e148]:
+              - heading "Competition Lifecycle" [level=3] [ref=f9e149]
+              - paragraph [ref=f9e150]: status labels are text plus color
+            - generic [ref=f9e151]: public route
+          - generic [ref=f9e152]:
+            - generic [ref=f9e153]:
+              - generic [ref=f9e155]: public
+              - generic [ref=f9e157]: published
+              - paragraph [ref=f9e158]: visible, entries not open yet
+            - generic [ref=f9e159]:
+              - generic [ref=f9e161]: entry
+              - generic [ref=f9e163]: entries open
+              - paragraph [ref=f9e164]: primary public activity
+            - generic [ref=f9e165]:
+              - generic [ref=f9e167]: review
+              - generic [ref=f9e169]: entries closed
+              - paragraph [ref=f9e170]: attention and final checks
+            - generic [ref=f9e171]:
+              - generic [ref=f9e173]: floor
+              - generic [ref=f9e175]: running
+              - paragraph [ref=f9e176]: scrutineer controls changes
+            - generic [ref=f9e177]:
+              - generic [ref=f9e179]: archive
+              - generic [ref=f9e181]: finished
+              - paragraph [ref=f9e182]: stable public reference
+  - generic [ref=f9e183]:
+    - button "Previous variant" [ref=f9e184] [cursor=pointer]:
+      - img
+    - generic [ref=f9e185]:
+      - generic [ref=f9e186]: C — Public registry
+      - generic [ref=f9e187]: "Use ← → or URL `?variant=`"
+    - button "Next variant" [ref=f9e188] [cursor=pointer]:
+      - img

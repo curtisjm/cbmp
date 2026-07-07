@@ -1,0 +1,199 @@
+- generic:
+  - generic:
+    - main:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic: C
+              - generic:
+                - generic:
+                  - heading [level=1]: CBMP
+                  - generic: PROTOTYPE
+                - paragraph: Nord shadcn component pass · C — Public registry
+            - navigation:
+              - link:
+                - /url: "#"
+                - img
+                - text: Competitions
+              - link:
+                - /url: "#"
+                - img
+                - text: Lifecycle
+              - link:
+                - /url: "#"
+                - img
+                - text: User Profile
+            - generic:
+              - generic:
+                - img
+                - textbox:
+                  - /placeholder: Search competitions
+              - button [expanded]:
+                - img
+                - text: View
+              - button: Profile
+              - button:
+                - img
+                - text: Sign in
+        - generic:
+          - complementary:
+            - generic:
+              - generic:
+                - heading [level=3]: Public registry filters
+                - paragraph: Component-backed filter surface for the public list.
+              - generic:
+                - textbox:
+                  - /placeholder: Host Organization
+                - textbox:
+                  - /placeholder: Competition Lifecycle
+                - button: Apply filters
+                - button: Clear filters
+            - generic:
+              - generic:
+                - heading [level=3]: Prototype state
+                - paragraph: Full relevant state is rendered for review.
+              - generic:
+                - generic:
+                  - term: Variant
+                  - definition: C — Public registry
+                  - term: Components
+                  - definition: Button, Card, Input, Badge, Tabs, DropdownMenu, Table
+                  - term: Palette
+                  - definition: Official Nord colors, light product base
+                  - term: Radius
+                  - definition: larger rounded panels, pill controls
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=3]: Public competitions
+                  - paragraph: A lighter registry treatment with dark state modules reserved for high-signal surfaces.
+                - generic:
+                  - generic:
+                    - tablist:
+                      - tab [selected]: All public
+                      - tab: Entries open
+                      - tab: Archive
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                  - text: Authority cue
+                - paragraph: Public users can inspect competitions. Competition Host and Scrutineer actions stay outside this public surface.
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=3]: Registry sheet
+                  - paragraph: draft excluded from public list
+                - generic: 5 visible
+              - generic:
+                - generic:
+                  - table:
+                    - rowgroup:
+                      - row:
+                        - columnheader: Competition
+                        - columnheader: Competition Lifecycle
+                        - columnheader: Host
+                        - columnheader: Entries
+                        - columnheader: Route
+                    - rowgroup:
+                      - row:
+                        - cell:
+                          - generic: Sample Competition
+                          - generic: Representative public row · Mar 22
+                        - cell:
+                          - generic: entries open
+                        - cell: Host Organization
+                        - cell: "218"
+                        - cell: /competitions/sample
+                      - row:
+                        - cell:
+                          - generic: Published Competition
+                          - generic: Sparse listing state · Apr 05
+                        - cell:
+                          - generic: published
+                        - cell: Host Organization
+                        - cell: "0"
+                        - cell: /competitions/published
+                      - row:
+                        - cell:
+                          - generic: Closed Entry Window
+                          - generic: Lifecycle contrast check · Apr 19
+                        - cell:
+                          - generic: entries closed
+                        - cell: Host Organization
+                        - cell: "384"
+                        - cell: /competitions/closed
+                      - row:
+                        - cell:
+                          - generic: Running Competition
+                          - generic: Higher-attention operational state · Today
+                        - cell:
+                          - generic: running
+                        - cell: Host Organization
+                        - cell: "412"
+                        - cell: /competitions/running
+                      - row:
+                        - cell:
+                          - generic: Finished Competition
+                          - generic: Stable public archive state · Feb 18
+                        - cell:
+                          - generic: finished
+                        - cell: Host Organization
+                        - cell: "297"
+                        - cell: /competitions/finished
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=3]: Competition Lifecycle
+                  - paragraph: status labels are text plus color
+                - generic: public route
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: public
+                  - generic: published
+                  - paragraph: visible, entries not open yet
+                - generic:
+                  - generic:
+                    - generic: entry
+                  - generic: entries open
+                  - paragraph: primary public activity
+                - generic:
+                  - generic:
+                    - generic: review
+                  - generic: entries closed
+                  - paragraph: attention and final checks
+                - generic:
+                  - generic:
+                    - generic: floor
+                  - generic: running
+                  - paragraph: scrutineer controls changes
+                - generic:
+                  - generic:
+                    - generic: archive
+                  - generic: finished
+                  - paragraph: stable public reference
+      - generic:
+        - button:
+          - img
+        - generic:
+          - generic: C — Public registry
+          - generic: "Use left/right arrows or URL `?variant=`"
+        - button:
+          - img
+  - menu "View" [active] [ref=f3e189]:
+    - generic [ref=f3e190]: Public competition views
+    - separator [ref=f3e191]
+    - menuitemcheckbox "Public list" [checked] [ref=f3e192]:
+      - img [ref=f3e195]
+      - text: Public list
+    - menuitemcheckbox "Lifecycle review" [checked] [ref=f3e197]:
+      - img [ref=f3e200]
+      - text: Lifecycle review
+    - menuitemcheckbox "Empty states" [ref=f3e202]: Empty states
+    - separator [ref=f3e204]
+    - menuitem "Export visible rows" [ref=f3e205]:
+      - text: Export visible rows
+      - img [ref=f3e206]

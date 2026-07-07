@@ -1,0 +1,132 @@
+- generic [active] [ref=f2e1]:
+  - main [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - complementary [ref=f2e4]:
+        - generic [ref=f2e6]:
+          - generic [ref=f2e7]: C
+          - generic [ref=f2e8]:
+            - heading "CBMP" [level=1] [ref=f2e9]
+            - paragraph [ref=f2e10]: Rosé Pine theme check
+        - navigation "Prototype navigation" [ref=f2e11]:
+          - link "Competitions" [ref=f2e12] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=f2e13]
+            - text: Competitions
+          - link "Lifecycle" [ref=f2e15] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=f2e16]
+            - text: Lifecycle
+          - link "User Profile" [ref=f2e18] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=f2e19]
+            - text: User Profile
+        - region "Prototype state" [ref=f2e21]:
+          - strong [ref=f2e22]: Prototype state
+          - generic [ref=f2e23]:
+            - term [ref=f2e24]: Theme
+            - definition [ref=f2e25]: main
+            - term [ref=f2e26]: Palette
+            - definition [ref=f2e27]: Rosé Pine
+            - term [ref=f2e28]: Source
+            - definition [ref=f2e29]: "@rose-pine/palette 4.0.1"
+            - term [ref=f2e30]: Persistence
+            - definition [ref=f2e31]: URL query string only
+      - region "Public competitions" [ref=f2e32]:
+        - generic [ref=f2e33]:
+          - generic [ref=f2e34]:
+            - heading "Public competitions" [level=2] [ref=f2e35]
+            - paragraph [ref=f2e36]: Testing exact Rosé Pine color roles against CBMP table, status, and empty-state surfaces.
+          - generic [ref=f2e37]:
+            - textbox "Search competitions" [ref=f2e38]
+            - generic "Theme toggle" [ref=f2e39]:
+              - button "Dawn" [ref=f2e40] [cursor=pointer]
+              - button "Main" [ref=f2e41] [cursor=pointer]
+            - button "Profile" [ref=f2e42] [cursor=pointer]
+            - button "Sign in" [ref=f2e43] [cursor=pointer]
+        - generic [ref=f2e44]:
+          - region "Competitions table" [ref=f2e45]:
+            - generic [ref=f2e46]:
+              - heading "Competitions" [level=3] [ref=f2e47]
+              - generic [ref=f2e48]: draft excluded from public list
+            - table [ref=f2e50]:
+              - rowgroup [ref=f2e51]:
+                - row "Competition Competition Lifecycle Host Route" [ref=f2e52]:
+                  - columnheader "Competition" [ref=f2e53]
+                  - columnheader "Competition Lifecycle" [ref=f2e54]
+                  - columnheader "Host" [ref=f2e55]
+                  - columnheader "Route" [ref=f2e56]
+              - rowgroup [ref=f2e57]:
+                - row "Sample Competition Representative public row entries open Host Organization /competitions/sample" [ref=f2e58]:
+                  - cell "Sample Competition Representative public row" [ref=f2e59]:
+                    - strong [ref=f2e60]: Sample Competition
+                    - text: Representative public row
+                  - cell "entries open" [ref=f2e61]:
+                    - generic [ref=f2e62]: entries open
+                  - cell "Host Organization" [ref=f2e63]
+                  - cell "/competitions/sample" [ref=f2e64]
+                - row "Published Competition Sparse listing state published Host Organization /competitions/published" [ref=f2e65]:
+                  - cell "Published Competition Sparse listing state" [ref=f2e66]:
+                    - strong [ref=f2e67]: Published Competition
+                    - text: Sparse listing state
+                  - cell "published" [ref=f2e68]:
+                    - generic [ref=f2e69]: published
+                  - cell "Host Organization" [ref=f2e70]
+                  - cell "/competitions/published" [ref=f2e71]
+                - row "Closed Entry Window Lifecycle contrast check entries closed Host Organization /competitions/closed" [ref=f2e72]:
+                  - cell "Closed Entry Window Lifecycle contrast check" [ref=f2e73]:
+                    - strong [ref=f2e74]: Closed Entry Window
+                    - text: Lifecycle contrast check
+                  - cell "entries closed" [ref=f2e75]:
+                    - generic [ref=f2e76]: entries closed
+                  - cell "Host Organization" [ref=f2e77]
+                  - cell "/competitions/closed" [ref=f2e78]
+                - row "Running Competition Higher-attention operational state running Host Organization /competitions/running" [ref=f2e79]:
+                  - cell "Running Competition Higher-attention operational state" [ref=f2e80]:
+                    - strong [ref=f2e81]: Running Competition
+                    - text: Higher-attention operational state
+                  - cell "running" [ref=f2e82]:
+                    - generic [ref=f2e83]: running
+                  - cell "Host Organization" [ref=f2e84]
+                  - cell "/competitions/running" [ref=f2e85]
+          - complementary [ref=f2e86]:
+            - generic [ref=f2e87]:
+              - heading "Color grammar" [level=3] [ref=f2e88]
+              - paragraph [ref=f2e89]: "Competition state is treated like syntax highlighting: semantic colors are meaningful, sparse, and paired with text labels."
+              - generic [ref=f2e90]:
+                - generic [ref=f2e91]:
+                  - generic [ref=f2e92]: iris
+                  - generic [ref=f2e93]: published, focus, current route
+                - generic [ref=f2e94]:
+                  - generic [ref=f2e95]: foam
+                  - generic [ref=f2e96]: entries open, public-readable info
+                - generic [ref=f2e97]:
+                  - generic [ref=f2e98]: gold
+                  - generic [ref=f2e99]: entries closed, attention needed
+                - generic [ref=f2e100]:
+                  - generic [ref=f2e101]: love
+                  - generic [ref=f2e102]: running, destructive attention
+                - generic [ref=f2e103]:
+                  - generic [ref=f2e104]: pine
+                  - generic [ref=f2e105]: finished, stable success
+            - region "Empty state example" [ref=f2e106]:
+              - heading "No competitions match this filter" [level=3] [ref=f2e107]
+              - paragraph [ref=f2e108]: Clear the search or check whether the Competition is still in draft. Draft competitions are not shown on the public list.
+              - button "Clear search" [ref=f2e110] [cursor=pointer]
+            - generic [ref=f2e111]:
+              - heading "Exact theme tokens" [level=3] [ref=f2e112]
+              - generic [ref=f2e114]:
+                - term [ref=f2e115]: base
+                - definition [ref=f2e116]: "#191724"
+                - term [ref=f2e117]: surface
+                - definition [ref=f2e118]: "#1f1d2e"
+                - term [ref=f2e119]: overlay
+                - definition [ref=f2e120]: "#26233a"
+                - term [ref=f2e121]: text
+                - definition [ref=f2e122]: "#e0def4"
+                - term [ref=f2e123]: muted
+                - definition [ref=f2e124]: "#6e6a86"
+                - term [ref=f2e125]: subtle
+                - definition [ref=f2e126]: "#908caa"
+  - region "Prototype helper" [ref=f2e127]:
+    - strong [ref=f2e128]: PROTOTYPE ONLY
+    - generic [ref=f2e129]: Rosé Pine default dark colors. Toggle to Dawn or press T.

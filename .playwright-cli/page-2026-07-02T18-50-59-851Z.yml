@@ -1,0 +1,233 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - complementary [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]: C
+          - generic [ref=e8]:
+            - heading "CBMP" [level=1] [ref=e9]
+            - paragraph [ref=e10]: Nord theme check
+        - navigation "Prototype navigation" [ref=e11]:
+          - link "Competitions" [ref=e12] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e13]
+            - text: Competitions
+          - link "Lifecycle" [ref=e15] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e16]
+            - text: Lifecycle
+          - link "User Profile" [ref=e18] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e19]
+            - text: User Profile
+        - region "Prototype state" [ref=e21]:
+          - strong [ref=e22]: Prototype state
+          - generic [ref=e23]:
+            - term [ref=e24]: Mode
+            - definition [ref=e25]: light only
+            - term [ref=e26]: Polar Night
+            - definition [ref=e27]: Polar Night surfaces
+            - term [ref=e28]: Source
+            - definition [ref=e29]: Official Nord docs
+            - term [ref=e30]: Palette
+            - definition [ref=e31]: Default nord0-nord15
+            - term [ref=e32]: Blur
+            - definition [ref=e33]: strong frosted chrome
+      - region "Public competitions" [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - heading "Public competitions" [level=2] [ref=e37]
+            - paragraph [ref=e38]: Testing Nord's default color roles against CBMP table, status, and lifecycle surfaces.
+          - generic [ref=e39]:
+            - group [ref=e40]:
+              - generic "View" [ref=e41]
+            - textbox "Search competitions" [ref=e42]
+            - button "Profile" [ref=e43] [cursor=pointer]
+            - button "Sign in" [ref=e44] [cursor=pointer]
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - region "Competition lifecycle strip" [ref=e47]:
+              - generic [ref=e48]:
+                - heading "Competition Lifecycle" [level=3] [ref=e49]
+                - generic [ref=e50]: status labels are text plus color
+              - generic [ref=e51]:
+                - generic [ref=e52]:
+                  - generic [ref=e54]: public
+                  - generic [ref=e56]: published
+                  - generic [ref=e57]: visible, entries not open yet
+                - generic [ref=e58]:
+                  - generic [ref=e60]: entry
+                  - generic [ref=e62]: entries open
+                  - generic [ref=e63]: primary public activity
+                - generic [ref=e64]:
+                  - generic [ref=e66]: review
+                  - generic [ref=e68]: entries closed
+                  - generic [ref=e69]: attention and final checks
+                - generic [ref=e70]:
+                  - generic [ref=e72]: floor
+                  - generic [ref=e74]: running
+                  - generic [ref=e75]: scrutineer controls changes
+                - generic [ref=e76]:
+                  - generic [ref=e78]: archive
+                  - generic [ref=e80]: finished
+                  - generic [ref=e81]: stable public reference
+            - region "Competitions table" [ref=e82]:
+              - generic [ref=e83]:
+                - heading "Competitions" [level=3] [ref=e84]
+                - generic [ref=e85]: draft excluded from public list
+              - table [ref=e87]:
+                - rowgroup [ref=e88]:
+                  - row "Competition Competition Lifecycle Host Route" [ref=e89]:
+                    - columnheader "Competition" [ref=e90]
+                    - columnheader "Competition Lifecycle" [ref=e91]
+                    - columnheader "Host" [ref=e92]
+                    - columnheader "Route" [ref=e93]
+                - rowgroup [ref=e94]:
+                  - row "Sample Competition Representative public row entries open Host Organization /competitions/sample" [ref=e95]:
+                    - cell "Sample Competition Representative public row" [ref=e96]:
+                      - strong [ref=e97]: Sample Competition
+                      - text: Representative public row
+                    - cell "entries open" [ref=e98]:
+                      - generic [ref=e99]: entries open
+                    - cell "Host Organization" [ref=e100]
+                    - cell "/competitions/sample" [ref=e101]
+                  - row "Published Competition Sparse listing state published Host Organization /competitions/published" [ref=e102]:
+                    - cell "Published Competition Sparse listing state" [ref=e103]:
+                      - strong [ref=e104]: Published Competition
+                      - text: Sparse listing state
+                    - cell "published" [ref=e105]:
+                      - generic [ref=e106]: published
+                    - cell "Host Organization" [ref=e107]
+                    - cell "/competitions/published" [ref=e108]
+                  - row "Closed Entry Window Lifecycle contrast check entries closed Host Organization /competitions/closed" [ref=e109]:
+                    - cell "Closed Entry Window Lifecycle contrast check" [ref=e110]:
+                      - strong [ref=e111]: Closed Entry Window
+                      - text: Lifecycle contrast check
+                    - cell "entries closed" [ref=e112]:
+                      - generic [ref=e113]: entries closed
+                    - cell "Host Organization" [ref=e114]
+                    - cell "/competitions/closed" [ref=e115]
+                  - row "Running Competition Higher-attention operational state running Host Organization /competitions/running" [ref=e116]:
+                    - cell "Running Competition Higher-attention operational state" [ref=e117]:
+                      - strong [ref=e118]: Running Competition
+                      - text: Higher-attention operational state
+                    - cell "running" [ref=e119]:
+                      - generic [ref=e120]: running
+                    - cell "Host Organization" [ref=e121]
+                    - cell "/competitions/running" [ref=e122]
+                  - row "Finished Competition Stable public archive state finished Host Organization /competitions/finished" [ref=e123]:
+                    - cell "Finished Competition Stable public archive state" [ref=e124]:
+                      - strong [ref=e125]: Finished Competition
+                      - text: Stable public archive state
+                    - cell "finished" [ref=e126]:
+                      - generic [ref=e127]: finished
+                    - cell "Host Organization" [ref=e128]
+                    - cell "/competitions/finished" [ref=e129]
+            - region "Empty state example" [ref=e130]:
+              - heading "No competitions match this filter" [level=3] [ref=e131]
+              - paragraph [ref=e132]: Clear the search or check whether the Competition is still in draft. Draft competitions are not shown on the public list.
+              - button "Clear search" [ref=e134] [cursor=pointer]
+          - complementary [ref=e135]:
+            - region "Current role mapping" [ref=e136]:
+              - heading "Current Nord role mapping" [level=3] [ref=e137]
+              - paragraph [ref=e138]: Nord palette roles plus the white site materials requested for this pass.
+              - table [ref=e139]:
+                - rowgroup [ref=e140]:
+                  - row "UI role Nord source" [ref=e141]:
+                    - columnheader "UI role" [ref=e142]
+                    - columnheader "Nord source" [ref=e143]
+                - rowgroup [ref=e144]:
+                  - 'row "base white #ffffff" [ref=e145]':
+                    - cell "base" [ref=e146]
+                    - 'cell "white #ffffff" [ref=e147]'
+                  - 'row "surface site white #fbfbfc" [ref=e148]':
+                    - cell "surface" [ref=e149]
+                    - 'cell "site white #fbfbfc" [ref=e150]'
+                  - 'row "raised white #ffffff" [ref=e151]':
+                    - cell "raised" [ref=e152]
+                    - 'cell "white #ffffff" [ref=e153]'
+                  - 'row "text nord0 #2e3440" [ref=e154]':
+                    - cell "text" [ref=e155]
+                    - 'cell "nord0 #2e3440" [ref=e156]'
+                  - 'row "divider nord4 #d8dee9" [ref=e157]':
+                    - cell "divider" [ref=e158]
+                    - 'cell "nord4 #d8dee9" [ref=e159]'
+                  - 'row "primary nord8 #88c0d0" [ref=e160]':
+                    - cell "primary" [ref=e161]
+                    - 'cell "nord8 #88c0d0" [ref=e162]'
+            - region "Nord source palette" [ref=e163]:
+              - heading "Nord source palette" [level=3] [ref=e164]
+              - paragraph [ref=e165]: Official default values used by this first-pass prototype.
+              - table [ref=e166]:
+                - rowgroup [ref=e167]:
+                  - row "Token Value" [ref=e168]:
+                    - columnheader "Token" [ref=e169]
+                    - columnheader "Value" [ref=e170]
+                - rowgroup [ref=e171]:
+                  - 'row "nord0 #2e3440" [ref=e172]':
+                    - cell "nord0" [ref=e173]:
+                      - generic [ref=e174]: nord0
+                    - cell "#2e3440" [ref=e175]
+                  - 'row "nord1 #3b4252" [ref=e176]':
+                    - cell "nord1" [ref=e177]:
+                      - generic [ref=e178]: nord1
+                    - cell "#3b4252" [ref=e179]
+                  - 'row "nord2 #434c5e" [ref=e180]':
+                    - cell "nord2" [ref=e181]:
+                      - generic [ref=e182]: nord2
+                    - cell "#434c5e" [ref=e183]
+                  - 'row "nord3 #4c566a" [ref=e184]':
+                    - cell "nord3" [ref=e185]:
+                      - generic [ref=e186]: nord3
+                    - cell "#4c566a" [ref=e187]
+                  - 'row "nord4 #d8dee9" [ref=e188]':
+                    - cell "nord4" [ref=e189]:
+                      - generic [ref=e190]: nord4
+                    - cell "#d8dee9" [ref=e191]
+                  - 'row "nord5 #e5e9f0" [ref=e192]':
+                    - cell "nord5" [ref=e193]:
+                      - generic [ref=e194]: nord5
+                    - cell "#e5e9f0" [ref=e195]
+                  - 'row "nord6 #eceff4" [ref=e196]':
+                    - cell "nord6" [ref=e197]:
+                      - generic [ref=e198]: nord6
+                    - cell "#eceff4" [ref=e199]
+                  - 'row "nord7 #8fbcbb" [ref=e200]':
+                    - cell "nord7" [ref=e201]:
+                      - generic [ref=e202]: nord7
+                    - cell "#8fbcbb" [ref=e203]
+                  - 'row "nord8 #88c0d0" [ref=e204]':
+                    - cell "nord8" [ref=e205]:
+                      - generic [ref=e206]: nord8
+                    - cell "#88c0d0" [ref=e207]
+                  - 'row "nord9 #81a1c1" [ref=e208]':
+                    - cell "nord9" [ref=e209]:
+                      - generic [ref=e210]: nord9
+                    - cell "#81a1c1" [ref=e211]
+                  - 'row "nord10 #5e81ac" [ref=e212]':
+                    - cell "nord10" [ref=e213]:
+                      - generic [ref=e214]: nord10
+                    - cell "#5e81ac" [ref=e215]
+                  - 'row "nord11 #bf616a" [ref=e216]':
+                    - cell "nord11" [ref=e217]:
+                      - generic [ref=e218]: nord11
+                    - cell "#bf616a" [ref=e219]
+                  - 'row "nord12 #d08770" [ref=e220]':
+                    - cell "nord12" [ref=e221]:
+                      - generic [ref=e222]: nord12
+                    - cell "#d08770" [ref=e223]
+                  - 'row "nord13 #ebcb8b" [ref=e224]':
+                    - cell "nord13" [ref=e225]:
+                      - generic [ref=e226]: nord13
+                    - cell "#ebcb8b" [ref=e227]
+                  - 'row "nord14 #a3be8c" [ref=e228]':
+                    - cell "nord14" [ref=e229]:
+                      - generic [ref=e230]: nord14
+                    - cell "#a3be8c" [ref=e231]
+                  - 'row "nord15 #b48ead" [ref=e232]':
+                    - cell "nord15" [ref=e233]:
+                      - generic [ref=e234]: nord15
+                    - cell "#b48ead" [ref=e235]
+  - region "Prototype helper" [ref=e236]:
+    - strong [ref=e237]: PROTOTYPE ONLY
+    - generic [ref=e238]: Light-only pass with stronger Polar Night material.
