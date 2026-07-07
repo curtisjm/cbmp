@@ -102,7 +102,7 @@ components:
 
 # Retired Visual Direction Notice
 
-This document is retained as historical/generated Impeccable reference only. For issue 6 foundation work, use `/home/curtis/dev/swift-cloud-space` as the template-led visual reference and preserve CBMP domain language from `CONTEXT.md`; do not treat the old Impeccable/Nord prototype language below as styling authority.
+This document is retained as historical/generated reference only. For issue 6 foundation work, use `/home/curtis/dev/swift-cloud-space` as the template-led visual reference and preserve CBMP domain language from `CONTEXT.md`; do not treat the old prototype language below as styling authority.
 
 # Design System: CBMP
 

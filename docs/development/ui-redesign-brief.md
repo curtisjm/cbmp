@@ -9,7 +9,7 @@ This brief records the working agreement for the issue 3 app shell redesign and 
 - Work on branch `codex/issue-3-app-shell`.
 - Use `/home/curtis/dev/swift-cloud-space` as the near-authoritative visual template.
 - Preserve CBMP domain language from `CONTEXT.md`.
-- Treat `PRODUCT.md` and `DESIGN.md` as retired historical references for this redesign when they conflict with the implemented Swift Cloud Space direction. Do not reintroduce the old Impeccable-era visual language.
+- Treat `PRODUCT.md` and `DESIGN.md` as retired historical references for this redesign when they conflict with the implemented Swift Cloud Space direction. Do not reintroduce the old prototype visual language.
 - Keep CBMP's Next.js app router structure rather than porting the template's Vite routing model.
 
 ## Design Direction
