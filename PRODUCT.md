@@ -1,5 +1,7 @@
 # Product
 
+> Visual direction note: this generated product/design reference is retained for product context only. For issue 6 UI foundation styling, use `/home/curtis/dev/swift-cloud-space` as the template reference and preserve domain language from `CONTEXT.md`.
+
 ## Register
 
 product
@@ -25,6 +27,8 @@ The product should feel calm and competent under pressure, with enough visual ch
 ## Anti-references
 
 Operational app surfaces should not feel like marketing pages, decorative ballroom event sites, analytics theater, or generic SaaS admin templates. CBMP can eventually include a public marketing landing page, clean modern decorative moments, and real analytics pages; those surfaces should still feel connected to the composed product language and real domain data. Avoid oversized hero sections on operational routes, ornamental card grids, ballroom cliches, fake actor dashboards before product decisions define them, and placeholder content that implies unsettled domain decisions.
+
+When a design pass explicitly asks to copy a provided visual reference, bounded reference rows may be used on that surface to match the composition. Treat those rows as UI reference material only; they do not establish live data behavior, seeded development data, or domain authorization decisions.
 
 Do not use unfamiliar controls for standard actions. Buttons, inputs, menus, tabs, dialogs, and badges should remain predictable, accessible, and shadcn-compatible, with custom visual language applied deliberately rather than through novelty.
 

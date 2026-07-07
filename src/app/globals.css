@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    --background: 216 27% 98%;
+    --foreground: 220 16% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 16% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 16% 14%;
+
+    --primary: 193 43% 67%;
+    --primary-foreground: 220 16% 14%;
+
+    --secondary: 216 27% 94%;
+    --secondary-foreground: 220 16% 14%;
+
+    --muted: 216 27% 94%;
+    --muted-foreground: 219 15% 36%;
+
+    --accent: 213 32% 52%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 354 42% 57%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 218 27% 88%;
+    --input: 218 27% 88%;
+    --ring: 193 43% 55%;
+
+    --surface: 216 27% 98%;
+    --surface-raised: 0 0% 100%;
+    --surface-hover: 216 27% 94%;
+    --surface-dark: 220 16% 14%;
+
+    --sidebar-background: 220 16% 14%;
+    --sidebar-foreground: 218 27% 94%;
+    --sidebar-primary: 193 43% 67%;
+    --sidebar-primary-foreground: 220 16% 14%;
+    --sidebar-accent: 220 13% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 218 27% 88%;
+    --sidebar-ring: 193 43% 67%;
+
+    --lifecycle-published: 210 30% 63%;
+    --lifecycle-open: 193 43% 67%;
+    --lifecycle-closed: 40 71% 73%;
+    --lifecycle-running: 354 42% 57%;
+    --lifecycle-finished: 92 28% 65%;
+
+    --success: var(--lifecycle-finished);
+    --success-foreground: 220 16% 14%;
+    --warning: var(--lifecycle-closed);
+    --warning-foreground: 220 16% 14%;
+    --info: 213 32% 52%;
+    --info-foreground: 0 0% 100%;
+
+    --radius: 0.625rem;
+    --shadow-card: 0 1px 2px hsl(220 16% 14% / 0.05);
+    --shadow-elevated: 0 16px 34px -24px hsl(220 16% 14% / 0.42);
+    --shadow-inset: inset 0 1px 0 hsl(218 27% 94% / 0.08);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply min-h-full scroll-smooth bg-background text-foreground antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-background font-sans text-sm leading-[1.45] text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.38);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
