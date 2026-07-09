@@ -1,282 +1,299 @@
 ---
 name: CBMP
-description: Composed, precise, operational interface language for collegiate ballroom Competition management.
+description: Composed Competition operations with restrained Nord clarity.
 colors:
-  primary: "#88c0d0"
-  primary-deep: "#5e81ac"
-  polar-night-0: "#2e3440"
-  polar-night-1: "#3b4252"
-  polar-night-2: "#434c5e"
-  polar-night-3: "#4c566a"
-  snow-base: "#ffffff"
-  snow-surface: "#fbfbfc"
-  snow-storm-4: "#d8dee9"
-  snow-storm-5: "#e5e9f0"
-  snow-storm-6: "#eceff4"
-  lifecycle-published: "#81a1c1"
-  lifecycle-open: "#88c0d0"
-  lifecycle-closed: "#ebcb8b"
-  lifecycle-running: "#bf616a"
-  lifecycle-finished: "#a3be8c"
+  primary: "#87bfcf"
+  primary-hover: "#76b1c1"
+  primary-pressed: "#65a2b3"
+  accent: "#5d81ac"
+  background: "#f9fafb"
+  surface-raised: "#ffffff"
+  surface-subtle: "#f2f4f8"
+  surface-muted: "#eceff4"
+  surface-selected: "#e2f0f3"
+  border: "#d8dee9"
+  foreground: "#1e2229"
+  muted-foreground: "#4e586a"
+  disabled-foreground: "#5c677a"
+  sidebar-accent: "#373d48"
+  lifecycle-published: "#84a1bd"
+  lifecycle-closed: "#ebca89"
+  lifecycle-running: "#bf636d"
+  lifecycle-finished: "#a4bf8d"
+  info-strong: "#476e9e"
+  warning-strong: "#8a6a28"
+  destructive-strong: "#a3434c"
+  success-strong: "#57743e"
 typography:
   display:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "24px"
-    fontWeight: 650
-    lineHeight: 1.2
+    fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "48px"
+    fontWeight: 600
+    lineHeight: 1.08
     letterSpacing: "0"
   headline:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "20px"
-    fontWeight: 650
+    fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "30px"
+    fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "0"
   title:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "16px"
-    fontWeight: 650
+    fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "18px"
+    fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "0"
   body:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: "14px"
     fontWeight: 400
     lineHeight: 1.45
     letterSpacing: "0"
   label:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "12px"
-    fontWeight: 650
-    lineHeight: 1.2
-    letterSpacing: "0"
-  mono:
-    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
     fontWeight: 500
-    lineHeight: 1.35
+    lineHeight: 1.25
     letterSpacing: "0"
 rounded:
-  sm: "4px"
+  sm: "6px"
   md: "8px"
-  lg: "14px"
+  lg: "10px"
   xl: "12px"
-  panel: "8px"
-  pill: "999px"
+  pill: "9999px"
 spacing:
   xs: "4px"
   sm: "8px"
   md: "12px"
   lg: "16px"
   xl: "20px"
-  "2xl": "24px"
+  2xl: "24px"
+  section: "32px"
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
-    textColor: "{colors.polar-night-0}"
-    rounded: "{rounded.pill}"
-    padding: "10px 16px"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: "8px 16px"
     height: "40px"
-  button-dark:
-    backgroundColor: "{colors.polar-night-3}"
-    textColor: "{colors.snow-storm-6}"
-    rounded: "{rounded.pill}"
-    padding: "10px 16px"
+  button-primary-hover:
+    backgroundColor: "{colors.primary-hover}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: "8px 16px"
     height: "40px"
-  card-surface:
-    backgroundColor: "{colors.snow-base}"
-    textColor: "{colors.polar-night-0}"
-    rounded: "{rounded.panel}"
-    padding: "20px"
-  panel-dark:
-    backgroundColor: "{colors.polar-night-0}"
-    textColor: "{colors.snow-storm-6}"
-    rounded: "{rounded.panel}"
-    padding: "20px"
-  input-search:
-    backgroundColor: "{colors.snow-base}"
-    textColor: "{colors.polar-night-0}"
+  button-primary-active:
+    backgroundColor: "{colors.primary-pressed}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: "8px 16px"
+    height: "40px"
+  button-outline:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: "8px 16px"
+    height: "40px"
+  input-field:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: "8px 12px"
+    height: "40px"
+  status-chip:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.foreground}"
     rounded: "{rounded.pill}"
-    padding: "10px 16px"
+    padding: "4px 10px"
+  independent-card:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.lg}"
+    padding: "20px"
+  navigation-active:
+    backgroundColor: "{colors.surface-selected}"
+    textColor: "{colors.foreground}"
+    rounded: "{rounded.md}"
+    padding: "8px 12px"
     height: "40px"
 ---
-
-# Retired Visual Direction Notice
-
-This document is retained as historical/generated reference only. For issue 6 foundation work, use `/home/curtis/dev/swift-cloud-space` as the template-led visual reference and preserve CBMP domain language from `CONTEXT.md`; do not treat the old prototype language below as styling authority.
 
 # Design System: CBMP
 
 ## 1. Overview
 
-**Creative North Star: "The Operations Ledger"**
+**Creative North Star: "The Competition Control Surface"**
 
-CBMP should read like a reliable operations ledger for collegiate ballroom Competition work: light where users scan repeated data, dark where state or authority needs emphasis, and quiet enough to survive long administrative sessions. The system is composed, precise, and operational; it should help Competition Hosts, Scrutineers, Judges, Deck Captains, Competitors, and Platform Admins understand state without mistaking decoration for authority.
+CBMP is a composed, precise, operational control surface for collegiate ballroom Competition work. It gives Competition Hosts, Scrutineers, Judges, Deck Captains, Competitors, Organization Admins, and Platform Admins a calm shared frame for understanding state and taking careful action on laptops and tablets in imperfect competition-day light.
 
-The visual language uses a restrained Nord palette. Snow Storm surfaces carry tables, forms, and repeated work. Polar Night surfaces carry app chrome, lifecycle modules, table header bands, and authority panels. Aurora colors are reserved for sparse lifecycle markers and status borders, always paired with text labels.
-
-This system explicitly rejects letting operational work surfaces borrow marketing-page composition, decorative ballroom event styling, analytics theater, generic SaaS admin templates, unfamiliar standard controls, or placeholder behavior that implies unsettled domain decisions. Future marketing pages, clean decorative moments, and real analytics pages are allowed; they should extend the same composed product language instead of fighting it.
+The system uses restrained Nord color, compact Inter typography, flat sections, and visible dividers to keep dense information trustworthy. It explicitly rejects marketing-page composition on operational routes, decorative ballroom event styling, analytics theater, generic SaaS admin templates, and any visual treatment that implies unsettled authority or behavior.
 
 **Key Characteristics:**
 
 - Dense but calm operational surfaces.
-- Familiar shadcn-compatible controls.
-- Nord color used for state and structure, not ornament.
-- Light table bodies with dark state bands.
-- Inter as the primary UI voice, with JetBrains Mono only for fixed-width utility data.
+- Flat section-and-divider composition before cards.
+- Familiar shadcn-compatible controls with 8px working corners.
+- Nord color used for state and structure, never ornament.
+- Short functional feedback with no page-load choreography.
+- Mobile navigation through a standard left Sheet.
 
 ## 2. Colors
 
-The palette is a restrained Nord system: Snow Storm for working surfaces, Polar Night for chrome and authority, and sparse Aurora accents for lifecycle state.
+Snow Storm surfaces hold repeated work, Polar Night carries ink and app chrome, Frost marks selection and primary action, and Aurora colors identify lifecycle state.
 
 ### Primary
 
-- **Frost Accent**: Primary action and selection accent. Use it for the main action on a surface, active controls, and the "entries open" lifecycle marker.
-- **Fjord Accent**: Deeper blue for secondary accent emphasis, links where needed, or selected state borders on light surfaces.
+- **Frost Primary** (`colors.primary`): The principal action, selected control, and Entries Open cue. Its explicit hover and pressed tones prevent opacity-washed interaction states.
+- **Fjord Focus** (`colors.accent`): Focus rings, links, and sparse emphasis that must remain visible against Snow Storm surfaces.
 
 ### Secondary
 
-- **Published Blue**: Public visibility state.
-- **Entry Frost**: Entries-open state and primary accent alignment.
-- **Review Amber**: Entries-closed or final-review attention state.
-- **Running Red**: High-attention running state. Use sparingly and always with text.
-- **Archive Green**: Finished or stable archive state.
+- **Published Blue** (`colors.lifecycle-published`): Publicly visible Competition state.
+- **Review Amber** (`colors.lifecycle-closed`): Entries Closed and review attention.
+- **Running Red** (`colors.lifecycle-running`): Running or destructive state; always paired with direct language.
+- **Archive Green** (`colors.lifecycle-finished`): Finished, ready, or successfully completed state.
+- **Strong Semantic Ink** (`colors.info-strong`, `colors.warning-strong`, `colors.destructive-strong`, `colors.success-strong`): Contrast-safe text and essential icons; the softer Aurora colors remain background, border, and dot roles.
 
 ### Neutral
 
-- **Polar Night Base**: Primary text on light surfaces and darkest operational panels.
-- **Polar Night Layer**: Dark soft panel base and app chrome material.
-- **Polar Night Cap**: Dark panel cap, table header band, and section header background.
-- **Polar Night Muted**: Frosted nav overlay and secondary dark material.
-- **Snow Base**: Primary page and card surface.
-- **Snow Surface**: Slightly cool working background.
-- **Snow Divider**: Borders, dividers, and table row lines.
-- **Snow Muted Text**: Muted text on dark surfaces.
-- **Snow High Text**: Primary text on Polar Night surfaces.
+- **Polar Night Ink** (`colors.foreground`): Primary text and dark operational chrome.
+- **Polar Night Layer** (`colors.sidebar-accent`): Active and hover material inside the app sidebar.
+- **Snow Field** (`colors.background`): Default page background.
+- **Snow Raised** (`colors.surface-raised`): Inputs and genuinely independent bounded objects.
+- **Snow Subtle** (`colors.surface-subtle`): Read-only, disabled, and low-emphasis regions.
+- **Snow Muted** (`colors.surface-muted`): Hover bands, quiet section fills, and neutral chips.
+- **Frost Selection** (`colors.surface-selected`): Selected public navigation and low-intensity active state.
+- **Snow Divider** (`colors.border`): One-pixel rules between rows and regions.
+- **Muted Ink** (`colors.muted-foreground`): Supporting text that still meets body-text contrast requirements.
 
 ### Named Rules
 
-**The Dark Surfaces Earn Their Keep Rule.** Polar Night is for app chrome, lifecycle, table headers, and authority context. It is not a decorative full-dashboard default.
+**The Aurora Is State Rule.** Aurora colors identify lifecycle, success, warning, or destructive state only; decorative color coding is forbidden.
 
-**The Aurora Is State Rule.** Aurora colors identify lifecycle and operational state only. Do not use them as decorative confetti or section theming.
+**The Soft Field, Strong Ink Rule.** Soft Aurora colors may fill a background or dot, but essential status text and icons always use their contrast-safe strong semantic foreground.
 
-**The Light Table Body Rule.** Public Competition lists and repeated admin tables stay light and dense. Dark headers are allowed; dark data bodies are not the default.
+**The Contrast Is Operational Rule.** Body text must meet 4.5:1, large text and non-text controls must meet 3:1, and the Fjord focus ring must remain visible against every working surface.
+
+**The Dark Surfaces Earn Their Keep Rule.** Polar Night belongs on app chrome, authority context, and a small number of high-signal bands; a decorative full-dark dashboard is forbidden.
 
 ## 3. Typography
 
-**Display Font:** Inter, with system sans fallback.
-**Body Font:** Inter, with system sans fallback.
-**Label/Mono Font:** JetBrains Mono for route paths, IDs, slugs, audit references, and fixed-width utility data only.
+**Display Font:** Inter, with UI sans and system fallbacks.
+**Body Font:** Inter, with UI sans and system fallbacks.
+**Label Font:** Inter, with UI sans and system fallbacks.
 
-**Character:** Inter gives CBMP a precise, modern product voice without adding theatrical flavor. JetBrains Mono is a utility instrument, not a brand voice; use it where fixed-width scanning matters and nowhere else.
+**Character:** Inter keeps the interface direct and modern without turning labels into decoration. One family carries public and operational surfaces; hierarchy comes from size, weight, spacing, and placement.
 
 ### Hierarchy
 
-- **Display** (650, 24px, 1.2): Rare product-level screen titles or prototype headers. Operational surfaces do not use marketing-scale hero type.
-- **Headline** (650, 20px, 1.25): Primary panel or page section headings.
-- **Title** (650, 16px, 1.25): Card titles, table module titles, and compact surface headings.
-- **Body** (400, 14px, 1.45): Default UI copy, table supporting text, descriptions, and empty states. Keep prose near 65-75ch where it is explanatory.
-- **Label** (650, 12px, 1.2): Badges, compact metadata, table headers, and control labels. No wide tracking.
-- **Mono** (500, 12px, 1.35): Routes, stable IDs, slugs, audit references, and fixed-width comparison data.
+- **Display** (600, 48px, 1.08): Public-home headline only; it is never used for an operational page title.
+- **Headline** (600, 30px, 1.25): Public entry pages and the largest operational title at wide viewports.
+- **Title** (600, 18px, 1.25): Section headings, Competition names, and primary panel titles.
+- **Body** (400, 14px, 1.45): Default interface copy and repeated records; explanatory prose stays within 65-75 characters per line.
+- **Label** (500, 12px, 1.25): Metadata, compact state context, and table labels; sentence case with no decorative tracking.
 
 ### Named Rules
 
-**The Sans-First Rule.** Inter carries the product. Do not introduce display fonts, decorative fonts, or serif pairings for operational screens.
+**The One Sans Rule.** Inter carries headings, navigation, controls, labels, and data; decorative type pairings are prohibited.
 
-**The Mono Is Evidence Rule.** JetBrains Mono marks inspectable data, not style. Never use it for headings, buttons, navigation, role labels, or prose.
+**The Heading Owner Rule.** Pages own semantic heading levels; reusable card titles provide styling only and never force an `h3` into the document outline.
 
-**The Numbers Align Rule.** Numeric columns use tabular numerals in Inter before reaching for mono. Entries, counts, and totals should align without making the table feel like a developer console.
+**The Numbers Align Rule.** Counts, percentages, Entries, and totals use tabular numerals before any special typeface is introduced.
 
 ## 4. Elevation
 
-CBMP uses tonal layering first and restrained shadow second. Most depth comes from light surfaces against Snow backgrounds, Polar Night sections, borders, and header bands. Shadows must remain shallow and structural; if a surface looks like a floating marketing card, it is too decorative.
+CBMP is flat by default. Background shifts, one-pixel dividers, sticky positioning, and Polar Night bands establish hierarchy; shadows appear only when an overlay must separate from the work beneath it.
 
 ### Shadow Vocabulary
 
-- **Nord Panel** (`none`): Light panels and table containers rely on borders and tonal contrast against the Snow Surface background.
-- **Frosted Nav** (`none`): Sticky Polar Night navigation uses blur and tonal borders without a drop shadow.
-- **Dark Inset** (`inset 0 1px 0 rgb(236 239 244 / 0.08)`): Dark panels that need a subtle top-edge material cue.
-- **Prototype Control** (`0 12px 22px rgb(46 52 64 / 0.18)`): Development-only floating switchers and temporary prototype tools.
+- **Flat Panel** (`none`): Default cards, list regions, tables, and section containers.
+- **Elevated Overlay** (`0 4px 8px -4px hsl(220 16% 14% / 0.24)`): Sheets and tooltips only.
+- **Dark Inset** (`inset 0 1px 0 hsl(218 27% 94% / 0.08)`): Optional material edge inside Polar Night chrome.
 
 ### Named Rules
 
-**The Tonal Layering Rule.** Prefer background, border, and header-band contrast before adding a shadow.
+**The Tonal Layering Rule.** Use surface tone, border, or divider before adding any shadow.
 
-**The No Ghost Card Rule.** Do not combine a visible border with a broad soft shadow as decoration. If both exist, the shadow must be shallow and structural.
+**The No Ghost Card Rule.** A visible border and a broad soft shadow must never decorate the same object; if a bounded object floats like a marketing card, the elevation is wrong.
 
 ## 5. Components
 
 ### Buttons
 
-- **Shape:** Full pill controls for buttons and compact actions.
-- **Primary:** Frost Accent background with Polar Night text, 40px height, 16px horizontal padding.
-- **Hover / Focus:** Slight tonal shift only. Focus uses the Frost Accent ring.
-- **Dark:** Translucent white-on-Polar-Night treatment for nav and dark panels.
-- **Secondary / Outline:** Light surface controls use Snow Base, Snow Divider borders, and Polar Night text.
+- **Shape:** Rectangular working controls with gently curved corners (8px); icon buttons remain 40px square.
+- **Primary:** Frost background, Polar Night text, 40px height, and 16px horizontal padding.
+- **Hover / Active:** Explicit Frost hover and pressed tones with a 150ms color transition; no translation, bounce, glow, or decorative shadow.
+- **Focus / Disabled:** A two-pixel Fjord ring with a two-pixel offset; disabled controls remain legible and do not rely on extreme opacity.
+- **Outline / Ghost / Dark:** Raised Snow with a divider border, transparent Snow hover, or translucent white on Polar Night respectively.
 
 ### Chips
 
-- **Style:** Small pill badges with text plus color when representing state.
-- **State:** Lifecycle chips always include a text label and a dot or border; color alone is forbidden.
-- **Usage:** Use for lifecycle markers, route labels, prototype tags, and compact status context.
+- **Style:** Full pills are reserved for status, compact preview labels, and true session toggles.
+- **State:** Lifecycle chips include a text label plus a dot, border, or icon; color alone is never sufficient.
+- **Contrast:** Soft Aurora supplies the field or marker; the matching strong semantic foreground supplies essential status text and icons.
+- **Constraint:** Ordinary buttons, inputs, navigation items, and cards are never pills.
 
 ### Cards / Containers
 
-- **Corner Style:** Operational panels use 8px corners by default; compact inner controls use 8-14px, while pills remain fully rounded.
-- **Background:** Snow Base for repeated work, Polar Night Base/Layer for lifecycle and authority context.
-- **Shadow Strategy:** Use no shadow on normal light panels; Dark Inset remains available for dark panels that need a subtle material cue.
-- **Border:** Snow Divider on light surfaces; translucent Snow Divider on dark surfaces.
-- **Internal Padding:** 16-20px for normal panels; 12-16px for dense operational sections.
+- **Corner Style:** Independent bounded objects use a 10px radius and a one-pixel Snow Divider border.
+- **Background:** Snow Raised on light pages; Polar Night only for earned operational emphasis.
+- **Shadow Strategy:** Flat at rest; normal cards never receive a decorative shadow.
+- **Internal Padding:** 20px for a bounded object; dense section rows use 12-16px.
+- **Composition:** Page hierarchy defaults to headings, tonal bands, border rules, and divided lists.
+
+**The Independent Object Rule.** A card is allowed only when its contents form one independently bounded object; cards inside cards are forbidden.
 
 ### Inputs / Fields
 
-- **Style:** Full-pill search and filter fields with Snow Base background on light surfaces.
-- **Focus:** Frost Accent focus ring with no dramatic glow.
-- **Dark Inputs:** Glass input treatment is allowed in the top nav only, with strong placeholder contrast.
-- **Error / Disabled:** Error uses Running Red with text. Disabled uses opacity reduction and must remain readable.
+- **Style:** Snow Raised background, one-pixel input border, 8px radius, 40px height, and 12px horizontal padding.
+- **Focus:** Fjord border and two-pixel ring; the measured focus treatment exceeds the 3:1 non-text contrast requirement on Snow Field.
+- **Error / Read-only / Disabled:** Running Red border for invalid fields, Snow Subtle fill for read-only and disabled fields, and readable Disabled Ink instead of washed-out opacity.
 
 ### Navigation
 
-- **Style:** Frosted Polar Night app chrome, not a decorative floating pill. Keep it compact, sticky, and operational.
-- **Active State:** Active nav item uses a muted Snow overlay on Polar Night with Snow text.
-- **Hover:** Subtle translucent highlight, never saturated color.
-- **Mobile Treatment:** Collapse vertically before inventing new behavior. If the prototype evolves, use a standard Sheet-like menu rather than custom navigation.
+- **Public:** Compact 64px fixed header, 8px navigation corners, Frost Selection active state, and quiet Snow hover.
+- **App:** Polar Night sidebar with a restrained Layer active state; collapsed icon navigation always retains accessible names and tooltips.
+- **Mobile:** Public links expand inline; app navigation uses a standard left Sheet no wider than 22rem or 86vw.
+- **Responsive Frame:** Use `100dvh` for app-height geometry and the shared 640px, 768px, 1024px, 1280px, and 1536px breakpoints for structural changes.
 
-### Tables
+### Lists, Tables, and Operational Sections
 
-- **Header:** Public discovery tables use a light table header when a Polar Night toolbar already frames the list. Standalone dense tables may use a Polar Night header band with Snow High Text.
-- **Body:** Snow Base body, dense rows, 12-14px table text, and visible row dividers.
-- **Numeric Data:** Right-align numeric columns and use tabular numerals.
-- **Routes / IDs:** Use JetBrains Mono for route paths and stable identifiers.
+- **Structure:** One section heading, one shared header where needed, and `divide-y` rows; metadata aligns in columns without putting every value in a mini-card.
+- **Density:** Repeated records use 12-14px text, 12-16px row padding, visible dividers, and tabular numerals for counts.
+- **Responsive Behavior:** Hide or stack secondary columns before shrinking text; controls remain at least 40px high and mobile navigation targets reach 44px where space permits.
 
-### Lifecycle Modules
+### Motion and Accessibility
 
-- **Style:** Public lifecycle orientation can use Snow Base panels with text labels and sparse Aurora state markers. Dark lifecycle panels are reserved for operational or authority contexts where state needs stronger emphasis.
-- **Route Context:** Route tags belong where the route itself is useful evidence; omit them from overview panels when they duplicate nearby navigation or add clutter.
-- **Authority:** Role and authority panels use Polar Night only when the user needs to distinguish public inspection from privileged actions.
-- **Constraint:** Do not invent role dashboards or authority behavior that has not been defined by PRDs.
+- **Motion:** Functional color and width feedback uses 150ms ease-out; Sheet transitions may use 200ms. There are no staggered page-load reveals or decorative entrance sequences.
+- **Reduced Motion:** Movement and width transitions become immediate under `prefers-reduced-motion`; content is always visible without animation.
+- **Semantics:** Every page keeps one clear `h1`, heading levels remain ordered, controls retain accessible names, and state is never communicated by color alone.
+- **Target:** WCAG 2.2 AA for text, focus, controls, navigation, tables, badges, and empty states.
 
 ## 6. Do's and Don'ts
 
 ### Do:
 
-- **Do** use Inter as the primary UI font for navigation, labels, controls, tables, and body copy.
-- **Do** use JetBrains Mono only for route paths, IDs, slugs, audit references, and other fixed-width utility data.
-- **Do** keep core controls familiar and shadcn-compatible.
-- **Do** use Polar Night for top chrome, table toolbars, authority panels, and lifecycle modules that need stronger operational emphasis.
-- **Do** keep public Competition tables light, dense, and readable.
-- **Do** pair every status color with a text label.
-- **Do** preserve domain language from the glossary: User Profile, Competition, Entry, Competition Lifecycle, Scrutineer, Judge, Deck Captain, and Organization.
-- **Do** target WCAG 2.2 AA contrast and keep text readable in imperfect competition-day environments.
+- Do use Inter for headings, navigation, controls, labels, and repeated data.
+- Do build dashboards from flat sections, tonal bands, shared headers, and divided rows before reaching for a card.
+- Do reserve cards for genuinely independent bounded objects and keep their contents flat.
+- Do use 8px corners for working controls, 10px corners for independent cards, and full pills only for status or true toggles.
+- Do pair every lifecycle and action color with a text label, icon, border, or other non-color cue.
+- Do keep public Competition lists light, dense, readable, and grounded in real domain questions.
+- Do use familiar shadcn-compatible controls and a standard Sheet for mobile app navigation.
+- Do keep functional feedback near 150ms and make movement immediate under reduced motion.
+- Do preserve the domain language User Profile, Competition, Entry, Competition Lifecycle, Scrutineer, Judge, Deck Captain, and Organization.
 
 ### Don't:
 
-- **Don't** let operational app surfaces feel like marketing landing pages; marketing pages are allowed later, but they must use CBMP's clean composed language.
-- **Don't** use decorative ballroom cliches or ornament on operational pages; clean modern decorative elements are allowed where they do not obscure workflow.
-- **Don't** ship analytics theater, placeholder metrics, or fake dashboards; real analytics pages must be grounded in real domain questions and data.
-- **Don't** make CBMP feel like a generic SaaS admin template.
-- **Don't** use oversized hero sections, ornamental card grids, or ballroom cliches on operational routes.
-- **Don't** imply product behavior, role authority, or dashboards that have not been defined by PRDs or domain decisions.
-- **Don't** use unfamiliar controls for standard actions.
-- **Don't** bring in full dark mode by default; dark surfaces need an operational reason.
-- **Don't** use JetBrains Mono for headings, buttons, role labels, or general table text.
-- **Don't** rely on color alone for lifecycle or action state.
+- Don't let operational app surfaces feel like marketing pages or decorative ballroom event sites.
+- Don't use decorative ballroom cliches, oversized heroes, or ornamental card grids on operational routes.
+- Don't ship analytics theater, placeholder metrics, fake actor dashboards, or generic SaaS admin-template composition.
+- Don't use placeholder content that implies unsettled product behavior, role authority, or authorization decisions.
+- Don't use unfamiliar controls for standard actions.
+- Don't nest cards or box every metric, metadata value, checklist row, or navigation group.
+- Don't combine a visible border with a broad soft shadow, gradient text, decorative glassmorphism, side-stripe accents, or repeating stripe backgrounds.
+- Don't use tiny uppercase tracked eyebrows as repeated section scaffolding.
+- Don't rely on color alone for lifecycle, success, warning, destructive, selected, or disabled state.
+- Don't use page-load choreography, bounce, elastic motion, or animations that hide content before JavaScript runs.
+- Don't introduce full dark mode by default; every dark surface needs an operational reason.
+- Don't reduce body, placeholder, disabled, or soon-state text below readable contrast.

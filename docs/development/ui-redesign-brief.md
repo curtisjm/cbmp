@@ -2,14 +2,16 @@
 
 Date: 2026-07-05
 
+> Status: historical implementation brief. The completed system in `DESIGN.md` and the current source code supersede any conflicting branch, component, motion, or accessibility guidance below.
+
 This brief records the working agreement for the issue 3 app shell redesign and the issue 11 finalization pass. It is a design and implementation guide, not a product authority document. Product scope still comes from the GitHub PRD, implementation issues, and CBMP domain language in `CONTEXT.md`.
 
 ## Source Of Truth
 
-- Work on branch `codex/issue-3-app-shell`.
-- Use `/home/curtis/dev/swift-cloud-space` as the near-authoritative visual template.
+- The original work ran on branch `codex/issue-3-app-shell`; this is no longer an active branch instruction.
+- Use `/Users/curtis/dev/swift-cloud-space` as a bounded visual reference.
 - Preserve CBMP domain language from `CONTEXT.md`.
-- Treat `PRODUCT.md` and `DESIGN.md` as retired historical references for this redesign when they conflict with the implemented Swift Cloud Space direction. Do not reintroduce the old prototype visual language.
+- Treat `PRODUCT.md` as product authority and `DESIGN.md` as the implemented visual authority. Template patterns never override those documents.
 - Keep CBMP's Next.js app router structure rather than porting the template's Vite routing model.
 
 ## Design Direction
@@ -40,8 +42,8 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 
 - Keep the home page product-facing rather than competition-browsing.
 - Leave room for future marketing content, using template-style scaffolding such as feature sections, workflow highlights, bento-like sections, and trust or FAQ-style areas.
-- Preserve the template's marketing motion language on the home page, including animated section reveals and other landing-page animations where practical.
-- Explicit user preference: include these template animations even when the OS reduced-motion preference is enabled. Keep motion short, purposeful, bounded, and non-blocking instead of removing it globally.
+- Keep public content visible by default. Do not use page-load choreography or viewport-gated reveal animations.
+- Reduced-motion users receive instant state replacement or non-translating feedback; repeating pulses and transform-based reveals are prohibited.
 - Keep current copy conservative and CBMP-specific so it does not overpromise unfinished behavior.
 - Do not put recent competitions on the home page. Competition discovery belongs on `/competitions`.
 - Home cards may point to temporary `/coming-soon?surface=...` routes while deeper public or authenticated surfaces are still unsettled. These routes should be clearly framed as placeholders and link back to Home and Competitions.
@@ -51,7 +53,7 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 - Treat `/competitions` as an operational discovery surface with selective gallery-like texture.
 - Preserve search and filter behavior.
 - Favor compact controls, scannable metadata, lifecycle badges, and clear event status.
-- A hybrid list/card treatment is implemented: operational controls and dense comparison first, with enough visual identity that competitions feel like real hosted Competitions rather than plain ledger rows.
+- A divided record list is implemented: operational controls and dense comparison first, with lifecycle, host, location, and Entry context aligned without nested metadata cards.
 
 ## Auth And App Reference
 
@@ -69,10 +71,8 @@ Fake examples should be domain-plausible and clearly prototype-safe. Centralize 
 - Bring in only the dependencies and components used by the redesign.
 - Current primitives include Button, Card, Badge, Input, Sheet, and Tooltip. Tabs, Separator, and Dropdown Menu should not be installed or kept locally until a current surface needs them.
 - Use the template as the visual source, but avoid unused Radix packages and broad component-system churn.
-- Include Framer Motion during this pass while the template's motion language is in context.
-- Use motion for app shell, active-state, list, surface, and marketing-page transitions.
-- Adapt animated home-page effects to CBMP's Nord palette and product language while preserving the template's animated feel.
-- Do not use a zero-duration global reduced-motion override. The current accessibility preference is calm motion: brief transitions, no long autoplaying loops, no parallax dependency, and no motion required to complete a task.
+- Use 150ms CSS transitions for direct state feedback and the collapsible sidebar only. Framer Motion is not part of the implemented system.
+- Disable nonessential transitions under reduced motion. No motion is required to understand content or complete a task.
 
 ## Documentation Requirement
 
@@ -104,10 +104,4 @@ The inventory may include patterns that are not implemented in the current pass 
 
 ## Visual Review Evidence
 
-Screenshots were captured for manual review only and are not committed. Desktop and mobile route captures live under `/tmp/cbmp-redesign-visuals/`, with the final home desktop confirmation at `/tmp/cbmp-redesign-lead/home-desktop-final.png`.
-
-- `/`: Reviewed `home-desktop.png`, `home-mobile.png`, top-of-page variants, and `/tmp/cbmp-redesign-lead/home-desktop-final.png`; hero preview, public navigation, responsive stacking, and below-fold section hint were confirmed after the final key fix.
-- `/competitions`: Reviewed `competitions-desktop.png`, `competitions-mobile.png`, and top-of-page variants; search/filter controls, lifecycle badges, and competition card/list density remained readable at both widths.
-- `/sign-in`: Reviewed `sign-in-desktop.png`, `sign-in-mobile.png`, and top-of-page variants; fallback sign-in composition matched the redesigned public shell without exposing secrets or requiring Clerk keys.
-- `/app`: Reviewed `app-desktop.png`, `app-mobile.png`, top-of-page variants, and `/tmp/cbmp-redesign-lead/app-desktop-settled.png`; the App Router `/app` reference surface rendered through `src/app/app/page.tsx`, matching smoke-test coverage.
-- `/coming-soon`: Temporary public placeholder route for interactive home-card links. It reads a `surface` query parameter, keeps the public shell, and returns users to Home or Competitions.
+The refresh commits route-matched desktop and mobile before/after captures under `docs/screenshots/ui-refresh/`. See `docs/screenshots/ui-refresh/README.md` for the full comparison across Home, Competitions, Sign in, App overview, Competition workspace, Coming soon, and the open mobile workspace navigation.
