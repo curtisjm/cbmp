@@ -16,6 +16,7 @@ export default defineConfig({
     command: 'pnpm dev:web',
     env: {
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: 'pk_test_placeholder_for_smoke_tests',
+      NEXT_PUBLIC_CONVEX_URL: '',
     },
     url: baseURL,
     reuseExistingServer: !process.env.CI,

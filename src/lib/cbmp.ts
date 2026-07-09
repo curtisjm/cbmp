@@ -12,13 +12,13 @@ import {
   Users,
 } from "lucide-react";
 
-export type LifecycleKey =
-  | "draft"
-  | "published"
-  | "entries open"
-  | "entries closed"
-  | "running"
-  | "finished";
+import {
+  COMPETITION_LIFECYCLE,
+  competitionLifecycleLabel,
+  type CompetitionLifecycle,
+} from "@/domain/competitions/lifecycle";
+
+export type LifecycleKey = CompetitionLifecycle;
 
 export type LifecycleTone =
   | "draft"
@@ -95,45 +95,45 @@ export const publicNavItems: NavItem[] = [
 
 export const lifecycleCues: LifecycleCue[] = [
   {
-    key: "draft",
-    label: "Draft",
+    key: COMPETITION_LIFECYCLE.draft,
+    label: competitionLifecycleLabel(COMPETITION_LIFECYCLE.draft),
     description: "Host setup is still private.",
     tone: "draft",
   },
   {
-    key: "published",
-    label: "Published",
+    key: COMPETITION_LIFECYCLE.published,
+    label: competitionLifecycleLabel(COMPETITION_LIFECYCLE.published),
     description: "Listed publicly; entries not yet open.",
     tone: "published",
   },
   {
-    key: "entries open",
-    label: "Entries open",
+    key: COMPETITION_LIFECYCLE.entriesOpen,
+    label: competitionLifecycleLabel(COMPETITION_LIFECYCLE.entriesOpen),
     description: "Competitors and Organizations can prepare Entries.",
     tone: "open",
   },
   {
-    key: "entries closed",
-    label: "Entries closed",
+    key: COMPETITION_LIFECYCLE.entriesClosed,
+    label: competitionLifecycleLabel(COMPETITION_LIFECYCLE.entriesClosed),
     description: "Entry changes move into controlled review.",
     tone: "closed",
   },
   {
-    key: "running",
-    label: "Running",
+    key: COMPETITION_LIFECYCLE.running,
+    label: competitionLifecycleLabel(COMPETITION_LIFECYCLE.running),
     description: "The Competition is active on the floor.",
     tone: "running",
   },
   {
-    key: "finished",
-    label: "Finished",
+    key: COMPETITION_LIFECYCLE.finished,
+    label: competitionLifecycleLabel(COMPETITION_LIFECYCLE.finished),
     description: "Competition work is complete and results can be reviewed.",
     tone: "finished",
   },
 ];
 
 export const publicLifecycleCues = lifecycleCues.filter(
-  (cue) => cue.key !== "draft",
+  (cue) => cue.key !== COMPETITION_LIFECYCLE.draft,
 );
 
 export const homeHeroMockupNavItems = [
