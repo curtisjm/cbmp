@@ -24,7 +24,7 @@ export const publicCompetitionValidator = v.object({
   name: v.string(),
   slug: v.string(),
   lifecycle: publicCompetitionLifecycleValidator,
-  hostName: v.optional(v.string()),
+  hostOrganizationDisplayName: v.optional(v.string()),
   city: v.optional(v.string()),
   region: v.optional(v.string()),
   // Calendar dates are deliberately stored without a time zone or time of day.
@@ -37,7 +37,7 @@ export default defineSchema({
     name: v.string(),
     slug: v.string(),
     lifecycle: competitionLifecycleValidator,
-    hostName: v.optional(v.string()),
+    hostOrganizationDisplayName: v.optional(v.string()),
     city: v.optional(v.string()),
     region: v.optional(v.string()),
     // `YYYY-MM-DD` calendar-date strings, not instants or timestamps.

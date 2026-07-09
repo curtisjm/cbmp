@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 
+import { isCalendarDateString } from "../src/domain/competitions/calendar-date";
 import { PUBLIC_COMPETITION_LIFECYCLES } from "../src/domain/competitions/lifecycle";
 import { query } from "./_generated/server";
 import { publicCompetitionValidator } from "./schema";
@@ -19,11 +20,12 @@ export const listPublic = query({
           name: competition.name,
           slug: competition.slug,
           lifecycle,
-          hostName: competition.hostName,
+          hostOrganizationDisplayName:
+            competition.hostOrganizationDisplayName,
           city: competition.city,
           region: competition.region,
-          startsOn: competition.startsOn,
-          endsOn: competition.endsOn,
+          startsOn: validatedCalendarDate(competition.startsOn),
+          endsOn: validatedCalendarDate(competition.endsOn),
         }));
       }),
     );
@@ -31,3 +33,11 @@ export const listPublic = query({
     return competitionsByLifecycle.flat();
   },
 });
+
+function validatedCalendarDate(value: string | undefined): string | undefined {
+  if (value !== undefined && !isCalendarDateString(value)) {
+    throw new Error("Stored Competition calendar date is invalid");
+  }
+
+  return value;
+}

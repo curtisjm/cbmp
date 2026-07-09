@@ -10,15 +10,6 @@ export const COMPETITION_LIFECYCLE = {
 export type CompetitionLifecycle =
   (typeof COMPETITION_LIFECYCLE)[keyof typeof COMPETITION_LIFECYCLE];
 
-export const COMPETITION_LIFECYCLE_VALUES = [
-  COMPETITION_LIFECYCLE.draft,
-  COMPETITION_LIFECYCLE.published,
-  COMPETITION_LIFECYCLE.entriesOpen,
-  COMPETITION_LIFECYCLE.entriesClosed,
-  COMPETITION_LIFECYCLE.running,
-  COMPETITION_LIFECYCLE.finished,
-] as const satisfies readonly CompetitionLifecycle[];
-
 export const PUBLIC_COMPETITION_LIFECYCLES = [
   COMPETITION_LIFECYCLE.published,
   COMPETITION_LIFECYCLE.entriesOpen,

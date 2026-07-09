@@ -110,7 +110,7 @@ describe("competitions.listPublic", () => {
         name: "Published Classic",
         slug: "published-classic",
         lifecycle: COMPETITION_LIFECYCLE.published,
-        hostName: "Ballroom Organization",
+        hostOrganizationDisplayName: "Ballroom Organization",
         city: "Boston",
         region: "MA",
         startsOn: "2026-10-10",
@@ -127,7 +127,7 @@ describe("competitions.listPublic", () => {
         name: "Published Classic",
         slug: "published-classic",
         lifecycle: "published",
-        hostName: "Ballroom Organization",
+        hostOrganizationDisplayName: "Ballroom Organization",
         city: "Boston",
         region: "MA",
         startsOn: "2026-10-10",
@@ -135,4 +135,26 @@ describe("competitions.listPublic", () => {
       },
     ]);
   });
+
+  it.each(["startsOn", "endsOn"] as const)(
+    "rejects an invalid stored %s calendar date",
+    async (field) => {
+      const t = convexTest(schema, modules);
+
+      await t.run(async (ctx) => {
+        await ctx.db.insert("competitions", {
+          name: "Invalid Date Classic",
+          slug: `invalid-${field}`,
+          lifecycle: COMPETITION_LIFECYCLE.published,
+          [field]: "2026-02-29",
+          createdAt: 1_750_000_000_000,
+          updatedAt: 1_750_000_000_000,
+        });
+      });
+
+      await expect(
+        t.query(api.competitions.listPublic, {}),
+      ).rejects.toThrow("Stored Competition calendar date is invalid");
+    },
+  );
 });

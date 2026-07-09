@@ -63,7 +63,8 @@ The minimal `competitions` table stores:
 
 - `name` and `slug`;
 - Competition Lifecycle;
-- optional public display fields for host name, city, and region;
+- optional public display fields for the hosting Organization name, city, and
+  region;
 - optional `startsOn` and `endsOn` calendar-date strings (`YYYY-MM-DD` by
   contract, not instants); and
 - creation and update timestamps.
