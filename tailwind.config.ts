@@ -11,7 +11,11 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        lg: "2rem",
+      },
       screens: {
         "2xl": "1440px",
       },
@@ -26,6 +30,8 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
+          pressed: "hsl(var(--primary-pressed))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -34,6 +40,7 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+          strong: "hsl(var(--destructive-strong))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -71,20 +78,31 @@ export default {
         surface: {
           DEFAULT: "hsl(var(--surface))",
           raised: "hsl(var(--surface-raised))",
+          subtle: "hsl(var(--surface-subtle))",
           hover: "hsl(var(--surface-hover))",
+          selected: "hsl(var(--surface-selected))",
           dark: "hsl(var(--surface-dark))",
+        },
+        state: {
+          hover: "hsl(var(--state-hover))",
+          pressed: "hsl(var(--state-pressed))",
+          selected: "hsl(var(--state-selected))",
+          disabled: "hsl(var(--state-disabled))",
         },
         success: {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
+          strong: "hsl(var(--success-strong))",
         },
         warning: {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
+          strong: "hsl(var(--warning-strong))",
         },
         info: {
           DEFAULT: "hsl(var(--info))",
           foreground: "hsl(var(--info-foreground))",
+          strong: "hsl(var(--info-strong))",
         },
       },
       borderRadius: {
@@ -92,6 +110,7 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
         xl: "calc(var(--radius) + 2px)",
+        pill: "9999px",
       },
       boxShadow: {
         card: "var(--shadow-card)",
@@ -99,7 +118,7 @@ export default {
         inset: "var(--shadow-inset)",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: [
           "JetBrains Mono",
           "ui-monospace",
@@ -127,9 +146,9 @@ export default {
         },
       },
       animation: {
-        "fade-in-up": "fade-in-up 240ms ease-out",
-        "fade-in-down": "fade-in-down 240ms ease-out",
-        "scale-in": "scale-in 180ms ease-out",
+        "fade-in-up": "fade-in-up 200ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "fade-in-down": "fade-in-down 200ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "scale-in": "scale-in 180ms cubic-bezier(0.16, 1, 0.3, 1)",
         "pulse-soft": "pulse-soft 2.2s ease-in-out infinite",
       },
     },

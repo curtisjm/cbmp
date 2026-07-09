@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   CalendarClock,
@@ -8,28 +7,27 @@ import {
   ClipboardCheck,
   ClipboardList,
   Gavel,
-  Home,
   ListChecks,
   MapPin,
+  Menu,
   RotateCcw,
-  ShieldAlert,
-  Sparkles,
   Trophy,
   Users,
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   appNavItems,
   competitionFixtures,
@@ -249,18 +247,13 @@ export function CompetitionManagementDemo({ slug }: CompetitionManagementDemoPro
     selectedSession.checklistIds.includes(item.id),
   );
   const sessionReady = selectedSession.checklistIds.every((id) => checkedItems[id]);
-
   const moduleCompleteCount = moduleItems.filter((item) => checkedItems[item.id]).length;
   const sessionCompleteCount = sessionItems.filter((item) => checkedItems[item.id]).length;
 
-  const highlightedQueue = useMemo(
-    () =>
-      checklistItems
-        .filter((item) => !checkedItems[item.id])
-        .slice(0, 3)
-        .map((item) => item.label),
-    [checkedItems],
-  );
+  const highlightedQueue = checklistItems
+    .filter((item) => !checkedItems[item.id])
+    .slice(0, 3)
+    .map((item) => item.label);
 
   const toggleChecklistItem = (id: string) => {
     setCheckedItems((current) => ({
@@ -269,21 +262,23 @@ export function CompetitionManagementDemo({ slug }: CompetitionManagementDemoPro
     }));
   };
 
+  const currentHref = `/app/competitions/${slug}`;
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="flex min-h-screen">
-        <DemoSidebar />
+    <div className="min-h-dvh bg-background text-foreground">
+      <div className="flex min-h-dvh">
+        <DemoSidebar currentHref={currentHref} />
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-30 border-b bg-background/90 px-4 py-3 backdrop-blur-md sm:px-6 lg:px-8">
+          <header className="sticky top-0 z-30 border-b bg-background/95 px-4 py-3 backdrop-blur-md sm:px-6 lg:px-8">
             <div className="mx-auto flex max-w-7xl items-center gap-3">
+              <DemoMobileNav currentHref={currentHref} />
               <Button asChild className="shrink-0" size="icon-sm" variant="ghost">
                 <Link aria-label="Back to app reference" href="/app">
                   <ArrowLeft aria-hidden="true" />
                 </Link>
               </Button>
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-semibold uppercase text-muted-foreground">
+                <p className="text-xs font-medium text-muted-foreground">
                   Competition management demo
                 </p>
                 <p className="truncate text-sm font-semibold sm:text-base">
@@ -291,391 +286,307 @@ export function CompetitionManagementDemo({ slug }: CompetitionManagementDemoPro
                 </p>
               </div>
               <Badge className="hidden sm:inline-flex" variant="outline">
-                prototype/reference
+                Preview
               </Badge>
             </div>
           </header>
 
           <main
             aria-labelledby="competition-management-heading"
-            className="flex-1 px-4 py-5 sm:px-6 lg:px-8"
+            className="flex-1 px-4 py-6 sm:px-6 lg:px-8"
           >
-            <motion.div
-              animate={{ opacity: 1, y: 0 }}
-              className="mx-auto grid max-w-7xl gap-5"
-              initial={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-            >
-              <section className="grid gap-4 rounded-lg border bg-card p-4 shadow-card lg:grid-cols-[minmax(0,1fr)_22rem] lg:p-5">
-                <div className="min-w-0">
-                  <div className="mb-3 flex flex-wrap items-center gap-2">
-                    <Badge variant="outline">playable fixture</Badge>
-                    <Badge
-                      className={cn(
-                        lifecycleCue &&
-                          lifecycleToneClasses[lifecycleCue.tone],
-                      )}
-                      variant="outline"
+            <div className="mx-auto flex max-w-7xl flex-col gap-8">
+              <section>
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                  <div className="min-w-0 max-w-3xl">
+                    <div className="mb-3 flex flex-wrap items-center gap-2">
+                      <Badge variant="outline">playable fixture</Badge>
+                      <Badge
+                        className={cn(
+                          lifecycleCue && lifecycleToneClasses[lifecycleCue.tone],
+                        )}
+                        variant="outline"
+                      >
+                        {lifecycleCue?.label ?? competition.lifecycle}
+                      </Badge>
+                    </div>
+                    <h1
+                      className="text-2xl font-semibold tracking-normal text-foreground sm:text-3xl"
+                      id="competition-management-heading"
                     >
-                      {lifecycleCue?.label ?? competition.lifecycle}
-                    </Badge>
-                  </div>
-                  <h1
-                    className="text-2xl font-semibold tracking-normal text-foreground sm:text-3xl"
-                    id="competition-management-heading"
-                  >
-                    {competition.name}
-                  </h1>
-                  <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                    Sample management workspace for fixture data. This demo does
-                    not enforce authorization, publish scores, or represent final
-                    CBMP workflow behavior.
-                  </p>
-                  <div className="mt-4 grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
-                    <InfoPill
-                      icon={MapPin}
-                      label="Location"
-                      value={`${competition.city}, ${competition.region}`}
-                    />
-                    <InfoPill
-                      icon={Users}
-                      label="Entries"
-                      value={competition.entriesLabel}
-                    />
-                    <InfoPill
-                      icon={CalendarClock}
-                      label="Date"
-                      value={competition.dateLabel}
-                    />
+                      {competition.name}
+                    </h1>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Sample management workspace for fixture readiness, session
+                      context, and host-facing review.
+                    </p>
                   </div>
                 </div>
 
-                <div className="rounded-lg border bg-background p-4">
-                  <div className="flex items-start gap-3">
-                    <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground">
-                      <ClipboardCheck className="size-5" aria-hidden="true" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold">Demo readiness</p>
-                      <p
-                        aria-live="polite"
-                        className="mt-1 text-2xl font-semibold tabular"
-                      >
+                <dl className="mt-6 grid border-y bg-card sm:grid-cols-2 xl:grid-cols-4 xl:divide-x">
+                  <OverviewDetail
+                    icon={MapPin}
+                    label="Location"
+                    value={`${competition.city}, ${competition.region}`}
+                  />
+                  <OverviewDetail
+                    icon={Users}
+                    label="Entries"
+                    value={competition.entriesLabel}
+                  />
+                  <OverviewDetail
+                    icon={CalendarClock}
+                    label="Date"
+                    value={competition.dateLabel}
+                  />
+                  <div className="px-4 py-3 sm:border-l xl:border-l-0">
+                    <dt className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                      <ClipboardCheck className="size-4 text-accent" aria-hidden="true" />
+                      Demo readiness
+                    </dt>
+                    <dd className="mt-1">
+                      <span aria-live="polite" className="text-sm font-semibold tabular">
                         {completionPercent}%
-                      </p>
-                      <p className="text-xs leading-relaxed text-muted-foreground">
-                        {completedCount} of {checklistItems.length} sample checks
-                        toggled.
-                      </p>
+                      </span>
+                      <span className="ml-2 text-xs text-muted-foreground">
+                        {completedCount} of {checklistItems.length} sample checks toggled.
+                      </span>
+                    </dd>
+                    <div
+                      aria-label={`${completionPercent}% of sample checks complete`}
+                      aria-valuemax={100}
+                      aria-valuemin={0}
+                      aria-valuenow={completionPercent}
+                      className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted"
+                      role="progressbar"
+                    >
+                      <div
+                        className="h-full rounded-full bg-accent"
+                        style={{ width: `${completionPercent}%` }}
+                      />
                     </div>
                   </div>
-                  <div
-                    aria-hidden="true"
-                    className="mt-4 h-2 overflow-hidden rounded-full bg-muted"
-                  >
-                    <motion.div
-                      animate={{ width: `${completionPercent}%` }}
-                      className="h-full rounded-full bg-accent"
-                      initial={false}
-                      transition={{ duration: 0.18, ease: "easeOut" }}
-                    />
-                  </div>
-                </div>
+                </dl>
               </section>
 
-              <section className="grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(20rem,0.8fr)]">
-                <div className="grid gap-5">
-                  <Card>
-                    <CardHeader className="gap-3">
+              <div className="grid gap-8 xl:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.72fr)]">
+                <div className="flex min-w-0 flex-col gap-10">
+                  <section aria-labelledby="management-modules-heading">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                      <div>
+                        <h2 className="text-lg font-semibold" id="management-modules-heading">
+                          Management modules
+                        </h2>
+                        <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                          Switch modules to change the active sample queue.
+                        </p>
+                      </div>
+                      <Button
+                        onClick={() => setCheckedItems(initialChecklistState)}
+                        size="sm"
+                        type="button"
+                        variant="outline"
+                      >
+                        <RotateCcw aria-hidden="true" />
+                        Reset sample state
+                      </Button>
+                    </div>
+
+                    <div
+                      aria-label="Competition management module"
+                      className="mt-4 flex flex-wrap gap-1 rounded-lg bg-muted/60 p-1"
+                      role="group"
+                    >
+                      {demoModules.map((module) => {
+                        const Icon = module.icon;
+                        const active = module.id === activeModule;
+
+                        return (
+                          <button
+                            aria-pressed={active}
+                            className={cn(
+                              "flex min-h-11 flex-1 basis-36 items-center gap-2 rounded-md px-3 py-2 text-left text-sm font-medium transition-colors motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                              active
+                                ? "bg-card text-foreground"
+                                : "text-muted-foreground hover:bg-card/65 hover:text-foreground",
+                            )}
+                            key={module.id}
+                            onClick={() => setActiveModule(module.id)}
+                            type="button"
+                          >
+                            <Icon
+                              className={cn(
+                                "size-4 shrink-0",
+                                active ? "text-accent" : "text-muted-foreground",
+                              )}
+                              aria-hidden="true"
+                            />
+                            <span className="min-w-0">
+                              <span className="block font-semibold">{module.label}</span>
+                              <span className="block text-xs font-normal text-muted-foreground">
+                                {module.metricLabel}
+                              </span>
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-5 border-t pt-5" key={selectedModule.id}>
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                          <h3 className="text-base font-semibold">{selectedModule.label}</h3>
+                          <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">
+                            {selectedModule.description}
+                          </p>
+                        </div>
+                        <Badge variant="muted">
+                          {moduleCompleteCount}/{moduleItems.length} checks
+                        </Badge>
+                      </div>
+
+                      <div className="mt-4 divide-y border-y">
+                        {moduleItems.map((item) => (
+                          <ChecklistRow
+                            checked={Boolean(checkedItems[item.id])}
+                            item={item}
+                            key={item.id}
+                            onToggle={toggleChecklistItem}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+
+                  <section aria-labelledby="session-switcher-heading" className="border-t pt-8">
+                    <h2 className="text-lg font-semibold" id="session-switcher-heading">
+                      Session switcher
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      Pick a session to update floor context and readiness.
+                    </p>
+
+                    <div
+                      aria-label="Competition session"
+                      className="mt-4 flex flex-wrap gap-2"
+                      role="group"
+                    >
+                      {demoSessions.map((session) => {
+                        const active = session.id === selectedSession.id;
+
+                        return (
+                          <button
+                            aria-pressed={active}
+                            className={cn(
+                              "min-h-11 rounded-full border px-4 py-2 text-left transition-colors motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                              active
+                                ? "border-accent bg-accent/10 text-foreground"
+                                : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground",
+                            )}
+                            key={session.id}
+                            onClick={() => setSelectedSessionId(session.id)}
+                            type="button"
+                          >
+                            <span className="text-sm font-semibold">{session.label}</span>
+                            <span className="ml-2 text-xs text-muted-foreground">
+                              {session.time}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-5 border-t pt-5" key={selectedSession.id}>
                       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                         <div>
-                          <CardTitle>Management modules</CardTitle>
-                          <CardDescription>
-                            Switch modules to change the active sample queue.
-                          </CardDescription>
-                        </div>
-                        <Button
-                          onClick={() => setCheckedItems(initialChecklistState)}
-                          size="sm"
-                          type="button"
-                          variant="outline"
-                        >
-                          <RotateCcw aria-hidden="true" />
-                          Reset sample state
-                        </Button>
-                      </div>
-                      <div
-                        aria-label="Competition management module"
-                        className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4"
-                        role="group"
-                      >
-                        {demoModules.map((module) => {
-                          const Icon = module.icon;
-                          const active = module.id === activeModule;
-
-                          return (
-                            <button
-                              aria-pressed={active}
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="text-base font-semibold">{selectedSession.label}</h3>
+                            <Badge
                               className={cn(
-                                "flex min-h-20 items-start gap-3 rounded-lg border bg-background p-3 text-left text-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                                active
-                                  ? "border-accent bg-accent/10 text-foreground"
-                                  : "hover:bg-muted/55",
+                                sessionReady
+                                  ? "border-success/40 bg-success/20"
+                                  : "border-warning/45 bg-warning/20",
                               )}
-                              key={module.id}
-                              onClick={() => setActiveModule(module.id)}
-                              type="button"
+                              variant="outline"
                             >
-                              <Icon
-                                className={cn(
-                                  "mt-0.5 size-4 shrink-0",
-                                  active ? "text-accent" : "text-muted-foreground",
-                                )}
-                                aria-hidden="true"
-                              />
-                              <span className="min-w-0">
-                                <span className="block font-semibold">
-                                  {module.label}
-                                </span>
-                                <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
-                                  {module.metricLabel}
-                                </span>
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </CardHeader>
-
-                    <CardContent>
-                      <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                          animate={{ opacity: 1, y: 0 }}
-                          className="rounded-lg border bg-background p-4"
-                          exit={{ opacity: 0, y: -6 }}
-                          initial={{ opacity: 0, y: 6 }}
-                          key={selectedModule.id}
-                          transition={{ duration: 0.16, ease: "easeOut" }}
-                        >
-                          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                            <div>
-                              <h2 className="text-lg font-semibold">
-                                {selectedModule.label}
-                              </h2>
-                              <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                                {selectedModule.description}
-                              </p>
-                            </div>
-                            <Badge variant="muted">
-                              {moduleCompleteCount}/{moduleItems.length} checks
+                              {sessionReady ? "ready sample" : "needs review"}
                             </Badge>
                           </div>
-
-                          <div className="mt-4 grid gap-3">
-                            {moduleItems.map((item) => (
-                              <ChecklistRow
-                                checked={Boolean(checkedItems[item.id])}
-                                item={item}
-                                key={item.id}
-                                onToggle={toggleChecklistItem}
-                              />
-                            ))}
-                          </div>
-                        </motion.div>
-                      </AnimatePresence>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Session switcher</CardTitle>
-                      <CardDescription>
-                        Pick a session to update the floor card and readiness list.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                      <div
-                        aria-label="Competition session"
-                        className="grid gap-2 md:grid-cols-4"
-                        role="group"
-                      >
-                        {demoSessions.map((session) => {
-                          const active = session.id === selectedSession.id;
-
-                          return (
-                            <button
-                              aria-pressed={active}
-                              className={cn(
-                                "rounded-lg border bg-background p-3 text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                                active
-                                  ? "border-accent bg-accent/10"
-                                  : "hover:bg-muted/55",
-                              )}
-                              key={session.id}
-                              onClick={() => setSelectedSessionId(session.id)}
-                              type="button"
-                            >
-                              <span className="block text-sm font-semibold">
-                                {session.label}
-                              </span>
-                              <span className="mt-1 block text-xs text-muted-foreground">
-                                {session.time}
-                              </span>
-                            </button>
-                          );
-                        })}
+                          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                            {selectedSession.events}
+                          </p>
+                        </div>
+                        <div className="grid gap-1 text-sm text-muted-foreground md:text-right">
+                          <span>{selectedSession.floor}</span>
+                          <span>
+                            {selectedSession.deck} - {selectedSession.lead}
+                          </span>
+                        </div>
                       </div>
 
-                      <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                          animate={{ opacity: 1, scale: 1 }}
-                          className="rounded-lg border bg-background p-4"
-                          exit={{ opacity: 0, scale: 0.985 }}
-                          initial={{ opacity: 0, scale: 0.985 }}
-                          key={selectedSession.id}
-                          transition={{ duration: 0.16, ease: "easeOut" }}
-                        >
-                          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                            <div>
-                              <div className="flex flex-wrap items-center gap-2">
-                                <h2 className="text-lg font-semibold">
-                                  {selectedSession.label}
-                                </h2>
-                                <Badge
-                                  className={cn(
-                                    sessionReady
-                                      ? "border-success/40 bg-success/20"
-                                      : "border-warning/45 bg-warning/20",
-                                  )}
-                                  variant="outline"
-                                >
-                                  {sessionReady ? "ready sample" : "needs review"}
-                                </Badge>
-                              </div>
-                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                                {selectedSession.events}
-                              </p>
-                            </div>
-                            <div className="grid gap-1 text-sm text-muted-foreground md:text-right">
-                              <span>{selectedSession.floor}</span>
-                              <span>
-                                {selectedSession.deck} - {selectedSession.lead}
-                              </span>
-                            </div>
-                          </div>
+                      <ul className="mt-4 divide-y border-y">
+                        {sessionItems.map((item) => (
+                          <li className="flex items-start gap-2 py-3 text-sm" key={item.id}>
+                            {checkedItems[item.id] ? (
+                              <CheckCircle2
+                                className="mt-0.5 size-4 shrink-0 text-success-strong"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <ListChecks
+                                className="mt-0.5 size-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                              />
+                            )}
+                            <span className="min-w-0 flex-1">{item.label}</span>
+                          </li>
+                        ))}
+                      </ul>
 
-                          <div className="mt-4 grid gap-2">
-                            {sessionItems.map((item) => (
-                              <div
-                                className="flex items-start gap-2 rounded-lg bg-muted/50 px-3 py-2 text-sm"
-                                key={item.id}
-                              >
-                                {checkedItems[item.id] ? (
-                                  <CheckCircle2
-                                    className="mt-0.5 size-4 shrink-0 text-success"
-                                    aria-hidden="true"
-                                  />
-                                ) : (
-                                  <ListChecks
-                                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                                    aria-hidden="true"
-                                  />
-                                )}
-                                <span className="min-w-0 flex-1">{item.label}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          <p
-                            aria-live="polite"
-                            className="mt-4 text-xs font-medium text-muted-foreground"
-                          >
-                            {sessionCompleteCount} of {sessionItems.length} session
-                            checks complete.
-                          </p>
-                        </motion.div>
-                      </AnimatePresence>
-                    </CardContent>
-                  </Card>
+                      <p aria-live="polite" className="mt-3 text-xs font-medium text-muted-foreground">
+                        {sessionCompleteCount} of {sessionItems.length} session checks
+                        complete.
+                      </p>
+                    </div>
+                  </section>
                 </div>
 
-                <aside className="grid gap-5 self-start xl:sticky xl:top-24">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Prototype boundary</CardTitle>
-                      <CardDescription>
-                        This screen is intentionally not production behavior.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-3">
-                      <BoundaryNote
-                        icon={ShieldAlert}
-                        title="No authorization model"
-                        body="Every control is local demo state. It does not decide who can edit a real Competition."
-                      />
-                      <BoundaryNote
-                        icon={Sparkles}
-                        title="No scoring behavior"
-                        body="Readiness toggles never create callbacks, marks, placements, or publishable results."
-                      />
-                      <BoundaryNote
-                        icon={ClipboardCheck}
-                        title="Fixture-only data"
-                        body="Counts, staff names, and sessions are interface samples tied to the selected fixture."
-                      />
-                    </CardContent>
-                  </Card>
+                <aside className="self-start xl:sticky xl:top-24">
+                  <div className="rounded-lg bg-muted/60 p-4">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline">Preview</Badge>
+                      <p className="text-sm font-semibold">Fixture-only workspace</p>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Controls update local sample state only; no authorization,
+                      scoring, or publication behavior is represented.
+                    </p>
+                  </div>
 
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Open sample queue</CardTitle>
-                      <CardDescription>
-                        Updates as checklist controls change.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <AnimatePresence mode="popLayout" initial={false}>
-                        {highlightedQueue.length > 0 ? (
-                          <motion.ul
-                            animate={{ opacity: 1 }}
-                            className="grid gap-2"
-                            exit={{ opacity: 0 }}
-                            initial={{ opacity: 0 }}
-                            key="queue"
-                            transition={{ duration: 0.14 }}
-                          >
-                            {highlightedQueue.map((item) => (
-                              <motion.li
-                                animate={{ opacity: 1, x: 0 }}
-                                className="rounded-lg border bg-background px-3 py-2 text-sm"
-                                exit={{ opacity: 0, x: 8 }}
-                                initial={{ opacity: 0, x: -8 }}
-                                key={item}
-                                layout
-                                transition={{ duration: 0.14 }}
-                              >
-                                {item}
-                              </motion.li>
-                            ))}
-                          </motion.ul>
-                        ) : (
-                          <motion.div
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="rounded-lg border border-success/30 bg-success/15 p-3 text-sm"
-                            exit={{ opacity: 0, scale: 0.985 }}
-                            initial={{ opacity: 0, scale: 0.985 }}
-                            key="complete"
-                            transition={{ duration: 0.14 }}
-                          >
-                            All sample checks are complete.
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </CardContent>
-                  </Card>
+                  <section aria-labelledby="open-queue-heading" className="mt-8 border-t pt-6">
+                    <h2 className="text-base font-semibold" id="open-queue-heading">
+                      Open sample queue
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      Updates as checklist controls change.
+                    </p>
+                    {highlightedQueue.length > 0 ? (
+                      <ul className="mt-4 divide-y border-y">
+                        {highlightedQueue.map((item) => (
+                          <li className="py-3 text-sm" key={item}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="mt-4 rounded-lg bg-success/15 p-3 text-sm">
+                        All sample checks are complete.
+                      </p>
+                    )}
+                  </section>
                 </aside>
-              </section>
-            </motion.div>
+              </div>
+            </div>
           </main>
         </div>
       </div>
@@ -683,9 +594,9 @@ export function CompetitionManagementDemo({ slug }: CompetitionManagementDemoPro
   );
 }
 
-function DemoSidebar() {
+function DemoSidebar({ currentHref }: { currentHref: string }) {
   return (
-    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground md:flex">
+    <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground md:flex">
       <div className="flex h-16 items-center gap-2 border-b border-white/10 px-3">
         <Link
           aria-label={`${productName} app reference home`}
@@ -699,59 +610,115 @@ function DemoSidebar() {
         </Link>
       </div>
 
-      <nav aria-label="Demo app navigation" className="flex-1 space-y-1 p-3">
-        {appNavItems.map((item) => {
-          const Icon = item.icon;
-          const active = item.href === "/app/competitions";
-
-          return (
-            <Link
-              aria-current={active ? "page" : undefined}
-              aria-disabled={item.soon ? "true" : undefined}
-              className={cn(
-                "relative flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors",
-                active
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-sidebar-foreground/76 hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground",
-                item.soon && "text-sidebar-foreground/48 hover:text-sidebar-foreground/70",
-              )}
-              href={item.soon ? "/app/competitions/mit-open-2026" : item.href}
-              key={item.href}
-              onClick={(event) => {
-                if (item.soon) {
-                  event.preventDefault();
-                }
-              }}
-            >
-              <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span className="min-w-0 flex-1 truncate">{item.label}</span>
-              {item.soon ? (
-                <Badge className="border-white/10 bg-white/8 text-[10px] text-sidebar-foreground/70">
-                  soon
-                </Badge>
-              ) : null}
-            </Link>
-          );
-        })}
-      </nav>
-
-      <div className="border-t border-white/10 p-3">
-        <div className="rounded-lg border border-white/10 bg-sidebar-accent/55 p-3 shadow-inset">
-          <div className="flex items-center gap-2 text-sm font-semibold">
-            <Trophy className="size-4 text-sidebar-primary" aria-hidden="true" />
-            Fixture demo
-          </div>
-          <p className="mt-2 text-xs leading-relaxed text-sidebar-foreground/70">
-            Local state only. Final CBMP permissions, scoring, and publication
-            workflows remain outside this sample.
-          </p>
-        </div>
-      </div>
+      <DemoNavigation currentHref={currentHref} label="Demo app navigation" />
     </aside>
   );
 }
 
-function InfoPill({
+function DemoMobileNav({ currentHref }: { currentHref: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button
+          aria-label="Open Competition management navigation"
+          className="md:hidden"
+          size="icon-sm"
+          type="button"
+          variant="ghost"
+        >
+          <Menu aria-hidden="true" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="flex p-0" side="left">
+        <div className="flex min-h-full w-full flex-col">
+          <SheetHeader className="border-b px-4 py-4">
+            <div className="flex items-center gap-2">
+              <span className="grid size-9 place-items-center rounded-lg bg-foreground text-sm font-bold text-background">
+                CB
+              </span>
+              <div>
+                <SheetTitle>{productName} Competition workspace</SheetTitle>
+                <SheetDescription>Preview application navigation</SheetDescription>
+              </div>
+            </div>
+          </SheetHeader>
+          <DemoNavigation
+            currentHref={currentHref}
+            label="Mobile demo app navigation"
+            onNavigate={() => setOpen(false)}
+          />
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
+function DemoNavigation({
+  currentHref,
+  label,
+  onNavigate,
+}: {
+  currentHref: string;
+  label: string;
+  onNavigate?: () => void;
+}) {
+  const mobile = Boolean(onNavigate);
+
+  return (
+    <nav aria-label={label} className={cn("flex-1 space-y-1 p-3", mobile && "text-foreground")}>
+      {appNavItems.map((item) => {
+        const Icon = item.icon;
+        const active = item.href === "/app/competitions";
+
+        return (
+          <Link
+            aria-current={active ? "page" : undefined}
+            aria-disabled={item.soon ? "true" : undefined}
+            className={cn(
+              "relative flex min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors motion-reduce:transition-none",
+              mobile
+                ? active
+                  ? "bg-muted text-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                : active
+                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                  : "text-sidebar-foreground/80 hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground",
+              item.soon && (mobile ? "text-muted-foreground" : "text-sidebar-foreground/70"),
+            )}
+            href={item.soon ? currentHref : item.href}
+            key={item.href}
+            onClick={(event) => {
+              if (item.soon) {
+                event.preventDefault();
+                return;
+              }
+
+              onNavigate?.();
+            }}
+          >
+            <Icon className="size-4 shrink-0" aria-hidden="true" />
+            <span className="min-w-0 flex-1 truncate">{item.label}</span>
+            {item.soon ? (
+              <Badge
+                className={cn(
+                  "text-[10px]",
+                  !mobile && "border-white/10 bg-white/10 text-sidebar-foreground",
+                )}
+                variant={mobile ? "muted" : undefined}
+              >
+                soon
+              </Badge>
+            ) : null}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function OverviewDetail({
   icon: Icon,
   label,
   value,
@@ -761,14 +728,12 @@ function InfoPill({
   value: string;
 }) {
   return (
-    <div className="flex items-start gap-2 rounded-lg border bg-background px-3 py-2">
-      <Icon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-      <span className="min-w-0">
-        <span className="block text-xs font-medium text-muted-foreground">
-          {label}
-        </span>
-        <span className="block truncate font-semibold text-foreground">{value}</span>
-      </span>
+    <div className="px-4 py-3 even:border-l xl:border-l-0">
+      <dt className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+        <Icon className="size-4 text-accent" aria-hidden="true" />
+        {label}
+      </dt>
+      <dd className="mt-1 text-sm font-semibold text-foreground">{value}</dd>
     </div>
   );
 }
@@ -785,8 +750,8 @@ function ChecklistRow({
   return (
     <label
       className={cn(
-        "flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors",
-        checked ? "border-success/35 bg-success/15" : "bg-card hover:bg-muted/45",
+        "flex cursor-pointer items-start gap-3 px-1 py-3 transition-colors motion-reduce:transition-none",
+        checked && "bg-success/10",
       )}
     >
       <input
@@ -800,36 +765,10 @@ function ChecklistRow({
           <span className="font-semibold">{item.label}</span>
           <Badge variant="muted">{item.owner}</Badge>
         </span>
-        <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+        <span className="mt-1 block text-sm leading-6 text-muted-foreground">
           {item.description}
         </span>
       </span>
-      {checked ? (
-        <CheckCircle2
-          className="mt-0.5 size-4 shrink-0 text-success"
-          aria-hidden="true"
-        />
-      ) : null}
     </label>
-  );
-}
-
-function BoundaryNote({
-  body,
-  icon: Icon,
-  title,
-}: {
-  body: string;
-  icon: LucideIcon;
-  title: string;
-}) {
-  return (
-    <div className="flex items-start gap-3 rounded-lg border bg-background p-3">
-      <Icon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-      <div>
-        <p className="text-sm font-semibold">{title}</p>
-        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{body}</p>
-      </div>
-    </div>
   );
 }

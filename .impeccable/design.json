@@ -1,101 +1,165 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-03T21:06:10Z",
+  "generatedAt": "2026-07-09T23:04:40Z",
   "title": "Design System: CBMP",
   "extensions": {
     "colorMeta": {
       "primary": {
         "role": "primary",
-        "displayName": "Frost Accent",
-        "canonical": "#88c0d0",
-        "tonalRamp": ["#1c3036", "#2e4b54", "#456974", "#5f8a96", "#79acba", "#88c0d0", "#b5dbe3", "#e3f3f6"]
+        "displayName": "Frost Primary",
+        "canonical": "hsl(193 43% 67%)",
+        "tonalRamp": ["oklch(15% 0.062 217.5)", "oklch(27% 0.062 217.5)", "oklch(39% 0.062 217.5)", "oklch(51% 0.062 217.5)", "oklch(63% 0.062 217.5)", "oklch(75% 0.062 217.5)", "oklch(87% 0.062 217.5)", "oklch(95% 0.062 217.5)"]
       },
-      "primary-deep": {
+      "primary-hover": {
         "role": "primary",
-        "displayName": "Fjord Accent",
-        "canonical": "#5e81ac",
-        "tonalRamp": ["#172233", "#263750", "#385171", "#4d6d92", "#5e81ac", "#87a6c7", "#b8cce0", "#e6eef6"]
+        "displayName": "Frost Hover",
+        "canonical": "hsl(193 38% 61%)",
+        "tonalRamp": ["oklch(15% 0.065 216.7)", "oklch(27% 0.065 216.7)", "oklch(39% 0.065 216.7)", "oklch(51% 0.065 216.7)", "oklch(63% 0.065 216.7)", "oklch(75% 0.065 216.7)", "oklch(87% 0.065 216.7)", "oklch(95% 0.065 216.7)"]
       },
-      "polar-night-0": {
-        "role": "neutral",
-        "displayName": "Polar Night Base",
-        "canonical": "#2e3440",
-        "tonalRamp": ["#12151a", "#1d222a", "#2e3440", "#3f4654", "#596170", "#87909d", "#c4cad3", "#eceff4"]
+      "primary-pressed": {
+        "role": "primary",
+        "displayName": "Frost Pressed",
+        "canonical": "hsl(193 34% 55%)",
+        "tonalRamp": ["oklch(15% 0.068 217.5)", "oklch(27% 0.068 217.5)", "oklch(39% 0.068 217.5)", "oklch(51% 0.068 217.5)", "oklch(63% 0.068 217.5)", "oklch(75% 0.068 217.5)", "oklch(87% 0.068 217.5)", "oklch(95% 0.068 217.5)"]
       },
-      "polar-night-2": {
-        "role": "neutral",
-        "displayName": "Polar Night Cap",
-        "canonical": "#434c5e",
-        "tonalRamp": ["#171b22", "#262c36", "#343c4a", "#434c5e", "#5d687a", "#8993a2", "#c5cad3", "#eceff4"]
+      "accent": {
+        "role": "primary",
+        "displayName": "Fjord Focus",
+        "canonical": "hsl(213 32% 52%)",
+        "tonalRamp": ["oklch(15% 0.078 253.4)", "oklch(27% 0.078 253.4)", "oklch(39% 0.078 253.4)", "oklch(51% 0.078 253.4)", "oklch(63% 0.078 253.4)", "oklch(75% 0.078 253.4)", "oklch(87% 0.078 253.4)", "oklch(95% 0.078 253.4)"]
       },
-      "snow-base": {
+      "background": {
         "role": "neutral",
-        "displayName": "Snow Base",
-        "canonical": "#ffffff",
-        "tonalRamp": ["#2e3440", "#4c566a", "#6f7888", "#9aa3af", "#cbd1da", "#e5e9f0", "#fbfbfc", "#ffffff"]
+        "displayName": "Snow Field",
+        "canonical": "hsl(216 27% 98%)",
+        "tonalRamp": ["oklch(15% 0.002 247.8)", "oklch(27% 0.002 247.8)", "oklch(39% 0.002 247.8)", "oklch(51% 0.002 247.8)", "oklch(63% 0.002 247.8)", "oklch(75% 0.002 247.8)", "oklch(87% 0.002 247.8)", "oklch(95% 0.002 247.8)"]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Snow Raised",
+        "canonical": "hsl(0 0% 100%)",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"]
+      },
+      "surface-subtle": {
+        "role": "neutral",
+        "displayName": "Snow Subtle",
+        "canonical": "hsl(216 27% 96%)",
+        "tonalRamp": ["oklch(15% 0.006 264.5)", "oklch(27% 0.006 264.5)", "oklch(39% 0.006 264.5)", "oklch(51% 0.006 264.5)", "oklch(63% 0.006 264.5)", "oklch(75% 0.006 264.5)", "oklch(87% 0.006 264.5)", "oklch(95% 0.006 264.5)"]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Snow Muted",
+        "canonical": "hsl(216 27% 94%)",
+        "tonalRamp": ["oklch(15% 0.007 260.7)", "oklch(27% 0.007 260.7)", "oklch(39% 0.007 260.7)", "oklch(51% 0.007 260.7)", "oklch(63% 0.007 260.7)", "oklch(75% 0.007 260.7)", "oklch(87% 0.007 260.7)", "oklch(95% 0.007 260.7)"]
+      },
+      "surface-selected": {
+        "role": "neutral",
+        "displayName": "Frost Selection",
+        "canonical": "hsl(193 43% 92%)",
+        "tonalRamp": ["oklch(15% 0.015 212)", "oklch(27% 0.015 212)", "oklch(39% 0.015 212)", "oklch(51% 0.015 212)", "oklch(63% 0.015 212)", "oklch(75% 0.015 212)", "oklch(87% 0.015 212)", "oklch(95% 0.015 212)"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Snow Divider",
+        "canonical": "hsl(218 27% 88%)",
+        "tonalRamp": ["oklch(15% 0.016 262.7)", "oklch(27% 0.016 262.7)", "oklch(39% 0.016 262.7)", "oklch(51% 0.016 262.7)", "oklch(63% 0.016 262.7)", "oklch(75% 0.016 262.7)", "oklch(87% 0.016 262.7)", "oklch(95% 0.016 262.7)"]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Polar Night Ink",
+        "canonical": "hsl(220 16% 14%)",
+        "tonalRamp": ["oklch(15% 0.015 261.7)", "oklch(27% 0.015 261.7)", "oklch(39% 0.015 261.7)", "oklch(51% 0.015 261.7)", "oklch(63% 0.015 261.7)", "oklch(75% 0.015 261.7)", "oklch(87% 0.015 261.7)", "oklch(95% 0.015 261.7)"]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "hsl(219 15% 36%)",
+        "tonalRamp": ["oklch(15% 0.032 262.2)", "oklch(27% 0.032 262.2)", "oklch(39% 0.032 262.2)", "oklch(51% 0.032 262.2)", "oklch(63% 0.032 262.2)", "oklch(75% 0.032 262.2)", "oklch(87% 0.032 262.2)", "oklch(95% 0.032 262.2)"]
+      },
+      "disabled-foreground": {
+        "role": "neutral",
+        "displayName": "Disabled Ink",
+        "canonical": "hsl(219 14% 42%)",
+        "tonalRamp": ["oklch(15% 0.033 261.4)", "oklch(27% 0.033 261.4)", "oklch(39% 0.033 261.4)", "oklch(51% 0.033 261.4)", "oklch(63% 0.033 261.4)", "oklch(75% 0.033 261.4)", "oklch(87% 0.033 261.4)", "oklch(95% 0.033 261.4)"]
+      },
+      "sidebar-accent": {
+        "role": "neutral",
+        "displayName": "Polar Night Layer",
+        "canonical": "hsl(220 13% 25%)",
+        "tonalRamp": ["oklch(15% 0.021 262.6)", "oklch(27% 0.021 262.6)", "oklch(39% 0.021 262.6)", "oklch(51% 0.021 262.6)", "oklch(63% 0.021 262.6)", "oklch(75% 0.021 262.6)", "oklch(87% 0.021 262.6)", "oklch(95% 0.021 262.6)"]
+      },
+      "lifecycle-published": {
+        "role": "secondary",
+        "displayName": "Published Blue",
+        "canonical": "hsl(210 30% 63%)",
+        "tonalRamp": ["oklch(15% 0.052 247.7)", "oklch(27% 0.052 247.7)", "oklch(39% 0.052 247.7)", "oklch(51% 0.052 247.7)", "oklch(63% 0.052 247.7)", "oklch(75% 0.052 247.7)", "oklch(87% 0.052 247.7)", "oklch(95% 0.052 247.7)"]
+      },
+      "lifecycle-closed": {
+        "role": "secondary",
+        "displayName": "Review Amber",
+        "canonical": "hsl(40 71% 73%)",
+        "tonalRamp": ["oklch(15% 0.091 83.7)", "oklch(27% 0.091 83.7)", "oklch(39% 0.091 83.7)", "oklch(51% 0.091 83.7)", "oklch(63% 0.091 83.7)", "oklch(75% 0.091 83.7)", "oklch(87% 0.091 83.7)", "oklch(95% 0.091 83.7)"]
       },
       "lifecycle-running": {
         "role": "secondary",
         "displayName": "Running Red",
-        "canonical": "#bf616a",
-        "tonalRamp": ["#321416", "#552229", "#7a343c", "#9d4a54", "#bf616a", "#d98b91", "#efc3c6", "#faecee"]
+        "canonical": "hsl(354 42% 57%)",
+        "tonalRamp": ["oklch(15% 0.118 14.4)", "oklch(27% 0.118 14.4)", "oklch(39% 0.118 14.4)", "oklch(51% 0.118 14.4)", "oklch(63% 0.118 14.4)", "oklch(75% 0.118 14.4)", "oklch(87% 0.118 14.4)", "oklch(95% 0.118 14.4)"]
+      },
+      "lifecycle-finished": {
+        "role": "secondary",
+        "displayName": "Archive Green",
+        "canonical": "hsl(92 28% 65%)",
+        "tonalRamp": ["oklch(15% 0.075 131.1)", "oklch(27% 0.075 131.1)", "oklch(39% 0.075 131.1)", "oklch(51% 0.075 131.1)", "oklch(63% 0.075 131.1)", "oklch(75% 0.075 131.1)", "oklch(87% 0.075 131.1)", "oklch(95% 0.075 131.1)"]
+      },
+      "info-strong": {
+        "role": "secondary",
+        "displayName": "Information Ink",
+        "canonical": "hsl(213 38% 45%)",
+        "tonalRamp": ["oklch(15% 0.088 254.3)", "oklch(27% 0.088 254.3)", "oklch(39% 0.088 254.3)", "oklch(51% 0.088 254.3)", "oklch(63% 0.088 254.3)", "oklch(75% 0.088 254.3)", "oklch(87% 0.088 254.3)", "oklch(95% 0.088 254.3)"]
+      },
+      "warning-strong": {
+        "role": "secondary",
+        "displayName": "Warning Ink",
+        "canonical": "hsl(40 55% 35%)",
+        "tonalRamp": ["oklch(15% 0.092 82.5)", "oklch(27% 0.092 82.5)", "oklch(39% 0.092 82.5)", "oklch(51% 0.092 82.5)", "oklch(63% 0.092 82.5)", "oklch(75% 0.092 82.5)", "oklch(87% 0.092 82.5)", "oklch(95% 0.092 82.5)"]
+      },
+      "destructive-strong": {
+        "role": "secondary",
+        "displayName": "Destructive Ink",
+        "canonical": "hsl(354 42% 45%)",
+        "tonalRamp": ["oklch(15% 0.127 17.1)", "oklch(27% 0.127 17.1)", "oklch(39% 0.127 17.1)", "oklch(51% 0.127 17.1)", "oklch(63% 0.127 17.1)", "oklch(75% 0.127 17.1)", "oklch(87% 0.127 17.1)", "oklch(95% 0.127 17.1)"]
+      },
+      "success-strong": {
+        "role": "secondary",
+        "displayName": "Success Ink",
+        "canonical": "hsl(92 30% 35%)",
+        "tonalRamp": ["oklch(15% 0.086 131.9)", "oklch(27% 0.086 131.9)", "oklch(39% 0.086 131.9)", "oklch(51% 0.086 131.9)", "oklch(63% 0.086 131.9)", "oklch(75% 0.086 131.9)", "oklch(87% 0.086 131.9)", "oklch(95% 0.086 131.9)"]
       }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "Rare product-level headings for operational surfaces; marketing pages can define a separate hero scale when designed."
-      },
-      "body": {
-        "displayName": "Body",
-        "purpose": "Default Inter UI copy for operational surfaces."
-      },
-      "mono": {
-        "displayName": "Utility Mono",
-        "purpose": "JetBrains Mono for route paths, IDs, slugs, and audit references only."
-      }
+      "display": { "displayName": "Display", "purpose": "Public-home headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Public entry pages and the largest operational title." },
+      "title": { "displayName": "Title", "purpose": "Section headings and Competition names." },
+      "body": { "displayName": "Body", "purpose": "Default interface copy and repeated records." },
+      "label": { "displayName": "Label", "purpose": "Metadata and compact state context without decorative tracking." }
     },
     "shadows": [
-      {
-        "name": "nord-panel",
-        "value": "0 12px 26px rgb(46 52 64 / 0.1)",
-        "purpose": "Raised light panels and table containers on Snow Surface backgrounds."
-      },
-      {
-        "name": "frosted-nav",
-        "value": "inset 0 1px 0 rgb(236 239 244 / 0.1), 0 10px 22px rgb(46 52 64 / 0.12)",
-        "purpose": "Sticky Polar Night app chrome."
-      },
-      {
-        "name": "dark-inset",
-        "value": "inset 0 1px 0 rgb(236 239 244 / 0.08)",
-        "purpose": "Subtle top-edge cue on dark operational panels."
-      }
+      { "name": "flat-panel", "value": "none", "purpose": "Default cards, lists, tables, and sections." },
+      { "name": "elevated-overlay", "value": "0 4px 8px -4px hsl(220 16% 14% / 0.24)", "purpose": "Sheets and tooltips only." },
+      { "name": "dark-inset", "value": "inset 0 1px 0 hsl(218 27% 94% / 0.08)", "purpose": "Optional material edge inside Polar Night chrome." }
     ],
     "motion": [
-      {
-        "name": "state-transition",
-        "value": "150ms ease-out",
-        "purpose": "Default hover, focus, and selected-state transitions."
-      }
+      { "name": "state-feedback", "value": "150ms ease-out", "purpose": "Hover, active, selected, and focus color feedback." },
+      { "name": "sidebar-width", "value": "150ms ease-out", "purpose": "Desktop sidebar width change; immediate under reduced motion." },
+      { "name": "sheet", "value": "200ms ease-out", "purpose": "Mobile app navigation Sheet; movement is removed under reduced motion." }
     ],
     "breakpoints": [
-      {
-        "name": "sm",
-        "value": "640px"
-      },
-      {
-        "name": "lg",
-        "value": "1024px"
-      },
-      {
-        "name": "xl",
-        "value": "1280px"
-      },
-      {
-        "name": "2xl",
-        "value": "1536px"
-      }
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
     ]
   },
   "components": [
@@ -103,132 +167,122 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Primary action button for light product surfaces.",
-      "html": "<button class=\"ds-btn-primary\">Sign in</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 10px 16px; border: 0; border-radius: 999px; background: #88c0d0; color: #2e3440; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 650; letter-spacing: 0; transition: background 150ms ease-out, box-shadow 150ms ease-out; } .ds-btn-primary:hover { background: #7bb4c4; } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #88c0d0, 0 0 0 4px #ffffff; }"
+      "description": "The principal action on a light working surface.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Create Competition</button>",
+      "css": ".ds-button-primary { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: 8px 16px; border: 0; border-radius: 8px; background: hsl(var(--primary, 193 43% 67%)); color: hsl(var(--foreground, 220 16% 14%)); font: 600 14px/1 var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); transition: background-color 150ms ease-out, box-shadow 150ms ease-out; } .ds-button-primary:hover { background: hsl(var(--primary-hover, 193 38% 61%)); } .ds-button-primary:active { background: hsl(var(--primary-pressed, 193 34% 55%)); } .ds-button-primary:focus-visible { outline: 2px solid hsl(var(--ring, 213 32% 52%)); outline-offset: 2px; }"
     },
     {
-      "name": "Dark Button",
+      "name": "Outline Button",
       "kind": "button",
-      "refersTo": "button-dark",
-      "description": "Secondary button for Polar Night app chrome and dark panels.",
-      "html": "<button class=\"ds-btn-dark\">View</button>",
-      "css": ".ds-btn-dark { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 10px 16px; border: 1px solid rgba(236, 239, 244, 0.14); border-radius: 999px; background: rgba(255, 255, 255, 0.1); color: #eceff4; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 650; transition: background 150ms ease-out, border-color 150ms ease-out; } .ds-btn-dark:hover { background: rgba(255, 255, 255, 0.15); } .ds-btn-dark:focus-visible { outline: none; box-shadow: 0 0 0 2px #88c0d0; }"
+      "refersTo": "button-outline",
+      "description": "A familiar secondary action with a quiet divider border.",
+      "html": "<button class=\"ds-button-outline\" type=\"button\">View details</button>",
+      "css": ".ds-button-outline { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: 8px 16px; border: 1px solid hsl(var(--border, 218 27% 88%)); border-radius: 8px; background: hsl(var(--card, 0 0% 100%)); color: hsl(var(--foreground, 220 16% 14%)); font: 600 14px/1 var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); transition: background-color 150ms ease-out, border-color 150ms ease-out; } .ds-button-outline:hover { border-color: hsl(var(--primary, 193 43% 67%)); background: hsl(var(--state-hover, 216 27% 94%)); } .ds-button-outline:active { background: hsl(var(--state-pressed, 218 27% 90%)); } .ds-button-outline:focus-visible { outline: 2px solid hsl(var(--ring, 213 32% 52%)); outline-offset: 2px; }"
     },
     {
-      "name": "Search Input",
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "A low-emphasis action for toolbars and compact chrome.",
+      "html": "<button class=\"ds-button-ghost\" type=\"button\">Reset filters</button>",
+      "css": ".ds-button-ghost { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: 8px 12px; border: 0; border-radius: 8px; background: transparent; color: hsl(var(--foreground, 220 16% 14%)); font: 600 14px/1 var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); transition: background-color 150ms ease-out; } .ds-button-ghost:hover { background: hsl(var(--state-hover, 216 27% 94%)); } .ds-button-ghost:active { background: hsl(var(--state-pressed, 218 27% 90%)); } .ds-button-ghost:focus-visible { outline: 2px solid hsl(var(--ring, 213 32% 52%)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
       "kind": "input",
-      "refersTo": "input-search",
-      "description": "Rounded search/filter input for Competition discovery and table filtering.",
-      "html": "<label class=\"ds-search\"><span>Search competitions</span><input placeholder=\"Search competitions\" /></label>",
-      "css": ".ds-search { display: grid; gap: 6px; color: #3b4252; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 650; } .ds-search input { height: 40px; border: 1px solid #d8dee9; border-radius: 999px; background: #ffffff; color: #2e3440; padding: 10px 16px; font: inherit; font-size: 14px; font-weight: 400; } .ds-search input::placeholder { color: #657083; } .ds-search input:focus-visible { outline: none; border-color: #88c0d0; box-shadow: 0 0 0 2px rgba(136, 192, 208, 0.35); }"
-    },
-    {
-      "name": "Light Operational Card",
-      "kind": "card",
-      "refersTo": "card-surface",
-      "description": "Light container for tables, filters, prototype state, and repeated work.",
-      "html": "<section class=\"ds-card\"><h3>Public competitions</h3><p>Draft competitions are excluded from public list.</p></section>",
-      "css": ".ds-card { border: 1px solid #d8dee9; border-radius: 24px; background: #ffffff; color: #2e3440; padding: 20px; box-shadow: 0 12px 26px rgba(46, 52, 64, 0.1); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-card h3 { margin: 0 0 4px; font-size: 16px; line-height: 1.25; font-weight: 650; } .ds-card p { margin: 0; color: #4c566a; font-size: 14px; line-height: 1.45; }"
-    },
-    {
-      "name": "Dark Operational Panel",
-      "kind": "card",
-      "refersTo": "panel-dark",
-      "description": "Polar Night panel for lifecycle, authority, role, and high-attention state context.",
-      "html": "<section class=\"ds-panel-dark\"><h3>Competition Lifecycle</h3><p>Status labels are text plus color.</p></section>",
-      "css": ".ds-panel-dark { border: 1px solid rgba(216, 222, 233, 0.14); border-radius: 24px; background: linear-gradient(180deg, rgba(67, 76, 94, 0.98), rgba(46, 52, 64, 0.98)); color: #eceff4; padding: 20px; box-shadow: inset 0 1px 0 rgba(236, 239, 244, 0.08); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-panel-dark h3 { margin: 0 0 4px; font-size: 16px; line-height: 1.25; font-weight: 650; } .ds-panel-dark p { margin: 0; color: #e5e9f0; font-size: 14px; line-height: 1.45; }"
+      "refersTo": "input-field",
+      "description": "A 40px field for search, filtering, and operational forms.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Search Competitions</span><input class=\"ds-field-input\" placeholder=\"Host, city, or Competition\" /></label>",
+      "css": ".ds-field { display: grid; gap: 8px; color: hsl(var(--foreground, 220 16% 14%)); font-family: var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-field-label { font-size: 12px; font-weight: 500; } .ds-field-input { min-height: 40px; padding: 8px 12px; border: 1px solid hsl(var(--input, 218 27% 88%)); border-radius: 8px; background: hsl(var(--card, 0 0% 100%)); color: hsl(var(--foreground, 220 16% 14%)); font-size: 14px; transition: border-color 150ms ease-out, box-shadow 150ms ease-out; } .ds-field-input::placeholder { color: hsl(var(--muted-foreground, 219 15% 36%)); } .ds-field-input:hover { border-color: hsl(var(--foreground, 220 16% 14%) / 0.2); } .ds-field-input:focus-visible { outline: 2px solid hsl(var(--ring, 213 32% 52%)); outline-offset: 2px; border-color: hsl(var(--ring, 213 32% 52%)); }"
     },
     {
       "name": "Lifecycle Chip",
       "kind": "chip",
       "refersTo": "status-chip",
-      "description": "Text plus color lifecycle marker. Color alone is never sufficient.",
-      "html": "<span class=\"ds-chip\"><i></i> entries open</span>",
-      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 8px; height: 24px; padding: 0 10px; border: 1px solid #88c0d0; border-radius: 999px; background: #ffffff; color: #2e3440; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 650; line-height: 1; } .ds-chip i { width: 8px; height: 8px; border-radius: 999px; background: #88c0d0; }"
+      "description": "A text-plus-marker lifecycle status; soft field and strong ink remain distinct.",
+      "html": "<span class=\"ds-status-chip\"><span class=\"ds-status-dot\" aria-hidden=\"true\"></span>Entries Closed</span>",
+      "css": ".ds-status-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid hsl(var(--warning, 40 71% 73%) / 0.55); border-radius: 9999px; background: hsl(var(--warning, 40 71% 73%) / 0.18); color: hsl(var(--warning-strong, 40 55% 35%)); font: 600 12px/1 var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-status-dot { width: 8px; height: 8px; border-radius: 9999px; background: hsl(var(--warning, 40 71% 73%)); } .ds-status-chip:focus-visible { outline: 2px solid hsl(var(--ring, 213 32% 52%)); outline-offset: 2px; }"
     },
     {
-      "name": "Frosted App Navigation",
+      "name": "Independent Card",
+      "kind": "card",
+      "refersTo": "independent-card",
+      "description": "A flat bounded object used only when the content is independently meaningful.",
+      "html": "<section class=\"ds-card\"><h3 class=\"ds-card-title\">Competition readiness</h3><p class=\"ds-card-body\">Five of six operational checks are complete.</p></section>",
+      "css": ".ds-card { padding: 20px; border: 1px solid hsl(var(--border, 218 27% 88%)); border-radius: 10px; background: hsl(var(--card, 0 0% 100%)); color: hsl(var(--foreground, 220 16% 14%)); font-family: var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-card-title { margin: 0; font-size: 16px; line-height: 1.25; font-weight: 600; } .ds-card-body { margin: 6px 0 0; color: hsl(var(--muted-foreground, 219 15% 36%)); font-size: 14px; line-height: 1.45; }"
+    },
+    {
+      "name": "App Navigation Item",
       "kind": "nav",
-      "refersTo": "top-nav",
-      "description": "Compact Polar Night app chrome with active Snow tab.",
-      "html": "<nav class=\"ds-nav\"><strong>CBMP</strong><a class=\"is-active\">Competitions</a><a>Lifecycle</a><a>User Profile</a></nav>",
-      "css": ".ds-nav { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(216, 222, 233, 0.24); border-radius: 18px; background: linear-gradient(180deg, rgba(76, 86, 106, 0.78), rgba(46, 52, 64, 0.72)); color: #eceff4; padding: 10px 12px; box-shadow: inset 0 1px 0 rgba(236, 239, 244, 0.1), 0 10px 22px rgba(46, 52, 64, 0.12); backdrop-filter: blur(34px) saturate(1.35); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-nav strong { margin-right: 8px; font-size: 16px; } .ds-nav a { border-radius: 8px; color: #e5e9f0; padding: 7px 10px; font-size: 14px; font-weight: 650; text-decoration: none; } .ds-nav a:hover { background: rgba(255, 255, 255, 0.1); } .ds-nav a.is-active { background: #ffffff; color: #2e3440; }"
+      "refersTo": "navigation-active",
+      "description": "An active item inside Polar Night app chrome.",
+      "html": "<nav class=\"ds-app-nav\" aria-label=\"Competition workspace\"><a class=\"ds-app-nav-item\" href=\"#\" aria-current=\"page\"><svg class=\"ds-app-nav-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 5h16v14H4zM8 3v4M16 3v4M4 9h16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" /></svg>Competitions</a></nav>",
+      "css": ".ds-app-nav { width: 240px; padding: 12px; background: hsl(var(--sidebar-background, 220 16% 14%)); font-family: var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-app-nav-item { display: flex; min-height: 40px; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 10px; background: hsl(var(--sidebar-accent, 220 13% 25%)); color: hsl(var(--sidebar-accent-foreground, 0 0% 100%)); font-size: 14px; font-weight: 500; text-decoration: none; transition: background-color 150ms ease-out; } .ds-app-nav-item:hover { background: hsl(var(--sidebar-accent, 220 13% 25%) / 0.8); } .ds-app-nav-item:focus-visible { outline: 2px solid hsl(var(--sidebar-ring, 193 43% 67%)); outline-offset: 2px; } .ds-app-nav-icon { width: 16px; height: 16px; }"
+    },
+    {
+      "name": "Public Navigation Item",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "A quiet active state in the fixed public header.",
+      "html": "<nav class=\"ds-public-nav\" aria-label=\"Global navigation\"><a class=\"ds-public-nav-item\" href=\"#\" aria-current=\"page\">Competitions</a></nav>",
+      "css": ".ds-public-nav { display: inline-flex; padding: 4px; background: hsl(var(--background, 216 27% 98%)); font-family: var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-public-nav-item { min-height: 40px; padding: 10px 12px; border-radius: 8px; background: hsl(var(--state-selected, 193 43% 92%)); color: hsl(var(--foreground, 220 16% 14%)); font-size: 14px; font-weight: 500; text-decoration: none; transition: background-color 150ms ease-out; } .ds-public-nav-item:hover { background: hsl(var(--state-hover, 216 27% 94%)); } .ds-public-nav-item:focus-visible { outline: 2px solid hsl(var(--ring, 213 32% 52%)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Divided Record List",
+      "kind": "custom",
+      "refersTo": "independent-card",
+      "description": "The default repeated-record composition: one region and flat divided rows.",
+      "html": "<section class=\"ds-records\"><div class=\"ds-record\"><span class=\"ds-record-name\">MIT Open Ballroom Championships</span><span class=\"ds-record-meta\">Entries Open</span></div><div class=\"ds-record\"><span class=\"ds-record-name\">Harvard Invitational</span><span class=\"ds-record-meta\">Published</span></div></section>",
+      "css": ".ds-records { border-top: 1px solid hsl(var(--border, 218 27% 88%)); border-bottom: 1px solid hsl(var(--border, 218 27% 88%)); background: transparent; color: hsl(var(--foreground, 220 16% 14%)); font-family: var(--font-inter, Inter, ui-sans-serif, system-ui, sans-serif); } .ds-record { display: flex; min-height: 52px; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px; border-bottom: 1px solid hsl(var(--border, 218 27% 88%)); } .ds-record:last-child { border-bottom: 0; } .ds-record-name { font-size: 14px; font-weight: 600; } .ds-record-meta { color: hsl(var(--muted-foreground, 219 15% 36%)); font-size: 12px; font-weight: 500; }"
     }
   ],
   "narrative": {
-    "northStar": "The Operations Ledger",
-    "overview": "CBMP should read like a reliable operations ledger for collegiate ballroom Competition work: light where users scan repeated data, dark where state or authority needs emphasis, and quiet enough to survive long administrative sessions. The system is composed, precise, and operational; it should help Competition Hosts, Scrutineers, Judges, Deck Captains, Competitors, and Platform Admins understand state without mistaking decoration for authority.\n\nThe visual language uses a restrained Nord palette. Snow Storm surfaces carry tables, forms, and repeated work. Polar Night surfaces carry app chrome, lifecycle modules, table header bands, and authority panels. Aurora colors are reserved for sparse lifecycle markers and status borders, always paired with text labels. Future marketing pages, clean decorative moments, and real analytics pages should extend this composed language instead of fighting it.",
+    "northStar": "The Competition Control Surface",
+    "overview": "CBMP is a composed, precise, operational control surface for collegiate ballroom Competition work. It gives Competition Hosts, Scrutineers, Judges, Deck Captains, Competitors, Organization Admins, and Platform Admins a calm shared frame for understanding state and taking careful action on laptops and tablets in imperfect competition-day light.\n\nThe system uses restrained Nord color, compact Inter typography, flat sections, and visible dividers to keep dense information trustworthy. It explicitly rejects marketing-page composition on operational routes, decorative ballroom event styling, analytics theater, generic SaaS admin templates, and any visual treatment that implies unsettled authority or behavior.",
     "keyCharacteristics": [
       "Dense but calm operational surfaces.",
-      "Familiar shadcn-compatible controls.",
-      "Nord color used for state and structure, not ornament.",
-      "Light table bodies with dark state bands.",
-      "Inter as the primary UI voice, with JetBrains Mono only for fixed-width utility data."
+      "Flat section-and-divider composition before cards.",
+      "Familiar shadcn-compatible controls with 8px working corners.",
+      "Nord color used for state and structure, never ornament.",
+      "Short functional feedback with no page-load choreography.",
+      "Mobile navigation through a standard left Sheet."
     ],
     "rules": [
-      {
-        "name": "The Dark Surfaces Earn Their Keep Rule",
-        "body": "Polar Night is for app chrome, lifecycle, table headers, and authority context. It is not a decorative full-dashboard default.",
-        "section": "colors"
-      },
-      {
-        "name": "The Aurora Is State Rule",
-        "body": "Aurora colors identify lifecycle and operational state only. Do not use them as decorative confetti or section theming.",
-        "section": "colors"
-      },
-      {
-        "name": "The Light Table Body Rule",
-        "body": "Public Competition lists and repeated admin tables stay light and dense. Dark headers are allowed; dark data bodies are not the default.",
-        "section": "colors"
-      },
-      {
-        "name": "The Sans-First Rule",
-        "body": "Inter carries the product. Do not introduce display fonts, decorative fonts, or serif pairings for operational screens.",
-        "section": "typography"
-      },
-      {
-        "name": "The Mono Is Evidence Rule",
-        "body": "JetBrains Mono marks inspectable data, not style. Never use it for headings, buttons, navigation, role labels, or prose.",
-        "section": "typography"
-      },
-      {
-        "name": "The Numbers Align Rule",
-        "body": "Numeric columns use tabular numerals in Inter before reaching for mono. Entries, counts, and totals should align without making the table feel like a developer console.",
-        "section": "typography"
-      },
-      {
-        "name": "The Tonal Layering Rule",
-        "body": "Prefer background, border, and header-band contrast before adding a shadow.",
-        "section": "elevation"
-      },
-      {
-        "name": "The No Ghost Card Rule",
-        "body": "Do not combine a visible border with a broad soft shadow as decoration. If both exist, the shadow must be shallow and structural.",
-        "section": "elevation"
-      }
+      { "name": "The Aurora Is State Rule", "body": "Aurora colors identify lifecycle, success, warning, or destructive state only; decorative color coding is forbidden.", "section": "colors" },
+      { "name": "The Soft Field, Strong Ink Rule", "body": "Soft Aurora colors may fill a background or dot, but essential status text and icons always use their contrast-safe strong semantic foreground.", "section": "colors" },
+      { "name": "The Contrast Is Operational Rule", "body": "Body text must meet 4.5:1, large text and non-text controls must meet 3:1, and the Fjord focus ring must remain visible against every working surface.", "section": "colors" },
+      { "name": "The Dark Surfaces Earn Their Keep Rule", "body": "Polar Night belongs on app chrome, authority context, and a small number of high-signal bands; a decorative full-dark dashboard is forbidden.", "section": "colors" },
+      { "name": "The One Sans Rule", "body": "Inter carries headings, navigation, controls, labels, and data; decorative type pairings are prohibited.", "section": "typography" },
+      { "name": "The Heading Owner Rule", "body": "Pages own semantic heading levels; reusable card titles provide styling only and never force an `h3` into the document outline.", "section": "typography" },
+      { "name": "The Numbers Align Rule", "body": "Counts, percentages, Entries, and totals use tabular numerals before any special typeface is introduced.", "section": "typography" },
+      { "name": "The Tonal Layering Rule", "body": "Use surface tone, border, or divider before adding any shadow.", "section": "elevation" },
+      { "name": "The No Ghost Card Rule", "body": "A visible border and a broad soft shadow must never decorate the same object; if a bounded object floats like a marketing card, the elevation is wrong.", "section": "elevation" },
+      { "name": "The Independent Object Rule", "body": "A card is allowed only when its contents form one independently bounded object; cards inside cards are forbidden.", "section": "components" }
     ],
     "dos": [
-      "Do use Inter as the primary UI font for navigation, labels, controls, tables, and body copy.",
-      "Do use JetBrains Mono only for route paths, IDs, slugs, audit references, and other fixed-width utility data.",
-      "Do keep core controls familiar and shadcn-compatible.",
-      "Do use Polar Night for top chrome, lifecycle modules, table headers, and authority panels.",
-      "Do keep public Competition tables light, dense, and readable.",
-      "Do pair every status color with a text label.",
-      "Do preserve domain language from the glossary: User Profile, Competition, Entry, Competition Lifecycle, Scrutineer, Judge, Deck Captain, and Organization.",
-      "Do target WCAG 2.2 AA contrast and keep text readable in imperfect competition-day environments."
+      "Do use Inter for headings, navigation, controls, labels, and repeated data.",
+      "Do build dashboards from flat sections, tonal bands, shared headers, and divided rows before reaching for a card.",
+      "Do reserve cards for genuinely independent bounded objects and keep their contents flat.",
+      "Do use 8px corners for working controls, 10px corners for independent cards, and full pills only for status or true toggles.",
+      "Do pair every lifecycle and action color with a text label, icon, border, or other non-color cue.",
+      "Do keep public Competition lists light, dense, readable, and grounded in real domain questions.",
+      "Do use familiar shadcn-compatible controls and a standard Sheet for mobile app navigation.",
+      "Do keep functional feedback near 150ms and make movement immediate under reduced motion.",
+      "Do preserve the domain language User Profile, Competition, Entry, Competition Lifecycle, Scrutineer, Judge, Deck Captain, and Organization."
     ],
     "donts": [
-      "Don't let operational app surfaces feel like marketing landing pages; marketing pages are allowed later, but they must use CBMP's clean composed language.",
-      "Don't use decorative ballroom cliches or ornament on operational pages; clean modern decorative elements are allowed where they do not obscure workflow.",
-      "Don't ship analytics theater, placeholder metrics, or fake dashboards; real analytics pages must be grounded in real domain questions and data.",
-      "Don't make CBMP feel like a generic SaaS admin template.",
-      "Don't use oversized hero sections, ornamental card grids, or ballroom cliches on operational routes.",
-      "Don't imply product behavior, role authority, or dashboards that have not been defined by PRDs or domain decisions.",
+      "Don't let operational app surfaces feel like marketing pages or decorative ballroom event sites.",
+      "Don't use decorative ballroom cliches, oversized heroes, or ornamental card grids on operational routes.",
+      "Don't ship analytics theater, placeholder metrics, fake actor dashboards, or generic SaaS admin-template composition.",
+      "Don't use placeholder content that implies unsettled product behavior, role authority, or authorization decisions.",
       "Don't use unfamiliar controls for standard actions.",
-      "Don't bring in full dark mode by default; dark surfaces need an operational reason.",
-      "Don't use JetBrains Mono for headings, buttons, role labels, or general table text.",
-      "Don't rely on color alone for lifecycle or action state."
+      "Don't nest cards or box every metric, metadata value, checklist row, or navigation group.",
+      "Don't combine a visible border with a broad soft shadow, gradient text, decorative glassmorphism, side-stripe accents, or repeating stripe backgrounds.",
+      "Don't use tiny uppercase tracked eyebrows as repeated section scaffolding.",
+      "Don't rely on color alone for lifecycle, success, warning, destructive, selected, or disabled state.",
+      "Don't use page-load choreography, bounce, elastic motion, or animations that hide content before JavaScript runs.",
+      "Don't introduce full dark mode by default; every dark surface needs an operational reason.",
+      "Don't reduce body, placeholder, disabled, or soon-state text below readable contrast."
     ]
   }
 }

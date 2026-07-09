@@ -6,6 +6,7 @@
   :root {
     color-scheme: light;
 
+    /* Snow Storm working surfaces and Polar Night ink. */
     --background: 216 27% 98%;
     --foreground: 220 16% 14%;
 
@@ -17,6 +18,8 @@
 
     --primary: 193 43% 67%;
     --primary-foreground: 220 16% 14%;
+    --primary-hover: 193 38% 61%;
+    --primary-pressed: 193 34% 55%;
 
     --secondary: 216 27% 94%;
     --secondary-foreground: 220 16% 14%;
@@ -32,12 +35,21 @@
 
     --border: 218 27% 88%;
     --input: 218 27% 88%;
-    --ring: 193 43% 55%;
+    --ring: 213 32% 52%;
 
+    /* Tonal layers do most of the elevation work. */
     --surface: 216 27% 98%;
     --surface-raised: 0 0% 100%;
+    --surface-subtle: 216 27% 96%;
     --surface-hover: 216 27% 94%;
+    --surface-selected: 193 43% 92%;
     --surface-dark: 220 16% 14%;
+
+    /* Shared interaction states keep controls visually consistent. */
+    --state-hover: 216 27% 94%;
+    --state-pressed: 218 27% 90%;
+    --state-selected: 193 43% 92%;
+    --state-disabled: 219 14% 42%;
 
     --sidebar-background: 220 16% 14%;
     --sidebar-foreground: 218 27% 94%;
@@ -45,7 +57,7 @@
     --sidebar-primary-foreground: 220 16% 14%;
     --sidebar-accent: 220 13% 25%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 218 27% 88%;
+    --sidebar-border: 220 13% 25%;
     --sidebar-ring: 193 43% 67%;
 
     --lifecycle-published: 210 30% 63%;
@@ -56,14 +68,18 @@
 
     --success: var(--lifecycle-finished);
     --success-foreground: 220 16% 14%;
+    --success-strong: 92 30% 35%;
     --warning: var(--lifecycle-closed);
     --warning-foreground: 220 16% 14%;
+    --warning-strong: 40 55% 35%;
     --info: 213 32% 52%;
     --info-foreground: 0 0% 100%;
+    --info-strong: 213 38% 45%;
+    --destructive-strong: 354 42% 45%;
 
     --radius: 0.625rem;
     --shadow-card: 0 1px 2px hsl(220 16% 14% / 0.05);
-    --shadow-elevated: 0 16px 34px -24px hsl(220 16% 14% / 0.42);
+    --shadow-elevated: 0 4px 8px -4px hsl(220 16% 14% / 0.24);
     --shadow-inset: inset 0 1px 0 hsl(218 27% 94% / 0.08);
   }
 
@@ -77,6 +93,7 @@
 
   body {
     @apply min-h-screen bg-background font-sans text-sm leading-[1.45] text-foreground;
+    min-height: 100dvh;
     text-rendering: optimizeLegibility;
   }
 

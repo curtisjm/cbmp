@@ -163,6 +163,26 @@ test.describe('public home', () => {
       /\/competitions(?:\/)?(?:$|[?#])/,
     );
   });
+
+  test('uses one visible page heading across public routes and not-found', async ({
+    page,
+  }) => {
+    const routes = [
+      '/',
+      '/competitions',
+      '/sign-in',
+      '/coming-soon?surface=scrutineers',
+      '/route-that-does-not-exist',
+    ];
+
+    for (const route of routes) {
+      await page.goto(route);
+
+      const pageHeading = page.locator('h1');
+      await expect(pageHeading).toHaveCount(1);
+      await expect(pageHeading).toBeVisible();
+    }
+  });
 });
 
 test.describe('public competitions', () => {
@@ -194,6 +214,7 @@ test.describe('public competitions', () => {
     await expect(
       page.getByText(/Draft setup stays private to hosts/i),
     ).toBeVisible();
+    await expect(page.getByRole('main')).toHaveCount(1);
   });
 
   test('does not render route-path decoration in the public list', async ({
@@ -262,6 +283,49 @@ test.describe('public competitions', () => {
     ).toBeVisible();
     await expect(page.getByText('6 of 6 Competitions')).toBeVisible();
   });
+
+  test('renders Competition records without a false link affordance', async ({
+    page,
+  }) => {
+    await page.goto('/competitions');
+
+    const results = page.getByLabel('Competition results');
+    const rows = results.locator('article');
+
+    await expect(rows).toHaveCount(6);
+    await expect(rows.locator('a')).toHaveCount(0);
+  });
+
+  test('keeps mobile Competition filters usable without horizontal overflow', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/competitions');
+
+    const filterGroup = page.getByRole('group', {
+      name: /competition lifecycle filters/i,
+    });
+    const filters = filterGroup.getByRole('button');
+
+    await expect(filters).toHaveCount(6);
+    for (const filter of await filters.all()) {
+      await expect(filter).toBeVisible();
+      const bounds = await filter.boundingBox();
+      expect(bounds).not.toBeNull();
+      expect(bounds?.height).toBeGreaterThanOrEqual(40);
+    }
+
+    await filterGroup.getByRole('button', { name: 'Running' }).click();
+    await expect(
+      page.getByRole('heading', { name: /Midwest Collegiate Championships/i }),
+    ).toBeVisible();
+
+    const documentWidth = await page.evaluate(() => ({
+      client: document.documentElement.clientWidth,
+      scroll: document.documentElement.scrollWidth,
+    }));
+    expect(documentWidth.scroll).toBeLessThanOrEqual(documentWidth.client);
+  });
 });
 
 test.describe('app reference route', () => {
@@ -279,7 +343,7 @@ test.describe('app reference route', () => {
     ).toHaveAttribute('aria-current', 'page');
     await expect(
       page.getByRole('searchbox', { name: /reference search preview/i }),
-    ).toHaveAttribute('readonly', '');
+    ).toHaveCount(0);
     await expect(page.getByText(/prototype\/reference/i)).toBeVisible();
     await expect(page.getByText(/not Clerk-protected/i)).toBeVisible();
   });
@@ -364,9 +428,19 @@ test.describe('competition management demo', () => {
     ).toBeVisible();
   });
 
-  test('keeps animated demo interactions enabled with reduced motion', async ({
+  test('keeps public content visible and demo interactions enabled with reduced motion', async ({
     page,
   }) => {
+    const hydrationErrors: string[] = [];
+    page.on('console', (message) => {
+      if (
+        message.type() === 'error' &&
+        /hydration|did not match/i.test(message.text())
+      ) {
+        hydrationErrors.push(message.text());
+      }
+    });
+
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
 
@@ -375,15 +449,20 @@ test.describe('competition management demo', () => {
     });
     await expect(liveDemo).toBeVisible();
     await expect(liveDemo).toBeEnabled();
-    const pulse = page.getByTestId('live-demo-status-pulse');
-    const pulseDuration = Number(await pulse.getAttribute('data-motion-duration-ms'));
-    const pulseRepeatCount = Number(
-      await pulse.getAttribute('data-motion-repeat-count'),
-    );
-    expect(pulseDuration).toBeGreaterThan(0);
-    expect(pulseDuration).toBeLessThanOrEqual(1600);
-    expect(pulseRepeatCount).toBeGreaterThan(0);
-    expect(pulseRepeatCount).toBeLessThanOrEqual(2);
+    await expect(
+      page.getByRole('heading', { name: /competition lifecycle/i }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /foundation for later product slices/i }),
+    ).toBeVisible();
+    await expect(page.locator('[data-motion-repeat-count]')).toHaveCount(0);
+    await expect(
+      page.getByRole('main').locator('[style*="transform"]'),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole('main').locator('[style*="opacity: 0"]'),
+    ).toHaveCount(0);
+    expect(hydrationErrors).toEqual([]);
 
     await liveDemo.click();
 

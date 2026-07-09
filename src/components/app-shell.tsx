@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, ShieldCheck, Trophy, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,9 +24,9 @@ export function AppShell({ children, clerkEnabled }: AppShellProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex min-h-dvh flex-col bg-background text-foreground">
       <PublicNavbar clerkEnabled={clerkEnabled} pathname={pathname ?? "/"} />
-      <main className="pt-16">{children}</main>
+      <main className="flex-1 pt-16">{children}</main>
       <PublicFooter />
     </div>
   );
@@ -42,8 +41,6 @@ function PublicNavbar({
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const reduceMotion = useReducedMotion();
-
   useEffect(() => {
     const updateScrolled = () => setScrolled(window.scrollY > 8);
     updateScrolled();
@@ -60,20 +57,20 @@ function PublicNavbar({
     const current = href === "/" ? pathname === href : pathname.startsWith(href);
 
     return cn(
-      "rounded-full px-3 py-2 text-sm font-medium transition-colors",
+      "rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150",
       current
-        ? "bg-foreground text-background"
-        : "text-muted-foreground hover:bg-muted hover:text-foreground",
+        ? "bg-state-selected text-foreground"
+        : "text-muted-foreground hover:bg-state-hover hover:text-foreground",
     );
   };
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 border-b transition-colors duration-200",
+        "fixed inset-x-0 top-0 z-40 border-b bg-background/95 transition-[background-color,border-color] duration-150 supports-[backdrop-filter]:bg-background/90 supports-[backdrop-filter]:backdrop-blur-md",
         scrolled || mobileOpen
-          ? "border-border bg-background/95 backdrop-blur-md"
-          : "border-transparent bg-background/70 backdrop-blur-sm",
+          ? "border-border"
+          : "border-transparent",
       )}
     >
       <div className="container flex h-16 items-center gap-4">
@@ -125,15 +122,8 @@ function PublicNavbar({
         </Button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {mobileOpen ? (
-          <motion.div
-            animate={{ height: "auto", opacity: 1 }}
-            className="overflow-hidden border-t bg-background md:hidden"
-            exit={{ height: 0, opacity: 0 }}
-            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.18, ease: "easeOut" }}
-          >
+      {mobileOpen ? (
+          <div className="border-t bg-background md:hidden">
             <nav
               aria-label="Mobile navigation"
               className="container flex flex-col gap-1 py-4"
@@ -141,10 +131,10 @@ function PublicNavbar({
               {publicNavItems.map((item) => (
                 <Link
                   className={cn(
-                    "rounded-lg px-3 py-3 text-sm font-medium",
+                    "rounded-md px-3 py-3 text-sm font-medium transition-colors",
                     item.href === "/"
-                      ? pathname === item.href && "bg-muted"
-                      : pathname.startsWith(item.href) && "bg-muted",
+                      ? pathname === item.href && "bg-state-selected"
+                      : pathname.startsWith(item.href) && "bg-state-selected",
                   )}
                   href={item.href}
                   key={item.href}
@@ -160,17 +150,16 @@ function PublicNavbar({
                 />
               </div>
             </nav>
-          </motion.div>
+          </div>
         ) : null}
-      </AnimatePresence>
     </header>
   );
 }
 
 function PublicFooter() {
   return (
-    <footer className="border-t bg-card">
-      <div className="container grid gap-8 py-10 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="border-t bg-background">
+      <div className="container grid gap-8 py-8 md:grid-cols-[1.4fr_1fr_1fr] md:py-10">
         <div className="max-w-sm">
           <Link className="flex items-center gap-2" href="/">
             <span className="grid size-8 place-items-center rounded-lg bg-foreground text-xs font-bold text-background">
@@ -185,13 +174,13 @@ function PublicFooter() {
         <div>
           <h2 className="text-sm font-semibold">Product</h2>
           <div className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground">
-            <Link className="hover:text-foreground" href="/competitions">
+            <Link className="rounded-sm hover:text-foreground" href="/competitions">
               Public Competitions
             </Link>
-            <Link className="hover:text-foreground" href="/app">
+            <Link className="rounded-sm hover:text-foreground" href="/app">
               App reference
             </Link>
-            <Link className="hover:text-foreground" href="/sign-in">
+            <Link className="rounded-sm hover:text-foreground" href="/sign-in">
               Sign in
             </Link>
           </div>
@@ -200,11 +189,11 @@ function PublicFooter() {
           <h2 className="text-sm font-semibold">Boundaries</h2>
           <div className="mt-3 grid gap-2 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-2">
-              <Trophy className="size-4" aria-hidden="true" />
+              <Trophy className="size-4 text-accent" aria-hidden="true" />
               Competition discovery is public.
             </span>
             <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="size-4" aria-hidden="true" />
+              <ShieldCheck className="size-4 text-accent" aria-hidden="true" />
               Clerk remains identity only.
             </span>
           </div>

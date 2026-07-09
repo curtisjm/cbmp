@@ -1,30 +1,20 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   CalendarClock,
   ChevronLeft,
   Menu,
   PanelLeft,
-  Search,
   ShieldCheck,
-  Sparkles,
   Trophy,
+  type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -41,7 +31,6 @@ import {
 } from "@/components/ui/tooltip";
 import {
   appNavItems,
-  appSummaryStats,
   competitionFixtures,
   getLifecycleCue,
   productName,
@@ -61,20 +50,15 @@ export function AppReferenceShell() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname() ?? "/app";
-  const reduceMotion = useReducedMotion();
 
-  const nav = useMemo(
-    () =>
-      appNavItems.map((item) => ({
-        ...item,
-        active: item.href === "/app" ? pathname === "/app" : pathname.startsWith(item.href),
-      })),
-    [pathname],
-  );
+  const nav = appNavItems.map((item) => ({
+    ...item,
+    active: item.href === "/app" ? pathname === "/app" : pathname.startsWith(item.href),
+  }));
 
   return (
     <TooltipProvider delayDuration={120}>
-      <div className="flex min-h-screen bg-background text-foreground">
+      <div className="flex min-h-dvh bg-background text-foreground">
         <DesktopSidebar
           collapsed={collapsed}
           nav={nav}
@@ -85,25 +69,19 @@ export function AppReferenceShell() {
           <ReferenceHeader
             collapsed={collapsed}
             mobileOpen={mobileOpen}
+            nav={nav}
             onMobileOpenChange={setMobileOpen}
             onSidebarToggle={() => setCollapsed((value) => !value)}
-            nav={nav}
           />
 
-          <main className="flex-1 overflow-y-auto px-3 py-4 sm:px-5 lg:px-7">
-            <motion.div
-              animate={{ opacity: 1, y: 0 }}
-              className="mx-auto grid max-w-7xl gap-5"
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              transition={{ duration: reduceMotion ? 0 : 0.18, ease: "easeOut" }}
-            >
-              <DashboardIntro />
-              <SummaryStats />
-              <div className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(20rem,0.75fr)]">
+          <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto flex max-w-7xl flex-col gap-8">
+              <WorkspaceOverview />
+              <div className="grid gap-8 xl:grid-cols-[minmax(0,1.55fr)_minmax(18rem,0.72fr)]">
                 <CompetitionList />
                 <WorkflowReference />
               </div>
-            </motion.div>
+            </div>
           </main>
         </div>
       </div>
@@ -127,7 +105,7 @@ function DesktopSidebar({
   return (
     <aside
       className={cn(
-        "sticky top-0 hidden h-screen shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-[width] duration-200 md:flex",
+        "sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-[width] duration-150 ease-out motion-reduce:transition-none md:flex",
         collapsed ? "w-16" : "w-64",
       )}
     >
@@ -166,21 +144,6 @@ function DesktopSidebar({
           <DesktopNavLink collapsed={collapsed} item={item} key={item.href} />
         ))}
       </nav>
-
-      {!collapsed ? (
-        <div className="border-t border-white/10 p-3">
-          <div className="rounded-lg border border-white/10 bg-sidebar-accent/55 p-3 shadow-inset">
-            <div className="flex items-center gap-2 text-sm font-semibold">
-              <Sparkles className="size-4 text-sidebar-primary" aria-hidden="true" />
-              Prototype reference
-            </div>
-            <p className="mt-2 text-xs leading-relaxed text-sidebar-foreground/70">
-              Layout and fixture data only. Final permissions and workflows remain
-              product work.
-            </p>
-          </div>
-        </div>
-      ) : null}
     </aside>
   );
 }
@@ -197,13 +160,14 @@ function DesktopNavLink({
     <Link
       aria-current={item.active ? "page" : undefined}
       aria-disabled={item.soon ? "true" : undefined}
+      aria-label={collapsed ? `${item.label}${item.soon ? " soon" : ""}` : undefined}
       className={cn(
-        "relative flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors",
+        "relative flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors motion-reduce:transition-none",
         item.active
           ? "bg-sidebar-accent text-sidebar-accent-foreground"
-          : "text-sidebar-foreground/76 hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground",
+          : "text-sidebar-foreground/80 hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground",
         collapsed && "justify-center px-2",
-        item.soon && "text-sidebar-foreground/48 hover:text-sidebar-foreground/70",
+        item.soon && "text-sidebar-foreground/70 hover:text-sidebar-foreground",
       )}
       href={item.soon ? "/app" : item.href}
       onClick={(event) => {
@@ -217,7 +181,7 @@ function DesktopNavLink({
         <>
           <span className="min-w-0 flex-1 truncate">{item.label}</span>
           {item.soon ? (
-            <Badge className="border-white/10 bg-white/8 text-[10px] text-sidebar-foreground/70">
+            <Badge className="border-white/10 bg-white/10 text-[10px] text-sidebar-foreground">
               soon
             </Badge>
           ) : null}
@@ -255,7 +219,7 @@ function ReferenceHeader({
   onSidebarToggle: () => void;
 }) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b bg-background/88 px-3 backdrop-blur-md sm:px-5 lg:px-7">
+    <header className="sticky top-0 z-30 flex min-h-16 items-center gap-3 border-b bg-background/95 px-4 backdrop-blur-md sm:px-6 lg:px-8">
       <MobileNav open={mobileOpen} nav={nav} onOpenChange={onMobileOpenChange} />
       {collapsed ? (
         <Button
@@ -271,24 +235,12 @@ function ReferenceHeader({
       ) : null}
 
       <div className="min-w-0 flex-1">
-        <div className="relative max-w-xl">
-          <Search
-            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-            aria-hidden="true"
-          />
-          <Input
-            aria-label="Reference search preview"
-            className="h-10 border-transparent bg-muted/55 pl-9"
-            placeholder="Reference search preview"
-            readOnly
-            type="search"
-            value=""
-          />
-        </div>
+        <p className="text-xs font-medium text-muted-foreground">Workspace</p>
+        <p className="truncate text-sm font-semibold">App reference</p>
       </div>
 
-      <Badge className="hidden shrink-0 sm:inline-flex" variant="outline">
-        prototype
+      <Badge className="shrink-0" variant="outline">
+        Preview
       </Badge>
     </header>
   );
@@ -339,11 +291,10 @@ function MobileNav({
                   aria-current={item.active ? "page" : undefined}
                   aria-disabled={item.soon ? "true" : undefined}
                   className={cn(
-                    "flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors",
+                    "flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors motion-reduce:transition-none",
                     item.active
                       ? "bg-muted text-foreground"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    item.soon && "text-muted-foreground/70",
                   )}
                   href={item.soon ? "/app" : item.href}
                   key={item.href}
@@ -367,214 +318,199 @@ function MobileNav({
               );
             })}
           </nav>
-
-          <div className="mt-auto border-t p-4">
-            <p className="text-xs leading-relaxed text-muted-foreground">
-              This public route demonstrates shell patterns without Clerk protection
-              or production workflow behavior.
-            </p>
-          </div>
         </div>
       </SheetContent>
     </Sheet>
   );
 }
 
-function DashboardIntro() {
+function WorkspaceOverview() {
   return (
-    <section className="grid gap-4 rounded-lg border bg-card p-4 shadow-card sm:p-5 lg:grid-cols-[minmax(0,1fr)_22rem]">
-      <div className="min-w-0">
-        <div className="mb-3 flex flex-wrap items-center gap-2">
-          <Badge variant="outline">prototype/reference</Badge>
-          <Badge variant="muted">not Clerk-protected</Badge>
+    <section aria-labelledby="app-reference-heading">
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-3xl">
+          <h1
+            className="text-2xl font-semibold tracking-normal text-foreground sm:text-3xl"
+            id="app-reference-heading"
+          >
+            App reference shell
+          </h1>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            A template-informed workspace frame for future CBMP Competition operations,
+            using fixture data until product behavior is specified.
+          </p>
         </div>
-        <h1 className="text-2xl font-semibold tracking-normal text-foreground sm:text-3xl">
-          App reference shell
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          A template-inspired workspace frame for future CBMP Competition operations,
-          using fixture data and inert module links until product behavior is specified.
-        </p>
+
+        <div className="flex max-w-lg items-start gap-3 rounded-lg bg-muted/60 px-4 py-3 text-sm">
+          <Badge className="mt-0.5 shrink-0" variant="outline">
+            Preview
+          </Badge>
+          <p className="leading-6 text-muted-foreground">
+            Prototype/reference fixture only; not Clerk-protected and not an
+            authorization surface.
+          </p>
+        </div>
       </div>
 
-      <div className="rounded-lg border bg-muted/45 p-4">
-        <div className="flex items-center gap-2 text-sm font-semibold">
-          <Trophy className="size-4 text-accent" aria-hidden="true" />
-          Current fixture focus
-        </div>
-        <p className="mt-2 text-base font-semibold">
-          {activeCompetition?.name ?? "No running Competition"}
-        </p>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {activeCompetition
-            ? `${activeCompetition.city}, ${activeCompetition.region} - ${activeCompetition.sessions}`
-            : "Fixture set does not include an active Competition."}
-        </p>
-      </div>
+      <dl className="mt-6 grid border-y bg-card sm:grid-cols-[minmax(0,1.5fr)_1fr_1fr] sm:divide-x">
+        <SummaryItem
+          icon={Trophy}
+          label="Current fixture focus"
+          value={activeCompetition?.name ?? "No running Competition"}
+        />
+        <SummaryItem
+          label="Location"
+          value={
+            activeCompetition
+              ? `${activeCompetition.city}, ${activeCompetition.region}`
+              : "Not available"
+          }
+        />
+        <SummaryItem
+          label="Active setup"
+          value={`${upcomingCompetitions.length} Competitions`}
+        />
+      </dl>
     </section>
   );
 }
 
-function SummaryStats() {
-  const reduceMotion = useReducedMotion();
-
+function SummaryItem({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon?: LucideIcon;
+  label: string;
+  value: string;
+}) {
   return (
-    <section aria-label="Prototype summary" className="grid gap-3 sm:grid-cols-3">
-      {appSummaryStats.map((stat, index) => (
-        <motion.div
-          animate={{ opacity: 1, y: 0 }}
-          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-          key={stat.label}
-          transition={{
-            delay: reduceMotion ? 0 : index * 0.04,
-            duration: reduceMotion ? 0 : 0.18,
-          }}
-        >
-          <Card className="h-full">
-            <CardContent className="p-4">
-              <p className="text-xs font-medium uppercase text-muted-foreground">
-                {stat.label}
-              </p>
-              <p className="mt-2 text-2xl font-semibold tabular">{stat.value}</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                {stat.detail}
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
-    </section>
+    <div className="flex gap-3 border-b px-4 py-3 last:border-b-0 sm:border-b-0">
+      {Icon ? <Icon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" /> : null}
+      <div className="min-w-0">
+        <dt className="text-xs font-medium text-muted-foreground">{label}</dt>
+        <dd className="mt-1 text-sm font-semibold text-foreground">{value}</dd>
+      </div>
+    </div>
   );
 }
 
 function CompetitionList() {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <Card>
-      <CardHeader className="flex-row items-start justify-between gap-4">
+    <section aria-labelledby="competition-fixtures-heading" className="min-w-0">
+      <div className="flex items-start justify-between gap-4 pb-4">
         <div>
-          <CardTitle>Competition fixtures</CardTitle>
-          <CardDescription>
+          <h2 className="text-lg font-semibold" id="competition-fixtures-heading">
+            Competition fixtures
+          </h2>
+          <p className="mt-1 text-sm leading-6 text-muted-foreground">
             Domain-plausible records for layout rhythm and status treatment.
-          </CardDescription>
+          </p>
         </div>
-        <Badge variant="muted">{upcomingCompetitions.length} active setup</Badge>
-      </CardHeader>
-      <CardContent className="grid gap-2">
-        <AnimatePresence initial={false}>
-          {competitionFixtures.slice(0, 5).map((competition, index) => {
-            const cue = getLifecycleCue(competition.lifecycle);
+        <Badge className="shrink-0" variant="muted">
+          {upcomingCompetitions.length} active setup
+        </Badge>
+      </div>
 
-            return (
-              <motion.article
-                animate={{ opacity: 1, x: 0 }}
-                className="grid gap-3 rounded-lg border bg-background p-3 transition-colors hover:bg-muted/35 sm:grid-cols-[minmax(0,1fr)_auto]"
-                exit={reduceMotion ? undefined : { opacity: 0, x: -8 }}
-                initial={reduceMotion ? false : { opacity: 0, x: -8 }}
-                key={competition.slug}
-                transition={{
-                  delay: reduceMotion ? 0 : index * 0.025,
-                  duration: reduceMotion ? 0 : 0.16,
-                }}
-              >
+      <ul className="divide-y border-y">
+        {competitionFixtures.slice(0, 5).map((competition) => {
+          const cue = getLifecycleCue(competition.lifecycle);
+
+          return (
+            <li key={competition.slug}>
+              <article className="grid gap-4 py-4 sm:grid-cols-[minmax(0,1fr)_auto]">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="truncate text-sm font-semibold">
-                      {competition.name}
-                    </h2>
+                    <h3 className="text-sm font-semibold">{competition.name}</h3>
                     <Badge variant="outline">{cue?.label ?? competition.lifecycle}</Badge>
                   </div>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">
                     {competition.summary}
                   </p>
                 </div>
-                <dl className="grid grid-cols-2 gap-3 text-xs text-muted-foreground sm:min-w-56">
-                  <div>
-                    <dt className="font-medium text-foreground">Host</dt>
-                    <dd className="mt-1 truncate">{competition.host}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-foreground">Date</dt>
-                    <dd className="mt-1">{competition.dateLabel}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-foreground">Entries</dt>
-                    <dd className="mt-1">{competition.entriesLabel}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-foreground">Sessions</dt>
-                    <dd className="mt-1">{competition.sessions}</dd>
-                  </div>
+                <dl className="grid grid-cols-2 gap-x-5 gap-y-3 text-xs text-muted-foreground sm:min-w-64">
+                  <FixtureDetail label="Host" value={competition.host} />
+                  <FixtureDetail label="Date" value={competition.dateLabel} />
+                  <FixtureDetail label="Entries" value={competition.entriesLabel} />
+                  <FixtureDetail label="Sessions" value={competition.sessions} />
                 </dl>
-              </motion.article>
-            );
-          })}
-        </AnimatePresence>
-      </CardContent>
-    </Card>
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+function FixtureDetail({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <dt className="font-medium text-foreground">{label}</dt>
+      <dd className="mt-1">{value}</dd>
+    </div>
   );
 }
 
 function WorkflowReference() {
   return (
-    <div className="grid gap-5">
-      <Card>
-        <CardHeader>
-          <CardTitle>Module references</CardTitle>
-          <CardDescription>
-            Future areas are visible without suggesting final access rules.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3">
-          <div className="flex items-start gap-3 rounded-lg border bg-background p-3">
-            <CalendarClock className="mt-0.5 size-4 text-accent" aria-hidden="true" />
-            <div>
-              <p className="text-sm font-semibold">Schedule</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                Useful for session review, result publication, and event timing once
-                scheduling rules exist.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 rounded-lg border bg-background p-3">
-            <ShieldCheck className="mt-0.5 size-4 text-accent" aria-hidden="true" />
-            <div>
-              <p className="text-sm font-semibold">Officials</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                Kept as a neutral module label while permissions and responsibilities
-                stay outside this prototype.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+    <aside className="self-start border-t pt-6 xl:border-l xl:border-t-0 xl:pl-8 xl:pt-0">
+      <section aria-labelledby="module-reference-heading">
+        <h2 className="text-lg font-semibold" id="module-reference-heading">
+          Module references
+        </h2>
+        <p className="mt-1 text-sm leading-6 text-muted-foreground">
+          Future areas, without implied access rules.
+        </p>
+        <ul className="mt-4 divide-y border-y">
+          <ReferenceRow
+            body="Session review, result publication, and event timing once scheduling rules exist."
+            icon={CalendarClock}
+            title="Schedule"
+          />
+          <ReferenceRow
+            body="A neutral module label while permissions and responsibilities remain product work."
+            icon={ShieldCheck}
+            title="Officials"
+          />
+        </ul>
+      </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Workflow notes</CardTitle>
-          <CardDescription>
-            Existing product language, presented as reference-safe cards.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3">
-          {workflowPanels.map((panel) => {
-            const Icon = panel.icon;
+      <section aria-labelledby="workflow-notes-heading" className="mt-8">
+        <h2 className="text-lg font-semibold" id="workflow-notes-heading">
+          Workflow notes
+        </h2>
+        <ul className="mt-4 divide-y border-y">
+          {workflowPanels.map((panel) => (
+            <ReferenceRow
+              body={panel.body}
+              icon={panel.icon}
+              key={panel.title}
+              title={panel.title}
+            />
+          ))}
+        </ul>
+      </section>
+    </aside>
+  );
+}
 
-            return (
-              <div className="rounded-lg border bg-background p-3" key={panel.title}>
-                <div className="flex items-center gap-2 text-sm font-semibold">
-                  <Icon className="size-4 text-accent" aria-hidden="true" />
-                  {panel.title}
-                </div>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                  {panel.body}
-                </p>
-              </div>
-            );
-          })}
-        </CardContent>
-      </Card>
-    </div>
+function ReferenceRow({
+  body,
+  icon: Icon,
+  title,
+}: {
+  body: string;
+  icon: LucideIcon;
+  title: string;
+}) {
+  return (
+    <li className="flex items-start gap-3 py-4">
+      <Icon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+      <div>
+        <h3 className="text-sm font-semibold">{title}</h3>
+        <p className="mt-1 text-sm leading-6 text-muted-foreground">{body}</p>
+      </div>
+    </li>
   );
 }
