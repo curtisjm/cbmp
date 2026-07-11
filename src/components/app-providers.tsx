@@ -1,7 +1,8 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { ReactNode } from "react";
 
+import { ClientAppProviders } from "./client-app-providers";
 import { isClerkPublishableKeyConfigured } from "../lib/clerk";
+import { getConfiguredConvexUrl } from "../lib/convex";
 
 type AppProvidersProps = {
   children: ReactNode;
@@ -14,9 +15,14 @@ export function isClerkEnabled() {
 }
 
 export function AppProviders({ children }: AppProvidersProps) {
-  if (!isClerkEnabled()) {
-    return <>{children}</>;
-  }
+  const clerkEnabled = isClerkEnabled();
+  const convexUrl = getConfiguredConvexUrl(
+    process.env.NEXT_PUBLIC_CONVEX_URL,
+  );
 
-  return <ClerkProvider>{children}</ClerkProvider>;
+  return (
+    <ClientAppProviders clerkEnabled={clerkEnabled} convexUrl={convexUrl}>
+      {children}
+    </ClientAppProviders>
+  );
 }

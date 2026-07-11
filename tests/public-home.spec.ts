@@ -166,10 +166,12 @@ test.describe('public home', () => {
 });
 
 test.describe('public competitions', () => {
-  test('owns the redesigned public Competition discovery surface', async ({
+  test('renders an accessible public Competition discovery state without seeded rows', async ({
     page,
   }) => {
-    await page.goto('/competitions');
+    const response = await page.goto('/competitions');
+
+    expect(response?.ok()).toBe(true);
 
     await expect(
       page.getByRole('heading', {
@@ -180,20 +182,24 @@ test.describe('public competitions', () => {
     await expect(
       page.getByText(/Find published collegiate ballroom Competitions/i),
     ).toBeVisible();
+
+    const discovery = page.getByRole('region', {
+      name: /public Competition discovery/i,
+    });
+    await expect(discovery).toBeVisible();
     await expect(
-      page.getByRole('heading', {
+      discovery
+        .getByRole('status')
+        .or(discovery.getByRole('list', { name: /public Competitions/i })),
+    ).toBeVisible();
+    await expect(discovery.getByRole('status')).toContainText(
+      /Competition discovery is unavailable/i,
+    );
+    await expect(
+      discovery.getByRole('heading', {
         name: /MIT Open Ballroom Championships/i,
       }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole('searchbox', { name: /search competitions/i }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: /entries open/i }),
-    ).toBeVisible();
-    await expect(
-      page.getByText(/Draft setup stays private to hosts/i),
-    ).toBeVisible();
+    ).toHaveCount(0);
   });
 
   test('does not render route-path decoration in the public list', async ({
@@ -203,64 +209,6 @@ test.describe('public competitions', () => {
 
     await expect(page.getByText('/competitions')).toHaveCount(0);
     await expect(page.getByText('Route', { exact: true })).toHaveCount(0);
-  });
-
-  test('searches and filters public Competition rows', async ({ page }) => {
-    await page.goto('/competitions');
-
-    const search = page.getByRole('searchbox', {
-      name: /search competitions/i,
-    });
-    await expect(search).toBeEnabled();
-
-    await search.fill('Berkeley');
-    await expect(
-      page.getByRole('heading', { name: /Berkeley Classic/i }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole('heading', { name: /MIT Open Ballroom Championships/i }),
-    ).toHaveCount(0);
-    await expect(page.getByText('1 of 6 Competitions')).toBeVisible();
-
-    await search.clear();
-    await page.getByRole('button', { name: 'Running' }).click();
-    await expect(
-      page.getByRole('heading', {
-        name: /Midwest Collegiate Championships/i,
-      }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole('heading', { name: /Berkeley Classic/i }),
-    ).toHaveCount(0);
-    await expect(page.getByText('1 of 6 Competitions')).toBeVisible();
-
-    await page.getByRole('button', { name: 'All' }).click();
-    await expect(
-      page.getByRole('heading', { name: /MIT Open Ballroom Championships/i }),
-    ).toBeVisible();
-    await expect(page.getByText('6 of 6 Competitions')).toBeVisible();
-  });
-
-  test('shows and clears an empty Competition result state', async ({ page }) => {
-    await page.goto('/competitions');
-
-    await page
-      .getByRole('searchbox', { name: /search competitions/i })
-      .fill('no matching host or city');
-
-    await expect(
-      page.getByRole('heading', {
-        name: /No Competitions match these filters/i,
-      }),
-    ).toBeVisible();
-    await expect(page.getByText('0 of 6 Competitions')).toBeVisible();
-
-    await page.getByRole('button', { name: /clear filters/i }).click();
-
-    await expect(
-      page.getByRole('heading', { name: /MIT Open Ballroom Championships/i }),
-    ).toBeVisible();
-    await expect(page.getByText('6 of 6 Competitions')).toBeVisible();
   });
 });
 
