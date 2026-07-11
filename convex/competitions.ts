@@ -16,17 +16,25 @@ export const listPublic = query({
           .withIndex("by_lifecycle", (q) => q.eq("lifecycle", lifecycle))
           .collect();
 
-        return competitions.map((competition) => ({
-          name: competition.name,
-          slug: competition.slug,
-          lifecycle,
-          hostOrganizationDisplayName:
-            competition.hostOrganizationDisplayName,
-          city: competition.city,
-          region: competition.region,
-          startsOn: validatedCalendarDate(competition.startsOn),
-          endsOn: validatedCalendarDate(competition.endsOn),
-        }));
+        return competitions.flatMap((competition) => {
+          if (!hasValidCalendarDates(competition)) {
+            return [];
+          }
+
+          return [
+            {
+              name: competition.name,
+              slug: competition.slug,
+              lifecycle,
+              hostOrganizationDisplayName:
+                competition.hostOrganizationDisplayName,
+              city: competition.city,
+              region: competition.region,
+              startsOn: competition.startsOn,
+              endsOn: competition.endsOn,
+            },
+          ];
+        });
       }),
     );
 
@@ -34,10 +42,16 @@ export const listPublic = query({
   },
 });
 
-function validatedCalendarDate(value: string | undefined): string | undefined {
-  if (value !== undefined && !isCalendarDateString(value)) {
-    throw new Error("Stored Competition calendar date is invalid");
-  }
+function hasValidCalendarDates(competition: {
+  startsOn?: string;
+  endsOn?: string;
+}): boolean {
+  return (
+    isValidOptionalCalendarDate(competition.startsOn) &&
+    isValidOptionalCalendarDate(competition.endsOn)
+  );
+}
 
-  return value;
+function isValidOptionalCalendarDate(value: string | undefined): boolean {
+  return value === undefined || isCalendarDateString(value);
 }

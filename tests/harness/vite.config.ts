@@ -7,6 +7,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("../../src", import.meta.url)),
+      "convex/react": fileURLToPath(
+        new URL("./convex-react.ts", import.meta.url),
+      ),
     },
   },
   server: {

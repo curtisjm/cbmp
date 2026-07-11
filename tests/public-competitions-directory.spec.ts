@@ -3,6 +3,40 @@ import { expect, test } from "@playwright/test";
 test.use({ baseURL: "http://127.0.0.1:4173" });
 
 test.describe("public Competition directory", () => {
+  test("shows the unavailable state when the connected query fails", async ({
+    page,
+  }) => {
+    await page.goto("/?scenario=query-error");
+
+    await expect(page.getByRole("status")).toContainText(
+      "Competition discovery is unavailable",
+    );
+    await expect(
+      page.getByRole("list", { name: "Public Competitions" }),
+    ).toHaveCount(0);
+  });
+
+  test("shows the loading state while the connected query is pending", async ({
+    page,
+  }) => {
+    await page.goto("/?scenario=query-loading");
+
+    await expect(
+      page.getByRole("status", { name: "Loading Competitions" }),
+    ).toBeVisible();
+  });
+
+  test("renders results when the connected query succeeds", async ({ page }) => {
+    await page.goto("/?scenario=query-success");
+
+    await expect(
+      page.getByRole("article", { name: "Cascade Collegiate Classic" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("status", { name: "Loading Competitions" }),
+    ).toHaveCount(0);
+  });
+
   test("explains when a connected query returns no public Competitions", async ({
     page,
   }) => {
@@ -22,6 +56,11 @@ test.describe("public Competition directory", () => {
     page,
   }) => {
     await page.goto("/?scenario=list");
+
+    await expect(page.locator("#public-competition-results")).toHaveAttribute(
+      "aria-live",
+      "polite",
+    );
 
     const list = page.getByRole("list", { name: "Public Competitions" });
     await expect(list).toBeVisible();

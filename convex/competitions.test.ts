@@ -137,11 +137,21 @@ describe("competitions.listPublic", () => {
   });
 
   it.each(["startsOn", "endsOn"] as const)(
-    "rejects an invalid stored %s calendar date",
+    "omits a Competition with an invalid stored %s calendar date without hiding valid Competitions",
     async (field) => {
       const t = convexTest(schema, modules);
 
       await t.run(async (ctx) => {
+        await ctx.db.insert("competitions", {
+          name: "Valid Date Classic",
+          slug: "valid-date-classic",
+          lifecycle: COMPETITION_LIFECYCLE.published,
+          startsOn: "2026-02-28",
+          endsOn: "2026-03-01",
+          createdAt: 1_750_000_000_000,
+          updatedAt: 1_750_000_000_000,
+        });
+
         await ctx.db.insert("competitions", {
           name: "Invalid Date Classic",
           slug: `invalid-${field}`,
@@ -152,9 +162,17 @@ describe("competitions.listPublic", () => {
         });
       });
 
-      await expect(
-        t.query(api.competitions.listPublic, {}),
-      ).rejects.toThrow("Stored Competition calendar date is invalid");
+      const competitions = await t.query(api.competitions.listPublic, {});
+
+      expect(competitions).toEqual([
+        {
+          name: "Valid Date Classic",
+          slug: "valid-date-classic",
+          lifecycle: "published",
+          startsOn: "2026-02-28",
+          endsOn: "2026-03-01",
+        },
+      ]);
     },
   );
 });

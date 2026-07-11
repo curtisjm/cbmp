@@ -11,6 +11,7 @@ import {
 import type { FunctionReturnType } from "convex/server";
 import { useMemo, useState } from "react";
 
+import { parseCalendarDateString } from "../domain/competitions/calendar-date";
 import {
   COMPETITION_LIFECYCLE,
   PUBLIC_COMPETITION_LIFECYCLES,
@@ -116,10 +117,7 @@ export function CompetitionDirectory({
               value={searchValue}
             />
           </label>
-          <p
-            aria-live="polite"
-            className="text-xs font-medium text-muted-foreground"
-          >
+          <p className="text-xs font-medium text-muted-foreground">
             {resultCountLabel}
           </p>
         </div>
@@ -143,7 +141,7 @@ export function CompetitionDirectory({
         </fieldset>
       </div>
 
-      <div id="public-competition-results">
+      <div aria-live="polite" id="public-competition-results">
         {filteredCompetitions.length > 0 ? (
           <ul
             aria-label="Public Competitions"
@@ -332,10 +330,7 @@ function FilteredCompetitionEmptyState({ onClear }: { onClear: () => void }) {
       <h2 className="mt-3 text-base font-semibold">
         No Competitions match these filters
       </h2>
-      <p
-        aria-live="polite"
-        className="mx-auto mt-1 max-w-md text-sm leading-6 text-muted-foreground"
-      >
+      <p className="mx-auto mt-1 max-w-md text-sm leading-6 text-muted-foreground">
         Try another Competition, host, location, or lifecycle state.
       </p>
       <Button
@@ -362,14 +357,15 @@ function formatCalendarDateRange(startsOn?: string, endsOn?: string) {
 }
 
 function formatCalendarDate(value: string) {
-  const dateParts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  const dateParts = parseCalendarDateString(value);
 
   if (!dateParts) {
     return value;
   }
 
-  const [, year, month, day] = dateParts;
-  const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+  const date = new Date(
+    Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day),
+  );
 
   return new Intl.DateTimeFormat("en-US", {
     day: "numeric",

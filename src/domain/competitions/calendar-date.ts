@@ -1,10 +1,18 @@
 const CALENDAR_DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 
-export function isCalendarDateString(value: string): boolean {
+export type CalendarDateParts = {
+  day: number;
+  month: number;
+  year: number;
+};
+
+export function parseCalendarDateString(
+  value: string,
+): CalendarDateParts | undefined {
   const match = CALENDAR_DATE_PATTERN.exec(value);
 
   if (!match) {
-    return false;
+    return undefined;
   }
 
   const year = Number(match[1]);
@@ -12,10 +20,18 @@ export function isCalendarDateString(value: string): boolean {
   const day = Number(match[3]);
 
   if (year === 0 || month < 1 || month > 12 || day < 1) {
-    return false;
+    return undefined;
   }
 
-  return day <= daysInMonth(year, month);
+  if (day > daysInMonth(year, month)) {
+    return undefined;
+  }
+
+  return { day, month, year };
+}
+
+export function isCalendarDateString(value: string): boolean {
+  return parseCalendarDateString(value) !== undefined;
 }
 
 function daysInMonth(year: number, month: number): number {

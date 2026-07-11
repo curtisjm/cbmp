@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { isConvexEnabled } from "../../components/app-providers";
 import { PublicCompetitionsTable } from "../../components/public-competitions-table";
+import { isConvexEnabled } from "../../lib/convex";
 
 export const metadata: Metadata = {
   title: "Competitions",
@@ -28,7 +28,9 @@ export default function CompetitionsPage() {
         </div>
       </div>
 
-      <PublicCompetitionsTable convexEnabled={isConvexEnabled()} />
+      <PublicCompetitionsTable
+        convexEnabled={isConvexEnabled(process.env.NEXT_PUBLIC_CONVEX_URL)}
+      />
     </main>
   );
 }

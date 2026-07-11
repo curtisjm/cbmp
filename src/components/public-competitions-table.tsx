@@ -2,6 +2,7 @@
 
 import { CloudOff } from "lucide-react";
 import { useQuery } from "convex/react";
+import { Component, type ReactNode } from "react";
 
 import { api } from "../../convex/_generated/api";
 import { CompetitionDirectory } from "./public-competition-directory";
@@ -19,12 +20,33 @@ export function PublicCompetitionsTable({
       className="flex flex-col gap-4"
     >
       {convexEnabled ? (
-        <ConnectedPublicCompetitions />
+        <CompetitionQueryErrorBoundary>
+          <ConnectedPublicCompetitions />
+        </CompetitionQueryErrorBoundary>
       ) : (
         <CompetitionUnavailableState />
       )}
     </section>
   );
+}
+
+class CompetitionQueryErrorBoundary extends Component<
+  { children: ReactNode },
+  { queryFailed: boolean }
+> {
+  state = { queryFailed: false };
+
+  static getDerivedStateFromError() {
+    return { queryFailed: true };
+  }
+
+  render() {
+    if (this.state.queryFailed) {
+      return <CompetitionUnavailableState />;
+    }
+
+    return this.props.children;
+  }
 }
 
 function ConnectedPublicCompetitions() {
