@@ -168,7 +168,7 @@ describe("competitions.listPublic", () => {
         {
           name: "Valid Date Classic",
           slug: "valid-date-classic",
-          lifecycle: "published",
+          lifecycle: COMPETITION_LIFECYCLE.published,
           startsOn: "2026-02-28",
           endsOn: "2026-03-01",
         },
